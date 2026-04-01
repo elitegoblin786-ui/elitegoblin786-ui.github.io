@@ -1,0 +1,10 @@
+UpdateGITforWebSLink:
+
+$env:Path += ';C:\Program Files\Git\cmd'
+git add .
+git commit -m "Update site"
+git push
+
+BackOfficeCredentials
+AdminTBH_404
+BOsyst_404

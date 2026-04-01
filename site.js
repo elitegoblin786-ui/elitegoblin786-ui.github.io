@@ -96,3 +96,11 @@ if (revealElements.length) {
     });
   }
 }
+
+document.addEventListener("tbh:cms-applied", function () {
+  document.querySelectorAll(".count-up").forEach(function (element) {
+    if (element.closest(".is-visible")) {
+      animateCount(element);
+    }
+  });
+});

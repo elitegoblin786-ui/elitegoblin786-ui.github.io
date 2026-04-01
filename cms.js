@@ -29,7 +29,6 @@
     timelineThreeYear: "Today",
     timelineThreeTitle: "TheBrandHouse platform",
     timelineThreeDescription: "Distribution, retail and service combined under one unified business identity.",
-
     aboutBannerTitle: "Who we are",
     aboutBannerDescription: "Learn more about TheBrandHouse, its origins, its business activities and the strength behind its portfolio in Mauritius.",
     aboutOverviewTitle: "Welcome to TheBrandHouse",
@@ -47,7 +46,6 @@
     aboutShareholdingTitle: "Backed by Scott Investments",
     aboutShareholdingDescriptionOne: "TheBrandHouse's holding company is Scott Investments. Scott Investments is an investment company that has been in business in Mauritius for over 100 years, thereby contributing to the economic and social development of the country.",
     aboutShareholdingDescriptionTwo: "Scott Investments has interests in various fields of activity which include financial services, distribution and retailing.",
-
     businessesBannerTitle: "Discover our businesses",
     businessesBannerDescription: "TheBrandHouse operates through a connected platform of distribution, retail presence and accredited after-sales support.",
     businessesDistributionTitle: "JMG",
@@ -59,7 +57,6 @@
     businessesServiceTitle: "JMG Service Centre",
     businessesServiceDescriptionOne: "The JMG Service Centre provides after-sales service for brands distributed by JMG.",
     businessesServiceDescriptionTwo: "The team delivers technical training either locally or overseas as provided by principals, and offers both indoor and outdoor repair facilities under and outside warranty.",
-
     careersIntroTitle: "Interested in joining our team?",
     careersIntroDescriptionOne: "TheBrandHouse is not just any company. It has strong values and aims to be the best in its sector as an employer, supplier and retailer, giving customers the best possible experience.",
     careersIntroDescriptionTwo: "To achieve this, the company recruits and gives opportunities for staff development and, when a vacancy arises, seeks to recruit the best candidates. Appointments are made on merit.",
@@ -70,12 +67,10 @@
     careersBenefitsTitle: "Employee benefits",
     careersJobsTitle: "Open positions",
     careersJobsDescription: "Current roles highlighted on the existing site",
-
     contactTitle: "Contact us",
     contactOfficeTitle: "Head office",
     contactLocationTitle: "Find us in Riche Terre",
     contactLocationDescription: "Tap the location card below to open TheBrandHouse Limited in your device's default maps application.",
-
     newsHeadingTitle: "Highlights, recognition and company updates",
     newsHeadingDescription: "Follow company milestones, recognitions, launches and important announcements from across TheBrandHouse and its brands.",
     newsFeaturedTitle: "Recognition that reflects business performance",
@@ -87,20 +82,18 @@
     newsArticleIntro: "Recognized as Samsung Number 1 Retail Partner by Samsung Africa.",
     newsArticleDescriptionOne: "TheBrandHouse, operator of Galaxy and Samsung Brandstore Tribeca Mall, Bagatelle Mall and Riche Terre Mall, was recognised for this achievement by Samsung Africa. The recognition reflects the team's dedication, hard work and collaborative efforts with partners and associates.",
     newsArticleDescriptionTwo: "This recognition reflects the strength of the retail partnership, the commitment of the teams involved and the continued performance of TheBrandHouse in the Mauritian market.",
-
     storesHeadingTitle: "Retail presence across Mauritius",
     storesHeadingDescription: "Browse TheBrandHouse retail locations across Mauritius through a structured store directory with direct access to each location in Google Maps.",
     storesHeroTitle: "Accessible retail locations across the island",
     storesHeroDescription: "TheBrandHouse retail network is one of the strongest customer-facing parts of the business, combining broad accessibility with recognised shopping concepts."
   };
 
-  function load() {
+  function loadLocal() {
     try {
       const stored = window.localStorage.getItem(STORAGE_KEY);
       if (!stored) {
         return { ...defaults };
       }
-
       const parsed = JSON.parse(stored);
       return { ...defaults, ...parsed };
     } catch (error) {
@@ -108,11 +101,11 @@
     }
   }
 
-  function save(content) {
+  function saveLocal(content) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(content));
   }
 
-  function reset() {
+  function resetLocal() {
     window.localStorage.removeItem(STORAGE_KEY);
     return { ...defaults };
   }
@@ -150,7 +143,6 @@
       const suffixKey = element.dataset.cmsSuffix;
       const countValue = content[countKey] || "0";
       const suffixValue = suffixKey ? (content[suffixKey] || "") : "";
-
       element.dataset.count = countValue;
       element.dataset.suffix = suffixValue;
       element.textContent = String(countValue) + suffixValue;
@@ -159,24 +151,66 @@
   }
 
   function applyContent(content) {
-    const merged = content || load();
+    const merged = content || loadLocal();
     setTextContent(merged);
     setLinks(merged);
     setImages(merged);
     setCounters(merged);
+    document.dispatchEvent(new CustomEvent("tbh:cms-applied", { detail: merged }));
     return merged;
+  }
+
+  async function load() {
+    try {
+      const response = await fetch("/api/cms-content", { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error("Unable to load remote content.");
+      }
+      const result = await response.json();
+      const content = { ...defaults, ...(result.content || {}) };
+      saveLocal(content);
+      return content;
+    } catch (error) {
+      return loadLocal();
+    }
+  }
+
+  async function save(content) {
+    try {
+      const response = await fetch("/api/cms-content", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "same-origin",
+        body: JSON.stringify(content)
+      });
+      const result = await response.json();
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "Unable to save content.");
+      }
+      saveLocal(result.content || content);
+      return result.content || content;
+    } catch (error) {
+      saveLocal(content);
+      return content;
+    }
   }
 
   window.TBH_CMS_DEFAULTS = { ...defaults };
   window.tbhCms = {
     storageKey: STORAGE_KEY,
+    defaults: { ...defaults },
+    loadLocal,
+    saveLocal,
+    resetLocal,
     load,
     save,
-    reset,
     applyContent
   };
 
-  document.addEventListener("DOMContentLoaded", function () {
-    applyContent();
+  document.addEventListener("DOMContentLoaded", async function () {
+    const content = await load();
+    applyContent(content);
   });
 })();

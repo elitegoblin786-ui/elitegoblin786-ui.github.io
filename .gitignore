@@ -1,0 +1,6 @@
+cloudflared.log
+server-out.log
+server-err.log
+share-out.log
+share-err.log
+storage/contact_messages.jsonl

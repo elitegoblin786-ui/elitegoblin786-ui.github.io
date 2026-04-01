@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TheBrandHouse | Contact</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="thebrandhouse_ltd_logo.jpg" alt="TheBrandHouse logo">
+        <div class="brand-text">
+          <h1>TheBrandHouse</h1>
+          <p>Contact</p>
+        </div>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="about.html">About Us</a>
+        <a href="businesses.html">Our Businesses</a>
+        <a href="news.html">News</a>
+        <a href="careers.html">Careers</a>
+        <a class="active" href="contact.html">Contact</a>
+        <a href="stores.html">Our Stores</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="info-grid">
+        <section class="form-panel reveal">
+          <span class="eyebrow">Contact</span>
+          <h2>Contact us</h2>
+          <form class="contact-form" id="contactForm">
+            <input type="hidden" name="form_started_at" id="formStartedAt">
+            <div class="honeypot-field" aria-hidden="true">
+              <label for="companyWebsite">Company website</label>
+              <input type="text" name="company_website" id="companyWebsite" tabindex="-1" autocomplete="off">
+            </div>
+            <label>
+              Name
+              <input type="text" name="name" placeholder="Your name" required>
+            </label>
+            <label>
+              Surname
+              <input type="text" name="surname" placeholder="Your surname" required>
+            </label>
+            <label>
+              Phone number
+              <input type="tel" name="phone" placeholder="Your phone number" required>
+            </label>
+            <label>
+              E-mail
+              <input type="email" name="email" placeholder="Your email address" required>
+            </label>
+            <label>
+              Subject
+              <input type="text" name="subject" placeholder="Message subject" required>
+            </label>
+            <label>
+              Message
+              <textarea name="message" placeholder="Write your message here" required></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit" id="contactSubmitButton">Submit</button>
+            <p class="form-status" id="formStatus" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <aside class="detail-panel reveal delay-1">
+          <h3>Head office</h3>
+          <ul class="contact-list">
+            <li><strong>TheBrandHouse Ltd</strong></li>
+            <li>Industrial Park 1, Riche Terre</li>
+            <li>Mauritius</li>
+            <li>T: (+230) 207 1700</li>
+            <li>T: (+230) 249 2764</li>
+            <li>Email: info@thebrandhouse.mu</li>
+            <li>Website: www.thebrandhouse.mu</li>
+          </ul>
+        </aside>
+      </div>
+
+      <section class="contact-map reveal delay-2" style="margin-top: 28px;">
+        <span class="eyebrow">Location</span>
+        <h2>Find us in Riche Terre</h2>
+        <p>
+          Tap the location card below to open TheBrandHouse Limited in your device's default maps application.
+        </p>
+        <a
+          class="map-link-card"
+          href="https://www.google.com/maps/search/?api=1&amp;query=TheBrandHouse%20Ltd%2C%20Industrial%20Park%201%2C%20Riche%20Terre%2C%20Mauritius"
+          target="_blank"
+          rel="noopener"
+        >
+          <strong>TheBrandHouse Ltd</strong>
+          Industrial Park 1, Riche Terre, Mauritius
+          <br>
+          Open in Maps
+          <span class="map-card-logo">
+            <img class="footer-logo" src="thebrandhouse_ltd_logo_transparent.png" alt="TheBrandHouse logo">
+          </span>
+        </a>
+      </section>
+    </div>
+  </main>
+
+  <div class="success-modal" id="successModal" aria-hidden="true">
+    <div class="success-dialog">
+      <h3>Message received successfully</h3>
+      <p>
+        Your email has successfully been received and we will contact you back upon receiving the message.
+      </p>
+      <button class="btn btn-primary" type="button" id="closeSuccessModal">Close</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-card">
+      <div class="footer-block">
+        <h3 class="footer-title">TheBrandHouse</h3>
+        <p class="footer-copy">
+          Contact the head office for enquiries related to the company, stores, services and business activities across Mauritius.
+        </p>
+      </div>
+      <div class="footer-block">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="businesses.html">Our Businesses</a></li>
+          <li><a href="stores.html">Our Stores</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-block">
+        <h4>Head Office</h4>
+        <ul class="footer-contact-list">
+          <li>Industrial Park 1, Riche Terre, Mauritius</li>
+          <li><a href="mailto:info@thebrandhouse.mu">info@thebrandhouse.mu</a></li>
+          <li><a href="tel:+2302071700">(+230) 207 1700</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const contactForm = document.getElementById("contactForm");
+    const successModal = document.getElementById("successModal");
+    const closeSuccessModal = document.getElementById("closeSuccessModal");
+    const contactSubmitButton = document.getElementById("contactSubmitButton");
+    const formStartedAt = document.getElementById("formStartedAt");
+    const formStatus = document.getElementById("formStatus");
+    const publicStaticHostnames = [
+      "github.io",
+      "githubusercontent.com"
+    ];
+
+    function isStaticHostedPreview() {
+      const hostname = window.location.hostname;
+      return publicStaticHostnames.some(function (domain) {
+        return hostname === domain || hostname.endsWith("." + domain);
+      });
+    }
+
+    function openMailClient(payload) {
+      const bodyLines = [
+        "Name: " + payload.name + " " + payload.surname,
+        "Phone: " + payload.phone,
+        "Email: " + payload.email,
+        "",
+        payload.message
+      ];
+
+      const mailtoUrl = "mailto:info@thebrandhouse.mu"
+        + "?subject=" + encodeURIComponent(payload.subject)
+        + "&body=" + encodeURIComponent(bodyLines.join("\n"));
+
+      window.location.href = mailtoUrl;
+    }
+
+    formStartedAt.value = String(Date.now() / 1000);
+
+    contactForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const formData = new FormData(contactForm);
+      const payload = Object.fromEntries(formData.entries());
+
+      contactSubmitButton.disabled = true;
+      contactSubmitButton.textContent = "Sending...";
+      formStatus.textContent = "";
+
+      try {
+        if (isStaticHostedPreview()) {
+          openMailClient(payload);
+          formStatus.textContent = "Your email app is opening so you can send this message directly to TheBrandHouse.";
+          contactForm.reset();
+          formStartedAt.value = String(Date.now() / 1000);
+          return;
+        }
+
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || "Unable to send your message right now.");
+        }
+
+        successModal.classList.add("is-visible");
+        successModal.setAttribute("aria-hidden", "false");
+        contactForm.reset();
+        formStartedAt.value = String(Date.now() / 1000);
+      } catch (error) {
+        formStatus.textContent = error.message || "Unable to send your message right now.";
+      } finally {
+        contactSubmitButton.disabled = false;
+        contactSubmitButton.textContent = "Submit";
+      }
+    });
+
+    closeSuccessModal.addEventListener("click", function () {
+      successModal.classList.remove("is-visible");
+      successModal.setAttribute("aria-hidden", "true");
+    });
+
+    successModal.addEventListener("click", function (event) {
+      if (event.target === successModal) {
+        successModal.classList.remove("is-visible");
+        successModal.setAttribute("aria-hidden", "true");
+      }
+    });
+  </script>
+</body>
+</html>

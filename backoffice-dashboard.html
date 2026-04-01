@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TheBrandHouse | Back Office Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-backoffice="dashboard" class="backoffice-body">
+  <main class="backoffice-dashboard-shell">
+    <section class="backoffice-topbar">
+      <div class="backoffice-brand-lockup">
+        <img src="thebrandhouse_ltd_logo_transparent.png" alt="TheBrandHouse logo" class="backoffice-logo">
+        <div>
+          <span class="backoffice-kicker">TheBrandHouse</span>
+          <h1>Homepage Content Manager</h1>
+          <p>Manage welcome content, legacy messaging, hero copy and the milestone timeline.</p>
+        </div>
+      </div>
+      <div class="backoffice-actions">
+        <button id="previewHomepage" class="btn btn-secondary" type="button">Preview Site</button>
+        <button id="logoutBackoffice" class="btn btn-secondary" type="button">Log Out</button>
+      </div>
+    </section>
+
+    <section class="backoffice-grid">
+      <article class="admin-panel">
+        <div class="admin-panel-heading">
+          <span class="backoffice-kicker">Welcome Banner</span>
+          <h2>Opening section</h2>
+        </div>
+        <div class="admin-form-grid">
+          <label>Image path
+            <input data-admin-field="welcomeImage" type="text">
+          </label>
+          <label>Kicker
+            <input data-admin-field="welcomeKicker" type="text">
+          </label>
+          <label>Headline
+            <input data-admin-field="welcomeTitle" type="text">
+          </label>
+          <label>Primary button label
+            <input data-admin-field="welcomePrimaryLabel" type="text">
+          </label>
+          <label>Primary button link
+            <input data-admin-field="welcomePrimaryHref" type="text">
+          </label>
+          <label>Secondary button label
+            <input data-admin-field="welcomeSecondaryLabel" type="text">
+          </label>
+          <label>Secondary button link
+            <input data-admin-field="welcomeSecondaryHref" type="text">
+          </label>
+          <label class="admin-field-wide">Banner description
+            <textarea data-admin-field="welcomeDescription"></textarea>
+          </label>
+        </div>
+      </article>
+
+      <article class="admin-panel">
+        <div class="admin-panel-heading">
+          <span class="backoffice-kicker">Legacy Section</span>
+          <h2>Business heritage</h2>
+        </div>
+        <div class="admin-form-grid">
+          <label>Section title
+            <input data-admin-field="legacyTitle" type="text">
+          </label>
+          <label>Prefix
+            <input data-admin-field="legacyPrefix" type="text">
+          </label>
+          <label>Count number
+            <input data-admin-field="legacyCount" type="text">
+          </label>
+          <label>Count suffix
+            <input data-admin-field="legacyCountSuffix" type="text">
+          </label>
+          <label>Suffix text
+            <input data-admin-field="legacySuffix" type="text">
+          </label>
+          <label class="admin-field-wide">Section description
+            <textarea data-admin-field="legacyDescription"></textarea>
+          </label>
+        </div>
+      </article>
+
+      <article class="admin-panel">
+        <div class="admin-panel-heading">
+          <span class="backoffice-kicker">Main Hero</span>
+          <h2>Core homepage message</h2>
+        </div>
+        <div class="admin-form-grid">
+          <label>Hero heading
+            <input data-admin-field="heroHeading" type="text">
+          </label>
+          <label class="admin-field-wide">Hero description
+            <textarea data-admin-field="heroDescription"></textarea>
+          </label>
+        </div>
+      </article>
+
+      <article class="admin-panel">
+        <div class="admin-panel-heading">
+          <span class="backoffice-kicker">Milestones</span>
+          <h2>Timeline content</h2>
+        </div>
+        <div class="admin-form-grid">
+          <label>Timeline title
+            <input data-admin-field="timelineTitle" type="text">
+          </label>
+          <label class="admin-field-wide">Timeline description
+            <textarea data-admin-field="timelineDescription"></textarea>
+          </label>
+          <label>Milestone 1 year
+            <input data-admin-field="timelineOneYear" type="text">
+          </label>
+          <label>Milestone 1 title
+            <input data-admin-field="timelineOneTitle" type="text">
+          </label>
+          <label class="admin-field-wide">Milestone 1 description
+            <textarea data-admin-field="timelineOneDescription"></textarea>
+          </label>
+          <label>Milestone 2 year
+            <input data-admin-field="timelineTwoYear" type="text">
+          </label>
+          <label>Milestone 2 title
+            <input data-admin-field="timelineTwoTitle" type="text">
+          </label>
+          <label class="admin-field-wide">Milestone 2 description
+            <textarea data-admin-field="timelineTwoDescription"></textarea>
+          </label>
+          <label>Milestone 3 year
+            <input data-admin-field="timelineThreeYear" type="text">
+          </label>
+          <label>Milestone 3 title
+            <input data-admin-field="timelineThreeTitle" type="text">
+          </label>
+          <label class="admin-field-wide">Milestone 3 description
+            <textarea data-admin-field="timelineThreeDescription"></textarea>
+          </label>
+        </div>
+      </article>
+    </section>
+
+    <section class="admin-footer-bar">
+      <p id="backofficeStatus" class="admin-status" aria-live="polite"></p>
+      <div class="backoffice-actions">
+        <button id="resetBackofficeChanges" class="btn btn-secondary" type="button">Reset Defaults</button>
+        <button id="saveBackofficeChanges" class="btn btn-primary" type="button">Save Changes</button>
+      </div>
+    </section>
+  </main>
+  <script src="cms.js"></script>
+  <script src="backoffice.js"></script>
+</body>
+</html>

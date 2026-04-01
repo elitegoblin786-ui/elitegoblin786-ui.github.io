@@ -6,7 +6,7 @@
   <title>TheBrandHouse | Home</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-cms-page="home">
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html">
@@ -34,15 +34,15 @@
 
   <main>
     <section class="welcome-banner reveal">
-      <img class="welcome-banner-image" src="benefit-staff-happiness.jpg" alt="Team celebration at TheBrandHouse">
+      <img class="welcome-banner-image" data-cms-image="welcomeImage" src="benefit-staff-happiness.jpg" alt="Team celebration at TheBrandHouse">
       <div class="welcome-banner-overlay">
         <div class="container welcome-banner-content">
-          <span class="hero-kicker">Welcome</span>
-          <h2>Discover TheBrandHouse</h2>
-          <p>Trusted brands, nationwide retail access and dependable service brought together for customers across Mauritius.</p>
+          <span class="hero-kicker" data-cms-text="welcomeKicker">Welcome</span>
+          <h2 data-cms-text="welcomeTitle">Discover TheBrandHouse</h2>
+          <p data-cms-text="welcomeDescription">Trusted brands, nationwide retail access and dependable service brought together for customers across Mauritius.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="about.html">Discover More</a>
-            <a class="btn btn-secondary" href="stores.html">View Our Stores</a>
+            <a class="btn btn-primary" data-cms-link="welcomePrimaryHref" data-cms-text="welcomePrimaryLabel" href="about.html">Discover More</a>
+            <a class="btn btn-secondary" data-cms-link="welcomeSecondaryHref" data-cms-text="welcomeSecondaryLabel" href="stores.html">View Our Stores</a>
           </div>
         </div>
       </div>
@@ -52,13 +52,13 @@
       <div class="container legacy-showcase-grid">
         <div class="legacy-copy">
           <span class="eyebrow">Business Legacy</span>
-          <h2>Built on more than a century of business heritage</h2>
-          <p>TheBrandHouse benefits from long-standing roots in Mauritian business through its shareholder background, combining decades of experience with a modern retail and service outlook.</p>
+          <h2 data-cms-text="legacyTitle">Built on more than a century of business heritage</h2>
+          <p data-cms-text="legacyDescription">TheBrandHouse benefits from long-standing roots in Mauritian business through its shareholder background, combining decades of experience with a modern retail and service outlook.</p>
         </div>
         <div class="legacy-number-block">
-          <span class="legacy-prefix">For over</span>
-          <div class="legacy-number count-up" data-count="100" data-suffix="+">100+</div>
-          <span class="legacy-suffix">years of business legacy</span>
+          <span class="legacy-prefix" data-cms-text="legacyPrefix">For over</span>
+          <div class="legacy-number count-up" data-cms-count="legacyCount" data-cms-suffix="legacyCountSuffix" data-count="100" data-suffix="+">100+</div>
+          <span class="legacy-suffix" data-cms-text="legacySuffix">years of business legacy</span>
         </div>
       </div>
     </section>
@@ -67,8 +67,8 @@
       <div class="container hero-grid">
         <div class="hero-copy reveal">
           <span class="eyebrow">TheBrandHouse</span>
-          <h2>Trusted distribution. Modern retail. Reliable service.</h2>
-          <p>
+          <h2 data-cms-text="heroHeading">Trusted distribution. Modern retail. Reliable service.</h2>
+          <p data-cms-text="heroDescription">
             TheBrandHouse brings together a strong brand portfolio, a wide retail footprint, and dependable after-sales support to serve customers across Mauritius with confidence and consistency.
           </p>
           <div class="trust-row">
@@ -238,24 +238,24 @@
       <div class="container timeline-shell reveal">
         <div class="section-heading">
           <span class="eyebrow">Milestones</span>
-          <h2>A business story built over time</h2>
-          <p>TheBrandHouse stands on decades of experience, retail development and long-term investment in customer service.</p>
+          <h2 data-cms-text="timelineTitle">A business story built over time</h2>
+          <p data-cms-text="timelineDescription">TheBrandHouse stands on decades of experience, retail development and long-term investment in customer service.</p>
         </div>
         <div class="timeline-grid">
           <article class="timeline-card reveal delay-1">
-            <span class="timeline-year">1930</span>
-            <h3>JM Goupille &amp; Co. established</h3>
-            <p>Historic roots in distribution and brand representation in Mauritius.</p>
+            <span class="timeline-year" data-cms-text="timelineOneYear">1930</span>
+            <h3 data-cms-text="timelineOneTitle">JM Goupille &amp; Co. established</h3>
+            <p data-cms-text="timelineOneDescription">Historic roots in distribution and brand representation in Mauritius.</p>
           </article>
           <article class="timeline-card reveal delay-2">
-            <span class="timeline-year">1991</span>
-            <h3>Galaxy retail network grows</h3>
-            <p>A stronger direct-to-customer presence through a recognised retail chain.</p>
+            <span class="timeline-year" data-cms-text="timelineTwoYear">1991</span>
+            <h3 data-cms-text="timelineTwoTitle">Galaxy retail network grows</h3>
+            <p data-cms-text="timelineTwoDescription">A stronger direct-to-customer presence through a recognised retail chain.</p>
           </article>
           <article class="timeline-card reveal delay-3">
-            <span class="timeline-year">Today</span>
-            <h3>TheBrandHouse platform</h3>
-            <p>Distribution, retail and service combined under one unified business identity.</p>
+            <span class="timeline-year" data-cms-text="timelineThreeYear">Today</span>
+            <h3 data-cms-text="timelineThreeTitle">TheBrandHouse platform</h3>
+            <p data-cms-text="timelineThreeDescription">Distribution, retail and service combined under one unified business identity.</p>
           </article>
         </div>
       </div>
@@ -339,6 +339,7 @@
       </div>
     </div>
   </footer>
+  <script src="cms.js"></script>
   <script src="site.js"></script>
 </body>
 </html>

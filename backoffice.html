@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TheBrandHouse | Back Office Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-backoffice="login" class="backoffice-body">
+  <main class="backoffice-login-shell">
+    <section class="backoffice-login-card reveal is-visible">
+      <div class="backoffice-brand-lockup">
+        <img src="thebrandhouse_ltd_logo_transparent.png" alt="TheBrandHouse logo" class="backoffice-logo">
+        <div>
+          <span class="backoffice-kicker">TheBrandHouse</span>
+          <h1>Back Office Access</h1>
+          <p>Authorized access for approved company administrators.</p>
+        </div>
+      </div>
+
+      <form id="backofficeLoginForm" class="backoffice-form">
+        <label>
+          Username
+          <input id="backofficeUsername" type="text" autocomplete="username" required>
+        </label>
+        <label>
+          Password
+          <input id="backofficePassword" type="password" autocomplete="current-password" required>
+        </label>
+        <button class="btn btn-primary backoffice-submit" type="submit">Sign In</button>
+        <p id="loginError" class="login-error" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+  <script src="cms.js"></script>
+  <script src="backoffice.js"></script>
+</body>
+</html>

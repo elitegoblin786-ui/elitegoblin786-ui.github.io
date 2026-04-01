@@ -96,7 +96,7 @@
         saveButton.addEventListener("click", function () {
           const updatedContent = readForm();
           window.tbhCms.save(updatedContent);
-          showStatus("Changes saved. Open the homepage preview to review them in this browser.", "success");
+          showStatus("Changes saved. Open the site preview to review them in this browser.", "success");
         });
       }
 
@@ -104,7 +104,7 @@
         resetButton.addEventListener("click", function () {
           const defaults = window.tbhCms.reset();
           populateForm(defaults);
-          showStatus("Default homepage content restored.", "neutral");
+          showStatus("Default website content restored.", "neutral");
         });
       }
 

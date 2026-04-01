@@ -6,7 +6,7 @@
   <title>TheBrandHouse | News</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-cms-page="news">
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html">
@@ -36,20 +36,20 @@
     <div class="container">
       <div class="section-heading reveal">
         <span class="eyebrow">Newsroom</span>
-        <h2>Highlights, recognition and company updates</h2>
-        <p>Follow company milestones, recognitions, launches and important announcements from across TheBrandHouse and its brands.</p>
+        <h2 data-cms-text="newsHeadingTitle">Highlights, recognition and company updates</h2>
+        <p data-cms-text="newsHeadingDescription">Follow company milestones, recognitions, launches and important announcements from across TheBrandHouse and its brands.</p>
       </div>
 
       <section class="news-feature-strip reveal">
         <article class="news-feature-card">
           <span class="eyebrow">Featured</span>
-          <h3>Recognition that reflects business performance</h3>
-          <p>Featured updates highlight important achievements such as retail awards, new openings and strategic partnership announcements.</p>
+          <h3 data-cms-text="newsFeaturedTitle">Recognition that reflects business performance</h3>
+          <p data-cms-text="newsFeaturedDescription">Featured updates highlight important achievements such as retail awards, new openings and strategic partnership announcements.</p>
         </article>
         <article class="news-feature-card">
           <span class="eyebrow">Updates</span>
-          <h3>Launches, campaigns and milestones</h3>
-          <p>Regular company news keeps customers, partners and stakeholders informed about the latest activity across the business.</p>
+          <h3 data-cms-text="newsUpdatesTitle">Launches, campaigns and milestones</h3>
+          <p data-cms-text="newsUpdatesDescription">Regular company news keeps customers, partners and stakeholders informed about the latest activity across the business.</p>
         </article>
       </section>
 
@@ -57,18 +57,18 @@
         <article class="news-article reveal">
           <header>
             <span class="eyebrow">Recognition</span>
-            <h2>Samsung Number 1 Retail Partner by Samsung Africa</h2>
-            <p class="meta">Company recognition and partnership highlight</p>
+            <h2 data-cms-text="newsArticleTitle">Samsung Number 1 Retail Partner by Samsung Africa</h2>
+            <p class="meta" data-cms-text="newsArticleMeta">Company recognition and partnership highlight</p>
           </header>
 
           <h3>Recognition and achievement</h3>
-          <p>
+          <p data-cms-text="newsArticleIntro">
             Recognized as Samsung Number 1 Retail Partner by Samsung Africa.
           </p>
-          <p>
+          <p data-cms-text="newsArticleDescriptionOne">
             TheBrandHouse, operator of Galaxy and Samsung Brandstore Tribeca Mall, Bagatelle Mall and Riche Terre Mall, was recognised for this achievement by Samsung Africa. The recognition reflects the team's dedication, hard work and collaborative efforts with partners and associates.
           </p>
-          <p>
+          <p data-cms-text="newsArticleDescriptionTwo">
             This recognition reflects the strength of the retail partnership, the commitment of the teams involved and the continued performance of TheBrandHouse in the Mauritian market.
           </p>
         </article>
@@ -141,6 +141,7 @@
       </div>
     </div>
   </footer>
+  <script src="cms.js"></script>
   <script src="site.js"></script>
 </body>
 </html>

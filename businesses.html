@@ -6,7 +6,7 @@
   <title>TheBrandHouse | Our Businesses</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-cms-page="businesses">
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html">
@@ -37,9 +37,9 @@
       <div class="container">
         <div class="banner-card reveal">
           <span class="eyebrow">Business Pillars</span>
-          <h2>Discover our businesses</h2>
-          <p>
-            This page restructures the existing content into a more modern card layout with professional whitespace, animation, and room for updated company visuals.
+          <h2 data-cms-text="businessesBannerTitle">Discover our businesses</h2>
+          <p data-cms-text="businessesBannerDescription">
+            TheBrandHouse operates through a connected platform of distribution, retail presence and accredited after-sales support.
           </p>
         </div>
       </div>
@@ -53,11 +53,11 @@
           </div>
           <div>
             <span class="business-badge">Distribution</span>
-            <h3>JMG</h3>
-            <p>
+            <h3 data-cms-text="businessesDistributionTitle">JMG</h3>
+            <p data-cms-text="businessesDistributionDescriptionOne">
               JMG is the distribution arm of TheBrandHouse and is one of the most respected organisations in Mauritius in the field of home appliances and consumer electronics.
             </p>
-            <p>
+            <p data-cms-text="businessesDistributionDescriptionTwo">
               JMG acts as the essential link between brand owners and the market, importing, marketing and distributing a wide range of international brands.
             </p>
             <ul class="bullet-list">
@@ -72,11 +72,11 @@
         <article class="business-card reverse reveal delay-1">
           <div>
             <span class="business-badge">Retailing</span>
-            <h3>Galaxy and Samsung Brand Concepts</h3>
-            <p>
+            <h3 data-cms-text="businessesRetailTitle">Galaxy and Samsung Brand Concepts</h3>
+            <p data-cms-text="businessesRetailDescriptionOne">
               TheBrandHouse's retail arm trades through its Galaxy stores as well as three Samsung BrandStore locations.
             </p>
-            <p>
+            <p data-cms-text="businessesRetailDescriptionTwo">
               Located throughout Mauritius, these stores are built to provide customers with high quality products, trusted advice and an excellent customer service experience.
             </p>
             <ul class="bullet-list">
@@ -96,11 +96,11 @@
           </div>
           <div>
             <span class="business-badge">Service Centre</span>
-            <h3>JMG Service Centre</h3>
-            <p>
+            <h3 data-cms-text="businessesServiceTitle">JMG Service Centre</h3>
+            <p data-cms-text="businessesServiceDescriptionOne">
               The JMG Service Centre provides after-sales service for brands distributed by JMG.
             </p>
-            <p>
+            <p data-cms-text="businessesServiceDescriptionTwo">
               The team delivers technical training either locally or overseas as provided by principals, and offers both indoor and outdoor repair facilities under and outside warranty.
             </p>
             <ul class="bullet-list">
@@ -141,6 +141,7 @@
       </div>
     </div>
   </footer>
+  <script src="cms.js"></script>
   <script src="site.js"></script>
 </body>
 </html>

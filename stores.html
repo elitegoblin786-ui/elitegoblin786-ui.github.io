@@ -6,7 +6,7 @@
   <title>TheBrandHouse | Our Stores</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-cms-page="stores">
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html">
@@ -36,15 +36,15 @@
     <div class="container">
       <div class="section-heading reveal">
         <span class="eyebrow">Store Network</span>
-        <h2>Retail presence across Mauritius</h2>
-        <p>Browse TheBrandHouse retail locations across Mauritius through a structured store directory with direct access to each location in Google Maps.</p>
+        <h2 data-cms-text="storesHeadingTitle">Retail presence across Mauritius</h2>
+        <p data-cms-text="storesHeadingDescription">Browse TheBrandHouse retail locations across Mauritius through a structured store directory with direct access to each location in Google Maps.</p>
       </div>
 
       <section class="stores-hero-card reveal">
         <div>
           <span class="eyebrow">Retail Reach</span>
-          <h3>Accessible retail locations across the island</h3>
-          <p>
+          <h3 data-cms-text="storesHeroTitle">Accessible retail locations across the island</h3>
+          <p data-cms-text="storesHeroDescription">
             TheBrandHouse retail network is one of the strongest customer-facing parts of the business, combining broad accessibility with recognised shopping concepts.
           </p>
         </div>
@@ -296,6 +296,7 @@
       </div>
     </div>
   </footer>
+  <script src="cms.js"></script>
   <script src="site.js"></script>
   <script>
     document.querySelectorAll(".store-map-link").forEach(function (card) {

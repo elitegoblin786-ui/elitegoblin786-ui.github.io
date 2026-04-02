@@ -1,6 +1,13 @@
 cloudflared.log
+cloudflared-http2.log
 server-out.log
 server-err.log
 share-out.log
 share-err.log
 storage/contact_messages.jsonl
+storage/cms_content.json
+storage/images/
+__pycache__/
+*.pyc
+cookies.txt
+tools/

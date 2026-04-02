@@ -23,18 +23,41 @@
       </div>
     </section>
 
+    <nav class="admin-section-nav" aria-label="Backoffice sections">
+      <a href="#admin-home">Homepage</a>
+      <a href="#admin-milestones">Milestones</a>
+      <a href="#admin-about">About</a>
+      <a href="#admin-businesses">Businesses</a>
+      <a href="#admin-careers">Careers</a>
+      <a href="#admin-contact">Contact</a>
+      <a href="#admin-news">News</a>
+      <a href="#admin-stores">Stores</a>
+    </nav>
+
     <section class="backoffice-grid">
-      <article class="admin-panel">
+      <article class="admin-panel" id="admin-home">
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">Welcome Banner</span>
           <h2>Opening section</h2>
         </div>
         <div class="admin-form-grid">
           <label>Image path
-            <input data-admin-field="welcomeImage" type="text">
+            <input data-admin-field="welcomeImage" data-admin-preview="welcomeImage" type="text">
           </label>
-          <label>Upload new image
-            <input id="welcomeImageUpload" type="file" accept="image/*">
+          <label>Upload banner image
+            <input data-upload-target="welcomeImage" type="file" accept="image/*">
+          </label>
+          <label>Hero panel image path
+            <input data-admin-field="heroPanelImage" data-admin-preview="heroPanelImage" type="text">
+          </label>
+          <label>Upload hero panel image
+            <input data-upload-target="heroPanelImage" type="file" accept="image/*">
+          </label>
+          <label>Timeline background path
+            <input data-admin-field="timelineBackgroundImage" data-admin-preview="timelineBackgroundImage" type="text">
+          </label>
+          <label>Upload timeline background
+            <input data-upload-target="timelineBackgroundImage" type="file" accept="image/*">
           </label>
           <label>Kicker
             <input data-admin-field="welcomeKicker" type="text">
@@ -60,7 +83,7 @@
         </div>
       </article>
 
-      <article class="admin-panel">
+      <article class="admin-panel" id="admin-milestones">
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">Legacy Section</span>
           <h2>Business heritage</h2>
@@ -87,7 +110,7 @@
         </div>
       </article>
 
-      <article class="admin-panel">
+      <article class="admin-panel" id="admin-about">
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">Main Hero</span>
           <h2>Core homepage message</h2>
@@ -174,6 +197,12 @@
           <label class="admin-field-wide">Portfolio description
             <textarea data-admin-field="aboutPortfolioDescription"></textarea>
           </label>
+          <label>Portfolio image path
+            <input data-admin-field="aboutPortfolioImage" data-admin-preview="aboutPortfolioImage" type="text">
+          </label>
+          <label>Upload portfolio image
+            <input data-upload-target="aboutPortfolioImage" type="file" accept="image/*">
+          </label>
           <label>Activities title
             <input data-admin-field="aboutActivitiesTitle" type="text">
           </label>
@@ -182,6 +211,12 @@
           </label>
           <label class="admin-field-wide">Retail section description
             <textarea data-admin-field="aboutRetailDescription"></textarea>
+          </label>
+          <label>Retail image path
+            <input data-admin-field="aboutRetailImage" data-admin-preview="aboutRetailImage" type="text">
+          </label>
+          <label>Upload retail image
+            <input data-upload-target="aboutRetailImage" type="file" accept="image/*">
           </label>
           <label>Operations title
             <input data-admin-field="aboutOperationsTitle" type="text">
@@ -192,6 +227,12 @@
           <label class="admin-field-wide">Operations description 2
             <textarea data-admin-field="aboutOperationsDescriptionTwo"></textarea>
           </label>
+          <label>Operations image path
+            <input data-admin-field="aboutOperationsImage" data-admin-preview="aboutOperationsImage" type="text">
+          </label>
+          <label>Upload operations image
+            <input data-upload-target="aboutOperationsImage" type="file" accept="image/*">
+          </label>
           <label>Shareholding title
             <input data-admin-field="aboutShareholdingTitle" type="text">
           </label>
@@ -201,10 +242,16 @@
           <label class="admin-field-wide">Shareholding description 2
             <textarea data-admin-field="aboutShareholdingDescriptionTwo"></textarea>
           </label>
+          <label>Corporate image path
+            <input data-admin-field="aboutCorporateImage" data-admin-preview="aboutCorporateImage" type="text">
+          </label>
+          <label>Upload corporate image
+            <input data-upload-target="aboutCorporateImage" type="file" accept="image/*">
+          </label>
         </div>
       </article>
 
-      <article class="admin-panel">
+      <article class="admin-panel" id="admin-businesses">
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">Businesses Page</span>
           <h2>Business unit messaging</h2>
@@ -225,6 +272,12 @@
           <label class="admin-field-wide">Distribution description 2
             <textarea data-admin-field="businessesDistributionDescriptionTwo"></textarea>
           </label>
+          <label>Distribution image path
+            <input data-admin-field="businessesDistributionImage" data-admin-preview="businessesDistributionImage" type="text">
+          </label>
+          <label>Upload distribution image
+            <input data-upload-target="businessesDistributionImage" type="file" accept="image/*">
+          </label>
           <label>Retail title
             <input data-admin-field="businessesRetailTitle" type="text">
           </label>
@@ -233,6 +286,12 @@
           </label>
           <label class="admin-field-wide">Retail description 2
             <textarea data-admin-field="businessesRetailDescriptionTwo"></textarea>
+          </label>
+          <label>Retail image path
+            <input data-admin-field="businessesRetailImage" data-admin-preview="businessesRetailImage" type="text">
+          </label>
+          <label>Upload retail image
+            <input data-upload-target="businessesRetailImage" type="file" accept="image/*">
           </label>
           <label>Service title
             <input data-admin-field="businessesServiceTitle" type="text">
@@ -243,10 +302,16 @@
           <label class="admin-field-wide">Service description 2
             <textarea data-admin-field="businessesServiceDescriptionTwo"></textarea>
           </label>
+          <label>Service image path
+            <input data-admin-field="businessesServiceImage" data-admin-preview="businessesServiceImage" type="text">
+          </label>
+          <label>Upload service image
+            <input data-upload-target="businessesServiceImage" type="file" accept="image/*">
+          </label>
         </div>
       </article>
 
-      <article class="admin-panel">
+      <article class="admin-panel" id="admin-careers">
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">Careers Page</span>
           <h2>Recruitment and employee content</h2>
@@ -276,6 +341,36 @@
           <label>Benefits title
             <input data-admin-field="careersBenefitsTitle" type="text">
           </label>
+          <label>Benefit image 1 path
+            <input data-admin-field="careersBenefitImageOne" data-admin-preview="careersBenefitImageOne" type="text">
+          </label>
+          <label>Upload benefit image 1
+            <input data-upload-target="careersBenefitImageOne" type="file" accept="image/*">
+          </label>
+          <label>Benefit image 2 path
+            <input data-admin-field="careersBenefitImageTwo" data-admin-preview="careersBenefitImageTwo" type="text">
+          </label>
+          <label>Upload benefit image 2
+            <input data-upload-target="careersBenefitImageTwo" type="file" accept="image/*">
+          </label>
+          <label>Benefit image 3 path
+            <input data-admin-field="careersBenefitImageThree" data-admin-preview="careersBenefitImageThree" type="text">
+          </label>
+          <label>Upload benefit image 3
+            <input data-upload-target="careersBenefitImageThree" type="file" accept="image/*">
+          </label>
+          <label>Benefit image 4 path
+            <input data-admin-field="careersBenefitImageFour" data-admin-preview="careersBenefitImageFour" type="text">
+          </label>
+          <label>Upload benefit image 4
+            <input data-upload-target="careersBenefitImageFour" type="file" accept="image/*">
+          </label>
+          <label>Benefit image 5 path
+            <input data-admin-field="careersBenefitImageFive" data-admin-preview="careersBenefitImageFive" type="text">
+          </label>
+          <label>Upload benefit image 5
+            <input data-upload-target="careersBenefitImageFive" type="file" accept="image/*">
+          </label>
           <label>Jobs title
             <input data-admin-field="careersJobsTitle" type="text">
           </label>
@@ -285,7 +380,7 @@
         </div>
       </article>
 
-      <article class="admin-panel">
+      <article class="admin-panel" id="admin-contact">
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">Contact Page</span>
           <h2>Office and location messaging</h2>
@@ -303,10 +398,16 @@
           <label class="admin-field-wide">Location description
             <textarea data-admin-field="contactLocationDescription"></textarea>
           </label>
+          <label>Location logo path
+            <input data-admin-field="contactLocationLogo" data-admin-preview="contactLocationLogo" type="text">
+          </label>
+          <label>Upload location logo
+            <input data-upload-target="contactLocationLogo" type="file" accept="image/*">
+          </label>
         </div>
       </article>
 
-      <article class="admin-panel">
+      <article class="admin-panel" id="admin-news">
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">News Page</span>
           <h2>Newsroom content</h2>
@@ -348,7 +449,7 @@
         </div>
       </article>
 
-      <article class="admin-panel">
+      <article class="admin-panel" id="admin-stores">
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">Stores Page</span>
           <h2>Store directory introduction</h2>

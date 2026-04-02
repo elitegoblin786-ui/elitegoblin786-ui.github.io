@@ -25,7 +25,15 @@
         </label>
         <label>
           Password
-          <input id="backofficePassword" type="password" autocomplete="current-password" required>
+          <div class="password-field">
+            <input id="backofficePassword" type="password" autocomplete="current-password" required>
+            <button id="toggleBackofficePassword" class="password-toggle" type="button" aria-label="Show password" aria-pressed="false">
+              <svg class="password-eye" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6Z"></path>
+                <circle cx="12" cy="12" r="3.2"></circle>
+              </svg>
+            </button>
+          </div>
         </label>
         <button class="btn btn-primary backoffice-submit" type="submit">Sign In</button>
         <p id="loginError" class="login-error" aria-live="polite"></p>

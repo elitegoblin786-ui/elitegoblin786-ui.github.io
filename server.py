@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import base64
-import cgi
 import html
 import json
 import mimetypes
@@ -337,11 +336,55 @@ def write_cms_content(content: dict[str, object]) -> dict[str, str]:
     return merged
 
 
-def save_uploaded_image(field_storage) -> str | None:
-    if 'file' not in field_storage or not field_storage['file'].filename:
-        return None
-    file_item = field_storage['file']
-    filename = Path(file_item.filename).name
+def parse_multipart_upload(headers, body: bytes) -> tuple[str | None, bytes | None]:
+    content_type = headers.get("content-type", "")
+    if "multipart/form-data" not in content_type:
+        return None, None
+
+    boundary_token = None
+    for part in content_type.split(";"):
+        part = part.strip()
+        if part.startswith("boundary="):
+            boundary_token = part.split("=", 1)[1].strip('"')
+            break
+
+    if not boundary_token:
+        return None, None
+
+    boundary = ("--" + boundary_token).encode("utf-8")
+    for section in body.split(boundary):
+        section = section.strip()
+        if not section or section == b"--":
+            continue
+        if section.endswith(b"--"):
+            section = section[:-2].rstrip()
+
+        header_block, separator, file_block = section.partition(b"\r\n\r\n")
+        if not separator:
+            continue
+
+        header_text = header_block.decode("utf-8", errors="ignore")
+        if 'name="file"' not in header_text or "filename=" not in header_text:
+            continue
+
+        filename = None
+        for line in header_text.split("\r\n"):
+            if "filename=" not in line:
+                continue
+            filename_part = line.split("filename=", 1)[1].strip()
+            filename = filename_part.strip('"')
+            break
+
+        if not filename:
+            continue
+
+        return filename, file_block.rstrip(b"\r\n")
+
+    return None, None
+
+
+def save_uploaded_image(filename: str, file_bytes: bytes) -> str | None:
+    filename = Path(filename).name
     if not filename:
         return None
     safe_filename = "".join(c for c in filename if c.isalnum() or c in "._-").strip()
@@ -350,7 +393,7 @@ def save_uploaded_image(field_storage) -> str | None:
     safe_filename = f"{int(time.time())}-{safe_filename}"
     target_path = IMAGES_DIR / safe_filename
     with open(target_path, 'wb') as f:
-        f.write(file_item.file.read())
+        f.write(file_bytes)
     return safe_filename
 
 
@@ -375,14 +418,14 @@ def render_admin_page(records: list[dict[str, object]]) -> str:
             f"""
             <article class="submission-card">
               <div class="submission-top">
-                <h2>{html.escape(str(record.get('subject', 'No subject')))}</h2>
-                <span>{html.escape(str(record.get('submitted_at', '')))}</span>
+                <h2>{html.escape(str(record.get("subject", "No subject")))}</h2>
+                <span>{html.escape(str(record.get("submitted_at", "")))}</span>
               </div>
-              <p><strong>Name:</strong> {html.escape(str(record.get('name', '')))} {html.escape(str(record.get('surname', '')))}</p>
-              <p><strong>Email:</strong> {html.escape(str(record.get('email', '')))}</p>
-              <p><strong>Phone:</strong> {html.escape(str(record.get('phone', '')))}</p>
-              <p><strong>IP:</strong> {html.escape(str(record.get('ip', '')))}</p>
-              <div class="submission-message">{html.escape(str(record.get('message', ''))).replace(chr(10), '<br>')}</div>
+              <p><strong>Name:</strong> {html.escape(str(record.get("name", "")))} {html.escape(str(record.get("surname", "")))}</p>
+              <p><strong>Email:</strong> {html.escape(str(record.get("email", "")))}</p>
+              <p><strong>Phone:</strong> {html.escape(str(record.get("phone", "")))}</p>
+              <p><strong>IP:</strong> {html.escape(str(record.get("ip", "")))}</p>
+              <div class="submission-message">{html.escape(str(record.get("message", ""))).replace(chr(10), "<br>")}</div>
             </article>
             """
         )
@@ -698,24 +741,16 @@ class SiteHandler(BaseHTTPRequestHandler):
         if parsed.path == "/api/upload-image":
             if not self._require_backoffice_session():
                 return
-            ctype, pdict = cgi.parse_header(self.headers.get('content-type', ''))
-            if ctype != 'multipart/form-data':
+            content_length = int(self.headers.get("content-length", "0"))
+            if content_length <= 0:
                 self._send_json(400, {"success": False, "message": "Expected multipart/form-data."})
                 return
-            if 'boundary' not in pdict:
-                self._send_json(400, {"success": False, "message": "Missing upload boundary."})
+            raw_body = self.rfile.read(content_length)
+            original_filename, file_bytes = parse_multipart_upload(self.headers, raw_body)
+            if not original_filename or file_bytes is None:
+                self._send_json(400, {"success": False, "message": "No valid file uploaded."})
                 return
-            pdict['boundary'] = bytes(pdict['boundary'], 'utf-8')
-            form = cgi.FieldStorage(
-                fp=self.rfile,
-                headers=self.headers,
-                environ={
-                    'REQUEST_METHOD': 'POST',
-                    'CONTENT_TYPE': self.headers.get('content-type', ''),
-                    'CONTENT_LENGTH': self.headers.get('content-length', '0'),
-                },
-            )
-            filename = save_uploaded_image(form)
+            filename = save_uploaded_image(original_filename, file_bytes)
             if not filename:
                 self._send_json(400, {"success": False, "message": "No valid file uploaded."})
                 return

@@ -91,8 +91,27 @@ if (revealElements.length) {
       rootMargin: "0px 0px -8% 0px"
     });
 
+    const timelineRevealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        entry.target.classList.add("is-visible");
+        entry.target.querySelectorAll(".count-up").forEach(animateCount);
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.32,
+      rootMargin: "0px 0px -2% 0px"
+    });
+
     revealElements.forEach(function (element) {
-      revealObserver.observe(element);
+      if (element.classList.contains("timeline-shell")) {
+        timelineRevealObserver.observe(element);
+      } else {
+        revealObserver.observe(element);
+      }
     });
   }
 }

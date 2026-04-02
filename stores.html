@@ -64,6 +64,26 @@
         </div>
       </section>
 
+      <section class="store-finder reveal">
+        <div class="store-finder-copy">
+          <span class="eyebrow">Store Finder</span>
+          <h3>Find the right location faster</h3>
+          <p>Search by town, mall, or store name, and narrow the list by retail concept.</p>
+        </div>
+        <div class="store-finder-controls">
+          <label class="store-search-field">
+            <span class="visually-hidden">Search stores</span>
+            <input id="storeSearchInput" type="search" placeholder="Search by town, mall or store name">
+          </label>
+          <div class="store-filter-pills" role="group" aria-label="Store type filters">
+            <button class="store-filter-pill is-active" type="button" data-store-filter="all">All Stores</button>
+            <button class="store-filter-pill" type="button" data-store-filter="galaxy">Galaxy</button>
+            <button class="store-filter-pill" type="button" data-store-filter="samsung">Samsung</button>
+          </div>
+        </div>
+        <p id="storeFinderStatus" class="store-finder-status" aria-live="polite">Showing all store locations.</p>
+      </section>
+
       <section class="stores-directory">
         <article class="store-cluster reveal delay-1">
           <div class="section-heading">
@@ -266,33 +286,43 @@
           </div>
         </article>
       </section>
+      <p id="storeFinderEmptyState" class="store-empty-state" hidden>No stores match your current search or filter.</p>
     </div>
   </main>
 
   <footer class="footer">
-    <div class="container footer-card">
-      <div class="footer-block">
-        <h3 class="footer-title">TheBrandHouse</h3>
-        <p class="footer-copy">
-          Explore store locations, customer access points and retail presence across Mauritius through the company store directory.
-        </p>
+    <div class="container footer-wrap">
+      <div class="footer-card">
+        <div class="footer-block">
+          <h3 class="footer-title">TheBrandHouse</h3>
+          <p class="footer-copy">
+            Explore store locations, customer access points and retail presence across Mauritius through the company store directory.
+          </p>
+        </div>
+        <div class="footer-block">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="businesses.html">Our Businesses</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-block">
+          <h4>Retail Focus</h4>
+          <ul class="footer-contact-list">
+            <li>Locations</li>
+            <li>Access</li>
+            <li>Experience</li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-block">
-        <h4>Quick Links</h4>
-        <ul class="footer-links">
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="businesses.html">Our Businesses</a></li>
-          <li><a href="news.html">News</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-block">
-        <h4>Retail Focus</h4>
-        <ul class="footer-contact-list">
-          <li>Locations</li>
-          <li>Access</li>
-          <li>Experience</li>
-        </ul>
+      <div class="footer-bottom">
+        <span>© 2026 TheBrandHouse. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="contact.html">Privacy &amp; Contact</a>
+          <a href="backoffice.html">Back Office</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -316,6 +346,71 @@
         }
       });
     });
+
+    (function () {
+      const searchInput = document.getElementById("storeSearchInput");
+      const filterButtons = document.querySelectorAll("[data-store-filter]");
+      const status = document.getElementById("storeFinderStatus");
+      const emptyState = document.getElementById("storeFinderEmptyState");
+      const clusters = document.querySelectorAll(".store-cluster");
+      const cards = document.querySelectorAll(".store-detail-card");
+      let activeFilter = "all";
+
+      function updateStoreFinder() {
+        const term = (searchInput.value || "").trim().toLowerCase();
+        let visibleCount = 0;
+
+        cards.forEach(function (card) {
+          const brand = (card.querySelector(".business-badge")?.textContent || "").trim().toLowerCase();
+          const searchable = card.textContent.toLowerCase();
+          const brandMatch = activeFilter === "all" || brand === activeFilter;
+          const termMatch = !term || searchable.includes(term);
+          const isVisible = brandMatch && termMatch;
+          card.hidden = !isVisible;
+          if (isVisible) {
+            visibleCount += 1;
+          }
+        });
+
+        clusters.forEach(function (cluster) {
+          const hasVisibleCard = Array.from(cluster.querySelectorAll(".store-detail-card")).some(function (card) {
+            return !card.hidden;
+          });
+          cluster.hidden = !hasVisibleCard;
+        });
+
+        emptyState.hidden = visibleCount !== 0;
+
+        if (visibleCount === cards.length && !term && activeFilter === "all") {
+          status.textContent = "Showing all store locations.";
+          return;
+        }
+
+        if (visibleCount === 0) {
+          status.textContent = "No stores match your current search.";
+          return;
+        }
+
+        const label = activeFilter === "all" ? "stores" : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1) + " stores";
+        status.textContent = "Showing " + visibleCount + " " + label + (term ? " for \"" + searchInput.value.trim() + "\"." : ".");
+      }
+
+      filterButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          activeFilter = button.dataset.storeFilter;
+          filterButtons.forEach(function (item) {
+            item.classList.toggle("is-active", item === button);
+          });
+          updateStoreFinder();
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener("input", updateStoreFinder);
+      }
+
+      updateStoreFinder();
+    })();
   </script>
 </body>
 </html>

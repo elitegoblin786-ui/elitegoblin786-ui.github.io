@@ -18,14 +18,14 @@ from urllib.parse import unquote, urlparse
 
 
 ROOT = Path(__file__).resolve().parent
-STORAGE_DIR = ROOT / "storage"
+STORAGE_DIR = Path(os.getenv("TBH_STORAGE_DIR", str(ROOT / "storage")))
 STORAGE_DIR.mkdir(exist_ok=True)
 IMAGES_DIR = STORAGE_DIR / "images"
 IMAGES_DIR.mkdir(exist_ok=True)
 STORAGE_FILE = STORAGE_DIR / "contact_messages.jsonl"
 CMS_FILE = STORAGE_DIR / "cms_content.json"
-HOST = "127.0.0.1"
-PORT = 8000
+HOST = os.getenv("HOST", "0.0.0.0")
+PORT = int(os.getenv("PORT", "8000"))
 RATE_LIMIT_WINDOW_SECONDS = 300
 RATE_LIMIT_MAX_REQUESTS = 5
 MIN_FORM_FILL_SECONDS = 3
@@ -212,6 +212,8 @@ def basic_auth_is_valid(header_value: str | None) -> bool:
 def cms_defaults() -> dict[str, str]:
     return {
         "welcomeImage": "benefit-staff-happiness.jpg",
+        "heroPanelImage": "tbh-image-logo.png",
+        "timelineBackgroundImage": "timeline-background.jpg",
         "welcomeKicker": "Welcome",
         "welcomeTitle": "Discover TheBrandHouse",
         "welcomeDescription": "Trusted brands, nationwide retail access and dependable service brought together for customers across Mauritius.",
@@ -246,26 +248,33 @@ def cms_defaults() -> dict[str, str]:
         "aboutOverviewDescriptionThree": "Today, TheBrandHouse owns and manages a portfolio of brands and leaders in their respective fields of activity.",
         "aboutPortfolioTitle": "The brands behind TheBrandHouse",
         "aboutPortfolioDescription": "Across retail, online, service, and distribution, TheBrandHouse works with a broad portfolio of recognised consumer brands.",
+        "aboutPortfolioImage": "brands-of-tbh.png",
         "aboutActivitiesTitle": "The business at a glance",
         "aboutRetailTitle": "Nationwide customer access",
         "aboutRetailDescription": "Galaxy is a nationwide network of 28 multi-brand retail stores located in both urban and rural areas. Galaxy has also launched its online buying platform to keep up with the evolving retail market.",
+        "aboutRetailImage": "retail-photo.avif",
         "aboutOperationsTitle": "Operational strength",
         "aboutOperationsDescriptionOne": "JMG imports, markets and distributes top international brands including Asus, Beko, Black and Decker, Elba, Galanz, JBL, Panasonic, Samsung, Skyworth and Quest.",
         "aboutOperationsDescriptionTwo": "JMG Service Centre is the accredited service centre for JMG and the brands it represents.",
+        "aboutOperationsImage": "operations-photo.avif",
         "aboutShareholdingTitle": "Backed by Scott Investments",
         "aboutShareholdingDescriptionOne": "TheBrandHouse's holding company is Scott Investments. Scott Investments is an investment company that has been in business in Mauritius for over 100 years, thereby contributing to the economic and social development of the country.",
         "aboutShareholdingDescriptionTwo": "Scott Investments has interests in various fields of activity which include financial services, distribution and retailing.",
+        "aboutCorporateImage": "corporate-photo.jpg",
         "businessesBannerTitle": "Discover our businesses",
         "businessesBannerDescription": "TheBrandHouse operates through a connected platform of distribution, retail presence and accredited after-sales support.",
         "businessesDistributionTitle": "JMG",
         "businessesDistributionDescriptionOne": "JMG is the distribution arm of TheBrandHouse and is one of the most respected organisations in Mauritius in the field of home appliances and consumer electronics.",
         "businessesDistributionDescriptionTwo": "JMG acts as the essential link between brand owners and the market, importing, marketing and distributing a wide range of international brands.",
+        "businessesDistributionImage": "business-jmg-transparent.png",
         "businessesRetailTitle": "Galaxy and Samsung Brand Concepts",
         "businessesRetailDescriptionOne": "TheBrandHouse's retail arm trades through its Galaxy stores as well as three Samsung BrandStore locations.",
         "businessesRetailDescriptionTwo": "Located throughout Mauritius, these stores are built to provide customers with high quality products, trusted advice and an excellent customer service experience.",
+        "businessesRetailImage": "business-brandconcept-transparent.png",
         "businessesServiceTitle": "JMG Service Centre",
         "businessesServiceDescriptionOne": "The JMG Service Centre provides after-sales service for brands distributed by JMG.",
         "businessesServiceDescriptionTwo": "The team delivers technical training either locally or overseas as provided by principals, and offers both indoor and outdoor repair facilities under and outside warranty.",
+        "businessesServiceImage": "business-jmg-replacement.png",
         "careersIntroTitle": "Interested in joining our team?",
         "careersIntroDescriptionOne": "TheBrandHouse is not just any company. It has strong values and aims to be the best in its sector as an employer, supplier and retailer, giving customers the best possible experience.",
         "careersIntroDescriptionTwo": "To achieve this, the company recruits and gives opportunities for staff development and, when a vacancy arises, seeks to recruit the best candidates. Appointments are made on merit.",
@@ -274,12 +283,18 @@ def cms_defaults() -> dict[str, str]:
         "careersWhyJoinDescriptionTwo": "Recruitment is based on merit, with opportunities for people who want to contribute, improve and grow within the business.",
         "careersPeopleTitle": "What kind of people do we look for?",
         "careersBenefitsTitle": "Employee benefits",
+        "careersBenefitImageOne": "benefit-employee-rewards.png",
+        "careersBenefitImageTwo": "benefit-staff-happiness.jpg",
+        "careersBenefitImageThree": "benefit-discount-programs.jpg",
+        "careersBenefitImageFour": "benefit-aid-employees.jpg",
+        "careersBenefitImageFive": "benefit-doctors.jpg",
         "careersJobsTitle": "Open positions",
         "careersJobsDescription": "Current roles highlighted on the existing site",
         "contactTitle": "Contact us",
         "contactOfficeTitle": "Head office",
         "contactLocationTitle": "Find us in Riche Terre",
         "contactLocationDescription": "Tap the location card below to open TheBrandHouse Limited in your device's default maps application.",
+        "contactLocationLogo": "thebrandhouse_ltd_logo_transparent.png",
         "newsHeadingTitle": "Highlights, recognition and company updates",
         "newsHeadingDescription": "Follow company milestones, recognitions, launches and important announcements from across TheBrandHouse and its brands.",
         "newsFeaturedTitle": "Recognition that reflects business performance",
@@ -333,6 +348,7 @@ def save_uploaded_image(field_storage) -> str | None:
     safe_filename = "".join(c for c in filename if c.isalnum() or c in "._-").strip()
     if not safe_filename:
         return None
+    safe_filename = f"{int(time.time())}-{safe_filename}"
     target_path = IMAGES_DIR / safe_filename
     with open(target_path, 'wb') as f:
         f.write(file_item.file.read())
@@ -687,8 +703,19 @@ class SiteHandler(BaseHTTPRequestHandler):
             if ctype != 'multipart/form-data':
                 self._send_json(400, {"success": False, "message": "Expected multipart/form-data."})
                 return
+            if 'boundary' not in pdict:
+                self._send_json(400, {"success": False, "message": "Missing upload boundary."})
+                return
             pdict['boundary'] = bytes(pdict['boundary'], 'utf-8')
-            form = cgi.FieldStorage(fp=self.rfile, headers=self.headers, environ={'REQUEST_METHOD': 'POST'})
+            form = cgi.FieldStorage(
+                fp=self.rfile,
+                headers=self.headers,
+                environ={
+                    'REQUEST_METHOD': 'POST',
+                    'CONTENT_TYPE': self.headers.get('content-type', ''),
+                    'CONTENT_LENGTH': self.headers.get('content-length', '0'),
+                },
+            )
             filename = save_uploaded_image(form)
             if not filename:
                 self._send_json(400, {"success": False, "message": "No valid file uploaded."})

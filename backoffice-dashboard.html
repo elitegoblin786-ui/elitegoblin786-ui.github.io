@@ -35,6 +35,7 @@
       <a href="#admin-news">News</a>
       <a href="#admin-stores">Stores</a>
       <a href="#admin-pages">Page Manager</a>
+      <a href="#admin-developer">Developer</a>
     </nav>
 
     <section class="admin-overview-grid" aria-label="Dashboard overview">
@@ -582,7 +583,9 @@
               </select>
               <div class="backoffice-actions">
                 <button id="loadAdminFile" class="btn btn-secondary" type="button">Load File</button>
+                <button id="previewAdminFile" class="btn btn-secondary" type="button">Preview File</button>
                 <button id="saveAdminFile" class="btn btn-primary" type="button">Save File</button>
+                <button id="deleteAdminFile" class="btn btn-secondary" type="button">Delete File</button>
               </div>
             </div>
             <label class="admin-field-wide">File editor
@@ -611,6 +614,54 @@
             </div>
             <div class="backoffice-actions">
               <button id="createAdminPage" class="btn btn-secondary" type="button">Create Page</button>
+            </div>
+
+            <div class="admin-subsection-heading admin-subsection-spaced">
+              <h3>Upload image for your new page</h3>
+              <p>Upload an image here, then copy the returned path into your HTML or CSS inside the file editor.</p>
+            </div>
+            <div class="admin-form-grid">
+              <label>Upload image
+                <input id="adminPageImageUpload" type="file" accept="image/*">
+              </label>
+              <label>Uploaded image path
+                <input id="adminPageImagePath" type="text" readonly placeholder="/images/your-file.png">
+              </label>
+            </div>
+          </section>
+        </div>
+      </article>
+
+      <article class="admin-panel" id="admin-developer">
+        <div class="admin-panel-heading">
+          <span class="backoffice-kicker">Developer Tools</span>
+          <h2>Open VS Code and get Codex help faster</h2>
+          <p>These shortcuts are meant for the local computer where the website project lives. They help open the codebase quickly and prepare a prompt for Codex when you want help building a new page.</p>
+        </div>
+
+        <div class="admin-page-manager-grid">
+          <section class="admin-file-browser">
+            <div class="admin-subsection-heading">
+              <h3>Open the project in VS Code</h3>
+              <p>If VS Code is installed on this computer, these links can launch the project or a main file directly from the backoffice.</p>
+            </div>
+            <div class="backoffice-actions">
+              <a class="btn btn-secondary" href="vscode://file/c:/Users/Nahid.Peerbaccus/Desktop/WEBsTBHx">Open Website Folder</a>
+              <a class="btn btn-secondary" href="vscode://file/c:/Users/Nahid.Peerbaccus/Desktop/WEBsTBHx/index.html">Open Homepage File</a>
+              <a class="btn btn-secondary" href="vscode://file/c:/Users/Nahid.Peerbaccus/Desktop/WEBsTBHx/style.css">Open Main Styles</a>
+            </div>
+          </section>
+
+          <section class="admin-file-builder">
+            <div class="admin-subsection-heading">
+              <h3>Codex helper</h3>
+              <p>Use this to copy a ready-made prompt you can paste into Codex after opening the project in VS Code.</p>
+            </div>
+            <label class="admin-field-wide">Prompt for Codex
+              <textarea id="codexHelperPrompt" class="admin-code-editor admin-code-editor-compact" spellcheck="false">Create or improve a page for TheBrandHouse in this website project. Keep the design professional, responsive, and consistent with the existing branding. Update the related HTML, CSS, navigation links, and any needed backoffice/editor support so the page is easy to manage later.</textarea>
+            </label>
+            <div class="backoffice-actions">
+              <button id="copyCodexPrompt" class="btn btn-primary" type="button">Copy Codex Prompt</button>
             </div>
           </section>
         </div>

@@ -461,6 +461,10 @@ img {
   margin-bottom: 16px;
 }
 
+.admin-subsection-spaced {
+  margin-top: 26px;
+}
+
 .admin-subsection-heading h3 {
   margin: 0 0 8px;
   font-size: 1.18rem;
@@ -502,6 +506,15 @@ img {
   font-size: 0.92rem;
   line-height: 1.6;
   white-space: pre;
+}
+
+.admin-code-editor-compact {
+  min-height: 220px;
+}
+
+#adminPageImagePath[readonly] {
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--muted);
 }
 
 .backoffice-actions {

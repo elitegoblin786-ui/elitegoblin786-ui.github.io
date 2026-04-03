@@ -33,6 +33,23 @@ SESSION_COOKIE_NAME = "tbh_backoffice_session"
 SESSION_DURATION_SECONDS = 60 * 60 * 8
 EDITABLE_EXTENSIONS = {".html", ".css", ".js"}
 EDITABLE_EXCLUDED_FILES = {"server.py"}
+PROTECTED_EDITABLE_FILES = {
+    "index.html",
+    "about.html",
+    "businesses.html",
+    "careers.html",
+    "contact.html",
+    "news.html",
+    "stores.html",
+    "privacy.html",
+    "terms.html",
+    "style.css",
+    "site.js",
+    "cms.js",
+    "backoffice.html",
+    "backoffice-dashboard.html",
+    "backoffice.js",
+}
 
 RATE_LIMIT_STATE: dict[str, list[float]] = {}
 SESSION_STATE: dict[str, float] = {}
@@ -291,6 +308,19 @@ def cms_defaults() -> dict[str, str]:
         "careersBenefitImageFive": "benefit-doctors.jpg",
         "careersJobsTitle": "Open positions",
         "careersJobsDescription": "Current roles highlighted on the existing site",
+        "careersAreasTitle": "Opportunities across the business",
+        "careersAreasDescription": "The current vacancies reflect a broad mix of office, retail, logistics and technical roles within TheBrandHouse.",
+        "careersAreaOneTitle": "Administration and support",
+        "careersAreaTwoTitle": "Digital and specialist functions",
+        "careersAreaThreeTitle": "Warehouse and delivery support",
+        "careersAreaFourTitle": "Service and technical careers",
+        "careersProcessTitle": "Clear and merit-based recruitment",
+        "careersProcessStepOne": "Review the role that best matches your background and experience.",
+        "careersProcessStepTwo": "Prepare your resume and send your application to the careers contact address.",
+        "careersProcessStepThree": "Suitable profiles are reviewed according to the needs of the vacancy and future opportunities.",
+        "careersExpectTitle": "A workplace built around growth and standards",
+        "careersExpectDescriptionOne": "TheBrandHouse positions its recruitment around merit, development and long-term contribution, with opportunities across customer-facing, operational and technical functions.",
+        "careersExpectDescriptionTwo": "Candidates can expect a business environment focused on service quality, accountability and progress.",
         "contactTitle": "Contact us",
         "contactOfficeTitle": "Head office",
         "contactLocationTitle": "Find us in Riche Terre",
@@ -307,6 +337,12 @@ def cms_defaults() -> dict[str, str]:
         "newsArticleIntro": "Recognized as Samsung Number 1 Retail Partner by Samsung Africa.",
         "newsArticleDescriptionOne": "TheBrandHouse, operator of Galaxy and Samsung Brandstore Tribeca Mall, Bagatelle Mall and Riche Terre Mall, was recognised for this achievement by Samsung Africa. The recognition reflects the team's dedication, hard work and collaborative efforts with partners and associates.",
         "newsArticleDescriptionTwo": "This recognition reflects the strength of the retail partnership, the commitment of the teams involved and the continued performance of TheBrandHouse in the Mauritian market.",
+        "newsStoryOneTitle": "Retail partner performance",
+        "newsStoryOneDescription": "Recognition stories can capture partnership achievements, market visibility and performance milestones that strengthen the business profile of TheBrandHouse.",
+        "newsStoryTwoTitle": "Store activity and customer-facing launches",
+        "newsStoryTwoDescription": "This newsroom is also suited to future updates about openings, refurbishment work, in-store concepts and customer experience initiatives across the store network.",
+        "newsStoryThreeTitle": "Operations, service and team updates",
+        "newsStoryThreeDescription": "The page can also showcase service-centre developments, technical milestones and internal company activity that supports long-term customer trust.",
         "storesHeadingTitle": "Retail presence across Mauritius",
         "storesHeadingDescription": "Browse TheBrandHouse retail locations across Mauritius through a structured store directory with direct access to each location in Google Maps.",
         "storesHeroTitle": "Accessible retail locations across the island",
@@ -411,6 +447,7 @@ def list_editable_site_files() -> list[dict[str, object]]:
                 "path": path.name,
                 "size": path.stat().st_size,
                 "type": path.suffix.lower().lstrip("."),
+                "deletable": path.name not in PROTECTED_EDITABLE_FILES,
             }
         )
     return files
@@ -971,6 +1008,24 @@ class SiteHandler(BaseHTTPRequestHandler):
                 200,
                 {"success": True, "message": "Page created successfully.", "path": target.name},
             )
+            return
+
+        if parsed.path == "/api/backoffice/delete-file":
+            if not self._require_backoffice_session():
+                return
+            payload = self._parse_json_body()
+            if payload is None:
+                self._send_json(400, {"success": False, "message": "Invalid request payload."})
+                return
+            target = resolve_editable_site_file(sanitize_text(payload.get("path")))
+            if not target or not target.exists() or not target.is_file():
+                self._send_json(404, {"success": False, "message": "Editable file not found."})
+                return
+            if target.name in PROTECTED_EDITABLE_FILES:
+                self._send_json(403, {"success": False, "message": "That file is protected and cannot be deleted from the backoffice."})
+                return
+            target.unlink()
+            self._send_json(200, {"success": True, "message": "File deleted successfully."})
             return
 
         if parsed.path != "/api/contact":

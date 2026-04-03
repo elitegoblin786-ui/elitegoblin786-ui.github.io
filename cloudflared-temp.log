@@ -324,3 +324,31 @@
 {"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:04:28Z","message":"Failed to refresh DNS local resolver"}
 {"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:09:33Z","message":"Failed to refresh DNS local resolver"}
 {"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:14:38Z","message":"Failed to refresh DNS local resolver"}
+{"level":"info","time":"2026-04-03T06:21:49Z","message":"Thank you for trying Cloudflare Tunnel. Doing so, without a Cloudflare account, is a quick way to experiment and try it out. However, be aware that these account-less Tunnels have no uptime guarantee, are subject to the Cloudflare Online Services Terms of Use (https://www.cloudflare.com/website-terms/), and Cloudflare reserves the right to investigate your use of Tunnels for violations of such terms. If you intend to use Tunnels in production you should use a pre-created named tunnel by following: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps"}
+{"level":"info","time":"2026-04-03T06:21:49Z","message":"Requesting new quick Tunnel on trycloudflare.com..."}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"+--------------------------------------------------------------------------------------------+"}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"|  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |"}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"|  https://surgical-areas-regulated-notebook.trycloudflare.com                               |"}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"+--------------------------------------------------------------------------------------------+"}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"Cannot determine default configuration path. No file [config.yml config.yaml] in [~/.cloudflared ~/.cloudflare-warp ~/cloudflare-warp]"}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"Version 2025.8.1 (Checksum b5d598b00cc3a28cabc5812d9f762819334614bae452db4e7f23eefe7b081556)"}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"GOOS: windows, GOVersion: go1.24.2, GoArch: amd64"}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"Settings: map[ha-connections:1 logfile:c:\\Users\\Nahid.Peerbaccus\\Desktop\\WEBsTBHx\\cloudflared-temp.log p:http2 protocol:http2 url:http://127.0.0.1:8000]"}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"cloudflared will not automatically update on Windows systems."}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"Generated Connector ID: b2673384-7f78-4934-81de-3a0f521aca4c"}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"Initial protocol http2"}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"ICMP proxy will use 10.2.12.100 as source for IPv4"}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"ICMP proxy will use fe80::a732:ccd4:2a54:8132 in zone Wi-Fi as source for IPv6"}
+{"level":"error","originCertPath":"","time":"2026-04-03T06:21:59Z","message":"Cannot determine default origin certificate path. No file cert.pem in [~/.cloudflared ~/.cloudflare-warp ~/cloudflare-warp]. You need to specify the origin certificate path by specifying the origincert option in the configuration file, or set TUNNEL_ORIGIN_CERT environment variable"}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"cloudflared does not support loading the system root certificate pool on Windows. Please use --origin-ca-pool <PATH> to specify the path to the certificate pool"}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"ICMP proxy will use 10.2.12.100 as source for IPv4"}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"ICMP proxy will use fe80::a732:ccd4:2a54:8132 in zone Wi-Fi as source for IPv6"}
+{"level":"info","time":"2026-04-03T06:21:59Z","message":"Starting metrics server on 127.0.0.1:20241/metrics"}
+{"level":"info","event":0,"connection":"aca37126-3a51-4a9b-85b6-c0406140d45a","connIndex":0,"location":"jnb04","ip":"198.41.200.43","protocol":"http2","time":"2026-04-03T06:22:00Z","message":"Registered tunnel connection"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:27:04Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:32:09Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","event":1,"connIndex":0,"originService":"http://127.0.0.1:8000","ingressRule":0,"error":"Unable to reach the origin service. The service may be down or it may not be responding to traffic from cloudflared: dial tcp 127.0.0.1:8000: connectex: No connection could be made because the target machine actively refused it.","time":"2026-04-03T06:35:21Z"}
+{"level":"error","error":"Failed to proxy HTTP: Unable to reach the origin service. The service may be down or it may not be responding to traffic from cloudflared: dial tcp 127.0.0.1:8000: connectex: No connection could be made because the target machine actively refused it.","time":"2026-04-03T06:35:21Z","message":"failed to serve incoming request"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:37:14Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:42:19Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:47:24Z","message":"Failed to refresh DNS local resolver"}

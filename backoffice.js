@@ -214,6 +214,22 @@
     return result;
   }
 
+  async function deleteEditableFile(path) {
+    const response = await fetch("/api/backoffice/delete-file", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin",
+      body: JSON.stringify({ path: path })
+    });
+    const result = await parseJsonResponse(response);
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "Unable to delete file.");
+    }
+    return result;
+  }
+
   function populateFileSelect(files) {
     const select = document.getElementById("adminFileSelect");
     if (!select) {
@@ -226,7 +242,8 @@
     files.forEach(function (file) {
       const option = document.createElement("option");
       option.value = file.path;
-      option.textContent = file.path + " (" + file.type.toUpperCase() + ")";
+      option.textContent = file.path + " (" + file.type.toUpperCase() + ")" + (file.deletable ? "" : " - protected");
+      option.dataset.deletable = file.deletable ? "true" : "false";
       select.appendChild(option);
     });
 
@@ -239,10 +256,14 @@
     const fileSelect = document.getElementById("adminFileSelect");
     const fileEditor = document.getElementById("adminFileEditor");
     const loadButton = document.getElementById("loadAdminFile");
+    const previewButton = document.getElementById("previewAdminFile");
     const saveButton = document.getElementById("saveAdminFile");
+    const deleteButton = document.getElementById("deleteAdminFile");
     const createButton = document.getElementById("createAdminPage");
+    const genericImageUpload = document.getElementById("adminPageImageUpload");
+    const genericImagePath = document.getElementById("adminPageImagePath");
 
-    if (!fileSelect || !fileEditor || !loadButton || !saveButton || !createButton) {
+    if (!fileSelect || !fileEditor || !loadButton || !saveButton || !deleteButton || !createButton) {
       return;
     }
 
@@ -280,6 +301,48 @@
       }
     });
 
+    if (previewButton) {
+      previewButton.addEventListener("click", function () {
+        if (!fileSelect.value) {
+          showStatus("Choose a file before previewing it.", "neutral");
+          return;
+        }
+
+        window.open(fileSelect.value, "_blank", "noopener");
+      });
+    }
+
+    deleteButton.addEventListener("click", async function () {
+      if (!fileSelect.value) {
+        showStatus("Choose a file before deleting it.", "neutral");
+        return;
+      }
+
+      const selectedOption = fileSelect.options[fileSelect.selectedIndex];
+      const isDeletable = selectedOption && selectedOption.dataset.deletable === "true";
+      if (!isDeletable) {
+        showStatus("That file is protected and cannot be deleted from the backoffice.", "neutral");
+        return;
+      }
+
+      const confirmed = window.confirm("Delete " + fileSelect.value + "? This cannot be undone from the backoffice.");
+      if (!confirmed) {
+        return;
+      }
+
+      showStatus("Deleting selected file...", "neutral");
+      try {
+        await deleteEditableFile(fileSelect.value);
+        const refreshedFiles = await fetchEditableFiles();
+        populateFileSelect(refreshedFiles);
+        fileSelect.value = "";
+        fileEditor.value = "";
+        showStatus("File deleted successfully.", "success");
+      } catch (error) {
+        showStatus(error.message || "Unable to delete file.", "neutral");
+      }
+    });
+
     createButton.addEventListener("click", async function () {
       const filename = document.getElementById("newPageFilename").value.trim();
       const pageTitle = document.getElementById("newPageTitle").value.trim();
@@ -311,6 +374,26 @@
         showStatus(error.message || "Unable to create page.", "neutral");
       }
     });
+
+    if (genericImageUpload && genericImagePath) {
+      genericImageUpload.addEventListener("change", async function (event) {
+        const file = event.target.files && event.target.files[0];
+        if (!file) {
+          return;
+        }
+
+        showStatus("Uploading image for page manager...", "neutral");
+        try {
+          const imagePath = await uploadImage(file);
+          genericImagePath.value = imagePath;
+          showStatus("Image uploaded. You can now paste the path into your code.", "success");
+        } catch (error) {
+          showStatus(error.message || "Upload failed.", "neutral");
+        } finally {
+          genericImageUpload.value = "";
+        }
+      });
+    }
   }
 
   document.addEventListener("DOMContentLoaded", async function () {
@@ -396,6 +479,7 @@
       const resetButton = document.getElementById("resetBackofficeChanges");
       const previewButton = document.getElementById("previewHomepage");
       const logoutButton = document.getElementById("logoutBackoffice");
+      const copyCodexPromptButton = document.getElementById("copyCodexPrompt");
 
       if (saveButton) {
         saveButton.addEventListener("click", async function () {
@@ -433,6 +517,24 @@
             return null;
           });
           window.location.href = LOGIN_PAGE;
+        });
+      }
+
+      if (copyCodexPromptButton) {
+        copyCodexPromptButton.addEventListener("click", async function () {
+          const promptField = document.getElementById("codexHelperPrompt");
+          if (!promptField) {
+            return;
+          }
+
+          try {
+            await navigator.clipboard.writeText(promptField.value);
+            showStatus("Codex prompt copied. You can paste it into Codex after opening the project in VS Code.", "success");
+          } catch (error) {
+            promptField.focus();
+            promptField.select();
+            showStatus("Clipboard access failed. The prompt is selected so you can copy it manually.", "neutral");
+          }
         });
       }
     }

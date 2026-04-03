@@ -158,6 +158,161 @@
     });
   }
 
+  async function fetchEditableFiles() {
+    const response = await fetch("/api/backoffice/files", {
+      credentials: "same-origin",
+      cache: "no-store"
+    });
+    const result = await parseJsonResponse(response);
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "Unable to load editable files.");
+    }
+    return result.files || [];
+  }
+
+  async function loadEditableFile(path) {
+    const response = await fetch("/api/backoffice/file?path=" + encodeURIComponent(path), {
+      credentials: "same-origin",
+      cache: "no-store"
+    });
+    const result = await parseJsonResponse(response);
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "Unable to load file.");
+    }
+    return result;
+  }
+
+  async function saveEditableFile(path, content) {
+    const response = await fetch("/api/backoffice/file", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin",
+      body: JSON.stringify({ path: path, content: content })
+    });
+    const result = await parseJsonResponse(response);
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "Unable to save file.");
+    }
+    return result;
+  }
+
+  async function createEditablePage(payload) {
+    const response = await fetch("/api/backoffice/create-page", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin",
+      body: JSON.stringify(payload)
+    });
+    const result = await parseJsonResponse(response);
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "Unable to create page.");
+    }
+    return result;
+  }
+
+  function populateFileSelect(files) {
+    const select = document.getElementById("adminFileSelect");
+    if (!select) {
+      return;
+    }
+
+    const previousValue = select.value;
+    select.innerHTML = '<option value="">Choose a file</option>';
+
+    files.forEach(function (file) {
+      const option = document.createElement("option");
+      option.value = file.path;
+      option.textContent = file.path + " (" + file.type.toUpperCase() + ")";
+      select.appendChild(option);
+    });
+
+    if (previousValue && files.some(function (file) { return file.path === previousValue; })) {
+      select.value = previousValue;
+    }
+  }
+
+  async function initialisePageManager() {
+    const fileSelect = document.getElementById("adminFileSelect");
+    const fileEditor = document.getElementById("adminFileEditor");
+    const loadButton = document.getElementById("loadAdminFile");
+    const saveButton = document.getElementById("saveAdminFile");
+    const createButton = document.getElementById("createAdminPage");
+
+    if (!fileSelect || !fileEditor || !loadButton || !saveButton || !createButton) {
+      return;
+    }
+
+    const files = await fetchEditableFiles();
+    populateFileSelect(files);
+
+    loadButton.addEventListener("click", async function () {
+      if (!fileSelect.value) {
+        showStatus("Choose a file before loading it.", "neutral");
+        return;
+      }
+
+      showStatus("Loading selected file...", "neutral");
+      try {
+        const result = await loadEditableFile(fileSelect.value);
+        fileEditor.value = result.content || "";
+        showStatus("File loaded into the editor.", "success");
+      } catch (error) {
+        showStatus(error.message || "Unable to load file.", "neutral");
+      }
+    });
+
+    saveButton.addEventListener("click", async function () {
+      if (!fileSelect.value) {
+        showStatus("Choose a file before saving it.", "neutral");
+        return;
+      }
+
+      showStatus("Saving selected file...", "neutral");
+      try {
+        await saveEditableFile(fileSelect.value, fileEditor.value);
+        showStatus("File saved successfully.", "success");
+      } catch (error) {
+        showStatus(error.message || "Unable to save file.", "neutral");
+      }
+    });
+
+    createButton.addEventListener("click", async function () {
+      const filename = document.getElementById("newPageFilename").value.trim();
+      const pageTitle = document.getElementById("newPageTitle").value.trim();
+      const bannerTitle = document.getElementById("newPageBannerTitle").value.trim();
+      const bannerDescription = document.getElementById("newPageBannerDescription").value.trim();
+
+      if (!filename) {
+        showStatus("Enter a filename for the new page first.", "neutral");
+        return;
+      }
+
+      showStatus("Creating new page...", "neutral");
+      try {
+        const result = await createEditablePage({
+          filename: filename,
+          pageTitle: pageTitle,
+          bannerTitle: bannerTitle,
+          bannerDescription: bannerDescription
+        });
+        const refreshedFiles = await fetchEditableFiles();
+        populateFileSelect(refreshedFiles);
+        fileSelect.value = result.path || "";
+        if (result.path) {
+          const loaded = await loadEditableFile(result.path);
+          fileEditor.value = loaded.content || "";
+        }
+        showStatus("New page created and loaded into the editor.", "success");
+      } catch (error) {
+        showStatus(error.message || "Unable to create page.", "neutral");
+      }
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", async function () {
     const pageMode = document.body.dataset.backoffice;
 
@@ -235,6 +390,7 @@
       populateForm(currentContent);
       bindImagePreviews();
       bindUploadInputs();
+      await initialisePageManager();
 
       const saveButton = document.getElementById("saveBackofficeChanges");
       const resetButton = document.getElementById("resetBackofficeChanges");

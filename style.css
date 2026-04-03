@@ -443,6 +443,67 @@ img {
   word-break: break-word;
 }
 
+.admin-page-manager-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 22px;
+}
+
+.admin-file-browser,
+.admin-file-builder {
+  padding: 22px;
+  border-radius: 24px;
+  background: rgba(248, 243, 244, 0.76);
+  border: 1px solid rgba(22, 32, 51, 0.08);
+}
+
+.admin-subsection-heading {
+  margin-bottom: 16px;
+}
+
+.admin-subsection-heading h3 {
+  margin: 0 0 8px;
+  font-size: 1.18rem;
+  letter-spacing: -0.04em;
+}
+
+.admin-subsection-heading p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.68;
+}
+
+.admin-file-controls {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.admin-select,
+.admin-code-editor {
+  width: 100%;
+  border: 1px solid rgba(22, 32, 51, 0.12);
+  border-radius: 16px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+}
+
+.admin-select {
+  min-height: 52px;
+  padding: 0 16px;
+}
+
+.admin-code-editor {
+  min-height: 480px;
+  padding: 16px 18px;
+  resize: vertical;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  white-space: pre;
+}
+
 .backoffice-actions {
   display: flex;
   flex-wrap: wrap;
@@ -2722,7 +2783,8 @@ img {
   .career-role-grid,
   .news-archive-grid,
   .career-process-grid,
-  .admin-overview-grid {
+  .admin-overview-grid,
+  .admin-page-manager-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2959,6 +3021,10 @@ img {
 
   .admin-form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .admin-code-editor {
+    min-height: 360px;
   }
 }
 

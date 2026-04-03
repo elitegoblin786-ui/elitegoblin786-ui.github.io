@@ -316,3 +316,11 @@
 {"level":"info","time":"2026-04-03T05:28:58Z","message":"ICMP proxy will use fe80::a732:ccd4:2a54:8132 in zone Wi-Fi as source for IPv6"}
 {"level":"info","time":"2026-04-03T05:28:58Z","message":"Starting metrics server on 127.0.0.1:20241/metrics"}
 {"level":"info","event":0,"connection":"befefdcd-5912-4925-b05b-8db07b4f4309","connIndex":0,"location":"jnb06","ip":"198.41.192.47","protocol":"http2","time":"2026-04-03T05:28:59Z","message":"Registered tunnel connection"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T05:34:03Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T05:39:08Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T05:44:13Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T05:54:18Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T05:59:23Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:04:28Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:09:33Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:14:38Z","message":"Failed to refresh DNS local resolver"}

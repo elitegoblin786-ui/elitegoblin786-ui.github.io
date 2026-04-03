@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from email.message import EmailMessage
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from urllib.parse import parse_qs, unquote, urlparse
 
 
 ROOT = Path(__file__).resolve().parent
@@ -31,6 +31,8 @@ MIN_FORM_FILL_SECONDS = 3
 MAX_STORED_SUBMISSIONS = 250
 SESSION_COOKIE_NAME = "tbh_backoffice_session"
 SESSION_DURATION_SECONDS = 60 * 60 * 8
+EDITABLE_EXTENSIONS = {".html", ".css", ".js"}
+EDITABLE_EXCLUDED_FILES = {"server.py"}
 
 RATE_LIMIT_STATE: dict[str, list[float]] = {}
 SESSION_STATE: dict[str, float] = {}
@@ -397,6 +399,144 @@ def save_uploaded_image(filename: str, file_bytes: bytes) -> str | None:
     return safe_filename
 
 
+def list_editable_site_files() -> list[dict[str, object]]:
+    files: list[dict[str, object]] = []
+    for path in sorted(ROOT.iterdir(), key=lambda item: item.name.lower()):
+        if not path.is_file():
+            continue
+        if path.name in EDITABLE_EXCLUDED_FILES or path.suffix.lower() not in EDITABLE_EXTENSIONS:
+            continue
+        files.append(
+            {
+                "path": path.name,
+                "size": path.stat().st_size,
+                "type": path.suffix.lower().lstrip("."),
+            }
+        )
+    return files
+
+
+def resolve_editable_site_file(requested_path: str) -> Path | None:
+    cleaned = sanitize_text(requested_path).replace("\\", "/").lstrip("/")
+    if not cleaned:
+        return None
+
+    target = (ROOT / cleaned).resolve()
+    if ROOT not in target.parents and target != ROOT:
+        return None
+    if target.name in EDITABLE_EXCLUDED_FILES:
+        return None
+    if target.suffix.lower() not in EDITABLE_EXTENSIONS:
+        return None
+    return target
+
+
+def build_new_page_template(filename: str, page_title: str, banner_title: str, banner_description: str) -> str:
+    label = banner_title or page_title or Path(filename).stem.replace("-", " ").title()
+    description = banner_description or f"Learn more about {label} at TheBrandHouse."
+    title_value = page_title or f"TheBrandHouse | {label}"
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{html.escape(title_value)}</title>
+  <meta name="description" content="{html.escape(description)}">
+  <link rel="icon" type="image/png" href="thebrandhouse_ltd_logo_transparent.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="thebrandhouse_ltd_logo.jpg" alt="TheBrandHouse logo">
+        <div class="brand-text">
+          <h1>TheBrandHouse</h1>
+          <p>{html.escape(label)}</p>
+        </div>
+      </a>
+      <button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="siteMenu" aria-label="Open navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" id="siteMenu" aria-label="Primary">
+        <a href="about.html">About Us</a>
+        <a href="businesses.html">Our Businesses</a>
+        <a href="news.html">News</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact</a>
+        <a href="stores.html">Our Stores</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-banner">
+      <div class="container">
+        <div class="banner-card reveal">
+          <span class="eyebrow">New Page</span>
+          <h2>{html.escape(label)}</h2>
+          <p>{html.escape(description)}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="placeholder-page reveal">
+          <h3>Page content area</h3>
+          <p>Use the Back Office page manager to continue building this page.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <div class="footer-card">
+        <div class="footer-block">
+          <h3 class="footer-title">TheBrandHouse</h3>
+          <p class="footer-copy">
+            Trusted distribution, modern retail and reliable service across Mauritius.
+          </p>
+        </div>
+        <div class="footer-block">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="businesses.html">Our Businesses</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-block">
+          <h4>Contact</h4>
+          <ul class="footer-contact-list">
+            <li>Industrial Park 1, Riche Terre, Mauritius</li>
+            <li><a href="mailto:info@thebrandhouse.mu">info@thebrandhouse.mu</a></li>
+            <li><a href="tel:+2302071700">(+230) 207 1700</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 TheBrandHouse. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact.html">Contact</a>
+          <a href="backoffice.html">Back Office</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="site.js"></script>
+</body>
+</html>
+"""
+
+
 def get_backoffice_credentials() -> tuple[str, str]:
     return (
         os.getenv("BACKOFFICE_USERNAME", "AdminTBH_404"),
@@ -631,6 +771,7 @@ class SiteHandler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
         request_path = unquote(parsed.path)
+        query = parse_qs(parsed.query)
 
         if request_path == "/api/cms-content":
             self._send_json(200, {"success": True, "content": read_cms_content()})
@@ -650,6 +791,28 @@ class SiteHandler(BaseHTTPRequestHandler):
                 self._send_json(401, {"success": False, "authenticated": False})
                 return
             self._send_json(200, {"success": True, "authenticated": True})
+            return
+
+        if request_path == "/api/backoffice/files":
+            if not self._require_backoffice_session():
+                return
+            self._send_json(200, {"success": True, "files": list_editable_site_files()})
+            return
+
+        if request_path == "/api/backoffice/file":
+            if not self._require_backoffice_session():
+                return
+            requested_path = sanitize_text((query.get("path") or [""])[0])
+            target = resolve_editable_site_file(requested_path)
+            if not target or not target.exists() or not target.is_file():
+                self._send_json(404, {"success": False, "message": "Editable file not found."})
+                return
+            try:
+                content = target.read_text(encoding="utf-8")
+            except UnicodeDecodeError:
+                self._send_json(400, {"success": False, "message": "This file cannot be opened in the page manager."})
+                return
+            self._send_json(200, {"success": True, "path": target.name, "content": content})
             return
 
         if request_path == "/admin":
@@ -757,6 +920,59 @@ class SiteHandler(BaseHTTPRequestHandler):
             self._send_json(200, {"success": True, "filename": filename})
             return
 
+        if parsed.path == "/api/backoffice/file":
+            if not self._require_backoffice_session():
+                return
+            payload = self._parse_json_body()
+            if payload is None:
+                self._send_json(400, {"success": False, "message": "Invalid request payload."})
+                return
+            target = resolve_editable_site_file(sanitize_text(payload.get("path")))
+            if not target or not target.exists() or not target.is_file():
+                self._send_json(404, {"success": False, "message": "Editable file not found."})
+                return
+            content = str(payload.get("content", ""))
+            target.write_text(content, encoding="utf-8")
+            self._send_json(200, {"success": True, "message": "File saved successfully."})
+            return
+
+        if parsed.path == "/api/backoffice/create-page":
+            if not self._require_backoffice_session():
+                return
+            payload = self._parse_json_body()
+            if payload is None:
+                self._send_json(400, {"success": False, "message": "Invalid request payload."})
+                return
+
+            raw_filename = sanitize_text(payload.get("filename")).lower()
+            if not raw_filename.endswith(".html"):
+                raw_filename += ".html"
+            safe_filename = "".join(char for char in raw_filename if char.isalnum() or char in "._-")
+            if not safe_filename or safe_filename in EDITABLE_EXCLUDED_FILES or not safe_filename.endswith(".html"):
+                self._send_json(400, {"success": False, "message": "Please enter a valid page filename ending in .html."})
+                return
+
+            target = resolve_editable_site_file(safe_filename)
+            if not target:
+                self._send_json(400, {"success": False, "message": "That filename cannot be created."})
+                return
+            if target.exists():
+                self._send_json(409, {"success": False, "message": "A file with that name already exists."})
+                return
+
+            page_title = sanitize_text(payload.get("pageTitle")) or f"TheBrandHouse | {Path(safe_filename).stem.replace('-', ' ').title()}"
+            banner_title = sanitize_text(payload.get("bannerTitle")) or Path(safe_filename).stem.replace("-", " ").title()
+            banner_description = sanitize_text(payload.get("bannerDescription"))
+            target.write_text(
+                build_new_page_template(safe_filename, page_title, banner_title, banner_description),
+                encoding="utf-8",
+            )
+            self._send_json(
+                200,
+                {"success": True, "message": "Page created successfully.", "path": target.name},
+            )
+            return
+
         if parsed.path != "/api/contact":
             self._send_json(404, {"success": False, "message": "Route not found."})
             return
@@ -815,8 +1031,6 @@ class SiteHandler(BaseHTTPRequestHandler):
 
 def run() -> None:
     server = ThreadingHTTPServer((HOST, PORT), SiteHandler)
-    print(f"Serving TheBrandHouse site on http://{HOST}:{PORT}")
-    print("Admin inbox available at http://127.0.0.1:8000/admin")
     server.serve_forever()
 
 

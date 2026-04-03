@@ -1072,7 +1072,7 @@ class SiteHandler(BaseHTTPRequestHandler):
         email_error = None
         try:
             email_sent = send_email_if_configured(clean_payload)
-        except Exception as exc:  # pragma: no cover
+        except Exception as exc:
             email_error = str(exc)
 
         response_message = "Message received successfully."

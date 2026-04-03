@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TheBrandHouse | Back Office Dashboard</title>
-  <link rel="icon" type="image/png" href="thebrandhouse_ltd_logo_transparent.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-backoffice="dashboard" class="backoffice-body">
@@ -27,46 +26,19 @@
     <nav class="admin-section-nav" aria-label="Backoffice sections">
       <a href="#admin-home">Homepage</a>
       <a href="#admin-milestones">Milestones</a>
-      <a href="#admin-hero">Hero</a>
       <a href="#admin-about">About</a>
       <a href="#admin-businesses">Businesses</a>
       <a href="#admin-careers">Careers</a>
       <a href="#admin-contact">Contact</a>
       <a href="#admin-news">News</a>
       <a href="#admin-stores">Stores</a>
-      <a href="#admin-pages">Page Manager</a>
-      <a href="#admin-developer">Developer</a>
     </nav>
-
-    <section class="admin-overview-grid" aria-label="Dashboard overview">
-      <article class="admin-overview-card">
-        <span class="backoffice-kicker">Simple Flow</span>
-        <h3>Edit by page</h3>
-        <p>Each panel is grouped by website page so you can update content without searching through one long mixed form.</p>
-      </article>
-      <article class="admin-overview-card">
-        <span class="backoffice-kicker">Media</span>
-        <h3>Upload with preview</h3>
-        <p>Image fields now stay beside upload inputs and preview cards, making it easier to see what will appear on the live website.</p>
-      </article>
-      <article class="admin-overview-card">
-        <span class="backoffice-kicker">Content Sync</span>
-        <h3>Public pages matched</h3>
-        <p>The newer Careers and News sections are now included here too so the backoffice stays aligned with the public site.</p>
-      </article>
-      <article class="admin-overview-card">
-        <span class="backoffice-kicker">Publishing</span>
-        <h3>One final step</h3>
-        <p>After editing, save once at the bottom of the dashboard. Uploaded images are staged immediately but only publish after save.</p>
-      </article>
-    </section>
 
     <section class="backoffice-grid">
       <article class="admin-panel" id="admin-home">
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">Welcome Banner</span>
           <h2>Opening section</h2>
-          <p>Manage the first impression of the homepage, including the banner image, call to action and supporting hero visuals.</p>
         </div>
         <div class="admin-form-grid">
           <label>Image path
@@ -115,7 +87,6 @@
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">Legacy Section</span>
           <h2>Business heritage</h2>
-          <p>Control the legacy counter and the headline that supports the company’s long-standing business background.</p>
         </div>
         <div class="admin-form-grid">
           <label>Section title
@@ -139,11 +110,10 @@
         </div>
       </article>
 
-      <article class="admin-panel" id="admin-hero">
+      <article class="admin-panel" id="admin-about">
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">Main Hero</span>
           <h2>Core homepage message</h2>
-          <p>Keep the homepage value proposition short, clear and customer-facing.</p>
         </div>
         <div class="admin-form-grid">
           <label>Hero heading
@@ -155,11 +125,10 @@
         </div>
       </article>
 
-      <article class="admin-panel" id="admin-timeline">
+      <article class="admin-panel">
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">Milestones</span>
           <h2>Timeline content</h2>
-          <p>Edit the timeline headline and milestone cards shown on the homepage story section.</p>
         </div>
         <div class="admin-form-grid">
           <label>Timeline title
@@ -198,11 +167,10 @@
         </div>
       </article>
 
-      <article class="admin-panel" id="admin-about">
+      <article class="admin-panel">
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">About Page</span>
           <h2>Company profile content</h2>
-          <p>Update the main company overview, portfolio section and supporting imagery for the About page.</p>
         </div>
         <div class="admin-form-grid">
           <label>Banner title
@@ -287,7 +255,6 @@
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">Businesses Page</span>
           <h2>Business unit messaging</h2>
-          <p>Manage the three business pillars and their related section images.</p>
         </div>
         <div class="admin-form-grid">
           <label>Banner title
@@ -348,7 +315,6 @@
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">Careers Page</span>
           <h2>Recruitment and employee content</h2>
-          <p>Control recruitment messaging, employee benefit visuals and the newer role/process sections in one place.</p>
         </div>
         <div class="admin-form-grid">
           <label>Intro title
@@ -411,45 +377,6 @@
           <label class="admin-field-wide">Jobs helper text
             <textarea data-admin-field="careersJobsDescription"></textarea>
           </label>
-          <label>Career areas title
-            <input data-admin-field="careersAreasTitle" type="text">
-          </label>
-          <label class="admin-field-wide">Career areas description
-            <textarea data-admin-field="careersAreasDescription"></textarea>
-          </label>
-          <label>Career area 1 title
-            <input data-admin-field="careersAreaOneTitle" type="text">
-          </label>
-          <label>Career area 2 title
-            <input data-admin-field="careersAreaTwoTitle" type="text">
-          </label>
-          <label>Career area 3 title
-            <input data-admin-field="careersAreaThreeTitle" type="text">
-          </label>
-          <label>Career area 4 title
-            <input data-admin-field="careersAreaFourTitle" type="text">
-          </label>
-          <label>Process title
-            <input data-admin-field="careersProcessTitle" type="text">
-          </label>
-          <label>Expectations title
-            <input data-admin-field="careersExpectTitle" type="text">
-          </label>
-          <label class="admin-field-wide">Process step 1
-            <textarea data-admin-field="careersProcessStepOne"></textarea>
-          </label>
-          <label class="admin-field-wide">Process step 2
-            <textarea data-admin-field="careersProcessStepTwo"></textarea>
-          </label>
-          <label class="admin-field-wide">Process step 3
-            <textarea data-admin-field="careersProcessStepThree"></textarea>
-          </label>
-          <label class="admin-field-wide">Expectations paragraph 1
-            <textarea data-admin-field="careersExpectDescriptionOne"></textarea>
-          </label>
-          <label class="admin-field-wide">Expectations paragraph 2
-            <textarea data-admin-field="careersExpectDescriptionTwo"></textarea>
-          </label>
         </div>
       </article>
 
@@ -457,7 +384,6 @@
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">Contact Page</span>
           <h2>Office and location messaging</h2>
-          <p>Update contact headings and the logo used inside the location card.</p>
         </div>
         <div class="admin-form-grid">
           <label>Contact title
@@ -485,7 +411,6 @@
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">News Page</span>
           <h2>Newsroom content</h2>
-          <p>Manage the featured article area and the newer archive-style story cards on the News page.</p>
         </div>
         <div class="admin-form-grid">
           <label>Heading title
@@ -521,24 +446,6 @@
           <label class="admin-field-wide">Article paragraph 2
             <textarea data-admin-field="newsArticleDescriptionTwo"></textarea>
           </label>
-          <label>Story card 1 title
-            <input data-admin-field="newsStoryOneTitle" type="text">
-          </label>
-          <label>Story card 2 title
-            <input data-admin-field="newsStoryTwoTitle" type="text">
-          </label>
-          <label>Story card 3 title
-            <input data-admin-field="newsStoryThreeTitle" type="text">
-          </label>
-          <label class="admin-field-wide">Story card 1 description
-            <textarea data-admin-field="newsStoryOneDescription"></textarea>
-          </label>
-          <label class="admin-field-wide">Story card 2 description
-            <textarea data-admin-field="newsStoryTwoDescription"></textarea>
-          </label>
-          <label class="admin-field-wide">Story card 3 description
-            <textarea data-admin-field="newsStoryThreeDescription"></textarea>
-          </label>
         </div>
       </article>
 
@@ -546,7 +453,6 @@
         <div class="admin-panel-heading">
           <span class="backoffice-kicker">Stores Page</span>
           <h2>Store directory introduction</h2>
-          <p>Keep the store page intro and hero message aligned with the public store finder.</p>
         </div>
         <div class="admin-form-grid">
           <label>Heading title
@@ -561,109 +467,6 @@
           <label class="admin-field-wide">Hero description
             <textarea data-admin-field="storesHeroDescription"></textarea>
           </label>
-        </div>
-      </article>
-
-      <article class="admin-panel" id="admin-pages">
-        <div class="admin-panel-heading">
-          <span class="backoffice-kicker">Page Manager</span>
-          <h2>Create pages and edit website files</h2>
-          <p>Use this section for broader site work that would normally need VS Code. It is designed for frontend files only, so it stays simpler and safer than full code access.</p>
-        </div>
-
-        <div class="admin-page-manager-grid">
-          <section class="admin-file-browser">
-            <div class="admin-subsection-heading">
-              <h3>Editable files</h3>
-              <p>Select a page, stylesheet or script, then load it into the editor.</p>
-            </div>
-            <div class="admin-file-controls">
-              <select id="adminFileSelect" class="admin-select">
-                <option value="">Choose a file</option>
-              </select>
-              <div class="backoffice-actions">
-                <button id="loadAdminFile" class="btn btn-secondary" type="button">Load File</button>
-                <button id="previewAdminFile" class="btn btn-secondary" type="button">Preview File</button>
-                <button id="saveAdminFile" class="btn btn-primary" type="button">Save File</button>
-                <button id="deleteAdminFile" class="btn btn-secondary" type="button">Delete File</button>
-              </div>
-            </div>
-            <label class="admin-field-wide">File editor
-              <textarea id="adminFileEditor" class="admin-code-editor" spellcheck="false" placeholder="Load a file to edit it here."></textarea>
-            </label>
-          </section>
-
-          <section class="admin-file-builder">
-            <div class="admin-subsection-heading">
-              <h3>Create a new page</h3>
-              <p>Generate a clean starter page, then fine-tune it in the file editor.</p>
-            </div>
-            <div class="admin-form-grid">
-              <label>Filename
-                <input id="newPageFilename" type="text" placeholder="example: services.html">
-              </label>
-              <label>Browser title
-                <input id="newPageTitle" type="text" placeholder="example: TheBrandHouse | Services">
-              </label>
-              <label>Banner heading
-                <input id="newPageBannerTitle" type="text" placeholder="example: Our Services">
-              </label>
-              <label class="admin-field-wide">Banner description
-                <textarea id="newPageBannerDescription" placeholder="Short introduction for the new page."></textarea>
-              </label>
-            </div>
-            <div class="backoffice-actions">
-              <button id="createAdminPage" class="btn btn-secondary" type="button">Create Page</button>
-            </div>
-
-            <div class="admin-subsection-heading admin-subsection-spaced">
-              <h3>Upload image for your new page</h3>
-              <p>Upload an image here, then copy the returned path into your HTML or CSS inside the file editor.</p>
-            </div>
-            <div class="admin-form-grid">
-              <label>Upload image
-                <input id="adminPageImageUpload" type="file" accept="image/*">
-              </label>
-              <label>Uploaded image path
-                <input id="adminPageImagePath" type="text" readonly placeholder="/images/your-file.png">
-              </label>
-            </div>
-          </section>
-        </div>
-      </article>
-
-      <article class="admin-panel" id="admin-developer">
-        <div class="admin-panel-heading">
-          <span class="backoffice-kicker">Developer Tools</span>
-          <h2>Open VS Code and get Codex help faster</h2>
-          <p>These shortcuts are meant for the local computer where the website project lives. They help open the codebase quickly and prepare a prompt for Codex when you want help building a new page.</p>
-        </div>
-
-        <div class="admin-page-manager-grid">
-          <section class="admin-file-browser">
-            <div class="admin-subsection-heading">
-              <h3>Open the project in VS Code</h3>
-              <p>If VS Code is installed on this computer, these links can launch the project or a main file directly from the backoffice.</p>
-            </div>
-            <div class="backoffice-actions">
-              <a class="btn btn-secondary" href="vscode://file/c:/Users/Nahid.Peerbaccus/Desktop/WEBsTBHx">Open Website Folder</a>
-              <a class="btn btn-secondary" href="vscode://file/c:/Users/Nahid.Peerbaccus/Desktop/WEBsTBHx/index.html">Open Homepage File</a>
-              <a class="btn btn-secondary" href="vscode://file/c:/Users/Nahid.Peerbaccus/Desktop/WEBsTBHx/style.css">Open Main Styles</a>
-            </div>
-          </section>
-
-          <section class="admin-file-builder">
-            <div class="admin-subsection-heading">
-              <h3>Codex helper</h3>
-              <p>Use this to copy a ready-made prompt you can paste into Codex after opening the project in VS Code.</p>
-            </div>
-            <label class="admin-field-wide">Prompt for Codex
-              <textarea id="codexHelperPrompt" class="admin-code-editor admin-code-editor-compact" spellcheck="false">Create or improve a page for TheBrandHouse in this website project. Keep the design professional, responsive, and consistent with the existing branding. Update the related HTML, CSS, navigation links, and any needed backoffice/editor support so the page is easy to manage later.</textarea>
-            </label>
-            <div class="backoffice-actions">
-              <button id="copyCodexPrompt" class="btn btn-primary" type="button">Copy Codex Prompt</button>
-            </div>
-          </section>
         </div>
       </article>
     </section>

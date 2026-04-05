@@ -352,3 +352,313 @@
 {"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:37:14Z","message":"Failed to refresh DNS local resolver"}
 {"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:42:19Z","message":"Failed to refresh DNS local resolver"}
 {"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:47:24Z","message":"Failed to refresh DNS local resolver"}
+{"level":"info","connIndex":0,"time":"2026-04-03T06:51:54Z","message":"Lost connection with the edge"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"connection with edge closed","time":"2026-04-03T06:51:54Z","message":"Serve tunnel error"}
+{"level":"error","error":"Error shutting down control stream: client disconnected","time":"2026-04-03T06:51:54Z","message":"failed to serve incoming request"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T06:51:54Z","message":"Retrying connection in up to 1s"}
+{"level":"error","error":"connection with edge closed","connIndex":0,"time":"2026-04-03T06:51:55Z","message":"Connection terminated"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.43:7844: i/o timeout","time":"2026-04-03T06:52:13Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.43:7844: i/o timeout","time":"2026-04-03T06:52:13Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T06:52:13Z","message":"Retrying connection in up to 4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.200.43:7844: i/o timeout","connIndex":0,"time":"2026-04-03T06:52:13Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:52:29Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","event":0,"ip":"198.41.200.233","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.233:7844: i/o timeout","time":"2026-04-03T06:53:01Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.200.233","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.233:7844: i/o timeout","time":"2026-04-03T06:53:01Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.200.233","connIndex":0,"time":"2026-04-03T06:53:01Z","message":"Retrying connection in up to 8s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.200.233:7844: i/o timeout","connIndex":0,"time":"2026-04-03T06:53:01Z","message":"Connection terminated"}
+{"level":"error","event":0,"ip":"198.41.200.13","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.13:7844: i/o timeout","time":"2026-04-03T06:53:50Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.200.13","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.13:7844: i/o timeout","time":"2026-04-03T06:53:50Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.200.13","connIndex":0,"time":"2026-04-03T06:53:50Z","message":"Retrying connection in up to 16s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.200.13:7844: i/o timeout","connIndex":0,"time":"2026-04-03T06:54:03Z","message":"Connection terminated"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.43:7844: i/o timeout","time":"2026-04-03T06:56:12Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.43:7844: i/o timeout","time":"2026-04-03T06:56:12Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T06:56:12Z","message":"Retrying connection in up to 32s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.200.43:7844: i/o timeout","connIndex":0,"time":"2026-04-03T06:56:43Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T06:57:34Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","event":0,"ip":"198.41.200.193","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.193:7844: i/o timeout","time":"2026-04-03T07:00:33Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.200.193","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.193:7844: i/o timeout","time":"2026-04-03T07:00:33Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.200.193","connIndex":0,"time":"2026-04-03T07:00:33Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.200.193:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:00:42Z","message":"Connection terminated"}
+{"level":"error","event":0,"ip":"198.41.200.113","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.113:7844: i/o timeout","time":"2026-04-03T07:02:37Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.200.113","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.113:7844: i/o timeout","time":"2026-04-03T07:02:37Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.200.113","connIndex":0,"time":"2026-04-03T07:02:37Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T07:02:39Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.200.113:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:02:49Z","message":"Connection terminated"}
+{"level":"error","event":0,"ip":"198.41.192.77","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.77:7844: i/o timeout","time":"2026-04-03T07:04:45Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.192.77","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.77:7844: i/o timeout","time":"2026-04-03T07:04:45Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.192.77","connIndex":0,"time":"2026-04-03T07:04:45Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.192.77:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:04:57Z","message":"Connection terminated"}
+{"level":"error","event":0,"ip":"198.41.192.167","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.167:7844: i/o timeout","time":"2026-04-03T07:07:27Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.192.167","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.167:7844: i/o timeout","time":"2026-04-03T07:07:27Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.192.167","connIndex":0,"time":"2026-04-03T07:07:27Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.192.167:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:07:42Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T07:07:44Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T07:12:49Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","event":0,"ip":"198.41.192.107","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.107:7844: i/o timeout","time":"2026-04-03T07:13:16Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.192.107","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.107:7844: i/o timeout","time":"2026-04-03T07:13:16Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.192.107","connIndex":0,"time":"2026-04-03T07:13:16Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.192.107:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:13:40Z","message":"Connection terminated"}
+{"level":"error","event":0,"ip":"198.41.192.167","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.167:7844: i/o timeout","time":"2026-04-03T07:13:57Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.192.167","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.167:7844: i/o timeout","time":"2026-04-03T07:13:57Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.192.167","connIndex":0,"time":"2026-04-03T07:13:57Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.192.167:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:14:27Z","message":"Connection terminated"}
+{"level":"error","event":0,"ip":"198.41.192.37","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.37:7844: i/o timeout","time":"2026-04-03T07:17:27Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.192.37","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.37:7844: i/o timeout","time":"2026-04-03T07:17:27Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.192.37","connIndex":0,"time":"2026-04-03T07:17:27Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.192.37:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:17:49Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T07:17:54Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","event":0,"ip":"198.41.192.167","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.167:7844: i/o timeout","time":"2026-04-03T07:20:15Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.192.167","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.167:7844: i/o timeout","time":"2026-04-03T07:20:15Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.192.167","connIndex":0,"time":"2026-04-03T07:20:15Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.192.167:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:20:23Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T07:22:59Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","event":0,"ip":"198.41.192.57","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.57:7844: i/o timeout","time":"2026-04-03T07:24:34Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.192.57","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.57:7844: i/o timeout","time":"2026-04-03T07:24:34Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.192.57","connIndex":0,"time":"2026-04-03T07:24:34Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.192.57:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:24:58Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T07:28:04Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.43:7844: i/o timeout","time":"2026-04-03T07:30:18Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.43:7844: i/o timeout","time":"2026-04-03T07:30:18Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T07:30:18Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.200.43:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:30:31Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T07:33:09Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","event":0,"ip":"198.41.200.193","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.193:7844: i/o timeout","time":"2026-04-03T07:34:21Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.200.193","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.193:7844: i/o timeout","time":"2026-04-03T07:34:21Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.200.193","connIndex":0,"time":"2026-04-03T07:34:21Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.200.193:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:34:45Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T07:38:14Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.43:7844: i/o timeout","time":"2026-04-03T07:40:16Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.43:7844: i/o timeout","time":"2026-04-03T07:40:16Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T07:40:16Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.200.43:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:40:27Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T07:43:19Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","event":0,"ip":"198.41.192.47","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.47:7844: i/o timeout","time":"2026-04-03T07:45:03Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.192.47","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.47:7844: i/o timeout","time":"2026-04-03T07:45:03Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.192.47","connIndex":0,"time":"2026-04-03T07:45:03Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.192.47:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:45:21Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T07:48:24Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","event":0,"ip":"198.41.192.27","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.27:7844: i/o timeout","time":"2026-04-03T07:48:42Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.192.27","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.27:7844: i/o timeout","time":"2026-04-03T07:48:42Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.192.27","connIndex":0,"time":"2026-04-03T07:48:42Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.192.27:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:48:48Z","message":"Connection terminated"}
+{"level":"error","event":0,"ip":"198.41.200.13","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.13:7844: i/o timeout","time":"2026-04-03T07:49:19Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.200.13","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.13:7844: i/o timeout","time":"2026-04-03T07:49:19Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.200.13","connIndex":0,"time":"2026-04-03T07:49:19Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.200.13:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:49:49Z","message":"Connection terminated"}
+{"level":"error","event":0,"ip":"198.41.200.113","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.113:7844: i/o timeout","time":"2026-04-03T07:53:04Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.200.113","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.113:7844: i/o timeout","time":"2026-04-03T07:53:04Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.200.113","connIndex":0,"time":"2026-04-03T07:53:04Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.200.113:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:53:20Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T07:53:29Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","event":0,"ip":"198.41.200.193","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.193:7844: i/o timeout","time":"2026-04-03T07:56:40Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.200.193","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.193:7844: i/o timeout","time":"2026-04-03T07:56:40Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.200.193","connIndex":0,"time":"2026-04-03T07:56:40Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.200.193:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:56:56Z","message":"Connection terminated"}
+{"level":"error","event":0,"ip":"198.41.192.67","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.67:7844: i/o timeout","time":"2026-04-03T07:58:27Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.192.67","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.67:7844: i/o timeout","time":"2026-04-03T07:58:27Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.192.67","connIndex":0,"time":"2026-04-03T07:58:27Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T07:58:34Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.192.67:7844: i/o timeout","connIndex":0,"time":"2026-04-03T07:58:41Z","message":"Connection terminated"}
+{"level":"error","event":0,"ip":"198.41.192.37","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.37:7844: i/o timeout","time":"2026-04-03T08:00:21Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.192.37","connIndex":0,"error":"DialContext error: dial tcp 198.41.192.37:7844: i/o timeout","time":"2026-04-03T08:00:21Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.192.37","connIndex":0,"time":"2026-04-03T08:00:21Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.192.37:7844: i/o timeout","connIndex":0,"time":"2026-04-03T08:00:25Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T08:03:39Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:05:40Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:05:40Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:05:40Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:06:02Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:07:47Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:07:47Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:07:47Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:08:07Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T08:08:44Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:11:24Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:11:24Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:11:24Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:11:44Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:13:36Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:13:36Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:13:36Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T08:13:49Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:13:53Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:14:02Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:14:02Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:14:02Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:14:16Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:14:36Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:14:36Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:14:36Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:15:00Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:16:27Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:16:27Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:16:27Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:16:55Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T08:18:54Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:21:53Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:21:53Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:21:53Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:22:06Z","message":"Connection terminated"}
+{"level":"error","error":"lookup cfd-features.argotunnel.com: dnsquery: This operation returned because the timeout period expired.","time":"2026-04-03T08:22:10Z","message":"Failed to refresh feature selector"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:23:13Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:23:13Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:23:13Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:23:31Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T08:24:02Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:24:42Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:24:42Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:24:42Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:24:51Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:27:44Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:27:44Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:27:44Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:28:08Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T08:29:16Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:31:51Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:31:51Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:31:51Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:32:18Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T08:34:21Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:34:46Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:34:46Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:34:46Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:34:56Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:35:10Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:35:10Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:35:10Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:35:12Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:37:34Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:37:34Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:37:34Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:37:51Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T08:39:26Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:42:10Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:42:10Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:42:10Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:42:16Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T08:44:31Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:45:10Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:45:10Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:45:10Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:45:26Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:46:04Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:46:04Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:46:04Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:46:28Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:49:26Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:49:26Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:49:26Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T08:49:36Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:49:45Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:53:49Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:53:49Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:53:49Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:53:54Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T08:54:41Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:56:43Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T08:56:43Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T08:56:43Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T08:56:56Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T08:59:46Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:00:55Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:00:56Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:00:56Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:01:00Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:03:57Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:03:57Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:03:57Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:04:28Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:04:42Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:04:42Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:04:42Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:04:51Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T09:04:51Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:06:37Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:06:37Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:06:37Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:06:39Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T09:09:56Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:10:15Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:10:15Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:10:15Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:10:37Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:14:56Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:14:56Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:14:56Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T09:15:01Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:15:23Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T09:20:06Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:20:15Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:20:15Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:20:15Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:20:32Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:21:57Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:21:57Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:21:57Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:22:03Z","message":"Connection terminated"}
+{"level":"error","error":"lookup cfd-features.argotunnel.com: dnsquery: This operation returned because the timeout period expired.","time":"2026-04-03T09:22:22Z","message":"Failed to refresh feature selector"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:22:51Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:22:51Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:22:51Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:23:10Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T09:25:11Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:27:37Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:27:37Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:27:37Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:27:52Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:28:58Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:28:58Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:28:58Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:29:05Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T09:30:16Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:31:43Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:31:43Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:31:43Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:31:54Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:32:19Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:32:19Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:32:19Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:32:50Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T09:35:21Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:35:51Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:35:51Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:35:51Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:36:16Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:40:20Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:40:20Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:40:20Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T09:40:26Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:40:36Z","message":"Connection terminated"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.43:7844: connectex: A socket operation was attempted to an unreachable host.","time":"2026-04-03T09:55:07Z","message":"Unable to establish connection with Cloudflare edge"}
+{"level":"error","event":0,"ip":"198.41.200.43","connIndex":0,"error":"DialContext error: dial tcp 198.41.200.43:7844: connectex: A socket operation was attempted to an unreachable host.","time":"2026-04-03T09:55:08Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.200.43","connIndex":0,"time":"2026-04-03T09:55:08Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"DialContext error: dial tcp 198.41.200.43:7844: connectex: A socket operation was attempted to an unreachable host.","connIndex":0,"time":"2026-04-03T09:55:08Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T09:55:12Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:57:06Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.53","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T09:57:06Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.53","connIndex":0,"time":"2026-04-03T09:57:06Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T09:57:21Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T10:00:17Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T10:00:17Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.53","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T10:00:18Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.53","connIndex":0,"time":"2026-04-03T10:00:18Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T10:00:45Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T10:05:11Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T10:05:28Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.53","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T10:05:28Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.53","connIndex":0,"time":"2026-04-03T10:05:28Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T10:05:52Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T10:06:55Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.53","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T10:06:55Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.53","connIndex":0,"time":"2026-04-03T10:06:55Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T10:06:59Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T10:10:16Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T10:10:28Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.53","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T10:10:28Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.53","connIndex":0,"time":"2026-04-03T10:10:28Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T10:10:58Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Tunnel not found","time":"2026-04-03T10:13:04Z","message":"failed to serve incoming request"}
+{"level":"error","event":0,"ip":"198.41.200.53","connIndex":0,"error":"Unauthorized: Tunnel not found","time":"2026-04-03T10:13:04Z","message":"Register tunnel error from server side"}
+{"level":"info","event":0,"ip":"198.41.200.53","connIndex":0,"time":"2026-04-03T10:13:04Z","message":"Retrying connection in up to 1m4s"}
+{"level":"error","error":"Unauthorized: Tunnel not found","connIndex":0,"time":"2026-04-03T10:13:24Z","message":"Connection terminated"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-04-03T10:15:21Z","message":"Failed to refresh DNS local resolver"}

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TheBrandHouse | Products</title>
+  <meta name="description" content="Browse our complete range of home appliances and consumer electronics.">
+  <link rel="icon" type="image/png" href="thebrandhouse_ltd_logo_transparent.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dark-mode.css">
+  <link rel="stylesheet" href="video-animations.css">
+</head>
+<body data-cms-page="products">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="thebrandhouse_ltd_logo.jpg" alt="TheBrandHouse logo">
+        <div class="brand-text">
+          <h1>TheBrandHouse</h1>
+          <p>Home Appliances &amp; Consumer Electronics</p>
+        </div>
+      </a>
+      <button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="siteMenu" aria-label="Open navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" id="siteMenu" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="businesses.html">Our Businesses</a>
+        <a href="blog.html">Blog</a>
+        <a href="events.html">Events</a>
+        <a href="products.html" class="active">Products</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <h1>Our Products</h1>
+        <p>Browse our complete range of appliances and electronics</p>
+        <div class="product-search">
+          <input type="text" id="productSearch" placeholder="Search products..." class="search-input">
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="product-filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="refrigeration">Refrigeration</button>
+          <button class="filter-btn" data-filter="cooking">Cooking</button>
+          <button class="filter-btn" data-filter="cooling">Cooling</button>
+          <button class="filter-btn" data-filter="entertainment">Entertainment</button>
+          <button class="filter-btn" data-filter="laundry">Laundry</button>
+        </div>
+
+        <div class="product-grid">
+          <div class="product-card reveal" data-category="refrigeration">
+            <div class="product-image">
+              <img src="retail-photo.jpg" alt="Refrigerator">
+            </div>
+            <div class="product-info">
+              <h4>Premium Refrigerator</h4>
+              <p class="product-brand">LG / Samsung</p>
+              <p class="product-description">Advanced cooling technology with smart temperature control</p>
+              <div class="product-footer">
+                <span class="product-price">Starting from ₨ 45,000</span>
+                <button class="btn btn-sm btn-primary">Learn More</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal delay-1" data-category="cooking">
+            <div class="product-image">
+              <img src="corporate-photo.jpg" alt="Cooking Range">
+            </div>
+            <div class="product-info">
+              <h4>Electric Cooking Range</h4>
+              <p class="product-brand">Arçelik / Vestel</p>
+              <p class="product-description">Professional-grade cooking with precise temperature control</p>
+              <div class="product-footer">
+                <span class="product-price">Starting from ₨ 28,000</span>
+                <button class="btn btn-sm btn-primary">Learn More</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal delay-2" data-category="cooling">
+            <div class="product-image">
+              <img src="retail-photo.avif" alt="Air Conditioner">
+            </div>
+            <div class="product-info">
+              <h4>Smart Air Conditioner</h4>
+              <p class="product-brand">Daikin / Fujitsu</p>
+              <p class="product-description">Energy-efficient cooling with WiFi connectivity</p>
+              <div class="product-footer">
+                <span class="product-price">Starting from ₨ 32,000</span>
+                <button class="btn btn-sm btn-primary">Learn More</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal delay-3" data-category="entertainment">
+            <div class="product-image">
+              <img src="news.png" alt="Smart TV">
+            </div>
+            <div class="product-info">
+              <h4>Smart Television</h4>
+              <p class="product-brand">Sony / LG / Hisense</p>
+              <p class="product-description">4K Ultra HD with built-in streaming apps</p>
+              <div class="product-footer">
+                <span class="product-price">Starting from ₨ 38,000</span>
+                <button class="btn btn-sm btn-primary">Learn More</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal delay-4" data-category="laundry">
+            <div class="product-image">
+              <img src="benefit-staff-happiness.jpg" alt="Washing Machine">
+            </div>
+            <div class="product-info">
+              <h4>Automatic Washing Machine</h4>
+              <p class="product-brand">LG / Bosch / Whirlpool</p>
+              <p class="product-description">Intelligent wash cycles with quick dry feature</p>
+              <div class="product-footer">
+                <span class="product-price">Starting from ₨ 38,500</span>
+                <button class="btn btn-sm btn-primary">Learn More</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal delay-5" data-category="cooling">
+            <div class="product-image">
+              <img src="operations-photo.avif" alt="Fan">
+            </div>
+            <div class="product-info">
+              <h4>Ceiling Fan</h4>
+              <p class="product-brand">Orient / Crompton</p>
+              <p class="product-description">Quiet operation with energy-efficient motor</p>
+              <div class="product-footer">
+                <span class="product-price">Starting from ₨ 4,500</span>
+                <button class="btn btn-sm btn-primary">Learn More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Showcase Section -->
+    <section class="section" style="background: linear-gradient(135deg, rgba(255, 107, 45, 0.05), rgba(71, 125, 255, 0.05)); padding: 80px 0;">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Product Demonstrations</span>
+          <h2>Watch Our Latest Product Videos</h2>
+          <p>See cutting-edge technology in action with our curated collection of product demonstrations and reviews</p>
+        </div>
+        <div class="video-grid">
+          <div class="video-card reveal video-glow">
+            <div class="video-thumbnail">
+              <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=250&fit=crop" alt="Samsung TV 4K">
+              <div class="video-play-btn"></div>
+              <span class="video-duration">5:42</span>
+            </div>
+            <div class="video-card-info">
+              <h3>Samsung 4K QLED TV</h3>
+              <p>Experience stunning 4K resolution with quantum dot technology</p>
+            </div>
+          </div>
+
+          <div class="video-card reveal delay-1 video-glow">
+            <div class="video-thumbnail">
+              <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=250&fit=crop" alt="Premium Refrigerator">
+              <div class="video-play-btn"></div>
+              <span class="video-duration">4:15</span>
+            </div>
+            <div class="video-card-info">
+              <h3>LG Smart Refrigerator</h3>
+              <p>Advanced cooling with AI-powered temperature management</p>
+            </div>
+          </div>
+
+          <div class="video-card reveal delay-2 video-glow">
+            <div class="video-thumbnail">
+              <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=400&h=250&fit=crop" alt="JBL Audio System">
+              <div class="video-play-btn"></div>
+              <span class="video-duration">3:28</span>
+            </div>
+            <div class="video-card-info">
+              <h3>JBL Premium Audio System</h3>
+              <p>Immersive sound quality for the ultimate audio experience</p>
+            </div>
+          </div>
+
+          <div class="video-card reveal delay-3 video-glow">
+            <div class="video-thumbnail">
+              <img src="https://images.unsplash.com/photo-1574707267537-b85fab00c4b7?w=400&h=250&fit=crop" alt="Smart Home">
+              <div class="video-play-btn"></div>
+              <span class="video-duration">6:10</span>
+            </div>
+            <div class="video-card-info">
+              <h3>Smart Home Integration</h3>
+              <p>Connect all your devices with our IoT ecosystem</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <div class="footer-card">
+        <div class="footer-block">
+          <h3 class="footer-title">TheBrandHouse</h3>
+          <p class="footer-copy">
+            Leading distributor and retailer of home appliances and consumer electronics in Mauritius.
+          </p>
+        </div>
+        <div class="footer-block">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-block">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="products.html">Products</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="stores.html">Stores</a></li>
+            <li><a href="partners.html">Partners</a></li>
+          </ul>
+        </div>
+        <div class="footer-block">
+          <h4>Contact</h4>
+          <ul class="footer-contact-list">
+            <li>Industrial Park 1, Riche Terre, Mauritius</li>
+            <li><a href="mailto:info@thebrandhouse.mu">info@thebrandhouse.mu</a></li>
+            <li><a href="tel:+2302071700">(+230) 207 1700</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 TheBrandHouse. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact.html">Contact</a>
+          <a href="backoffice.html">Back Office</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="cms.js"></script>
+  <script src="site.js"></script>
+  <script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        document.querySelectorAll('.product-card').forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-cG2AHzRY4F19FHv9+1n2Y9OCeV46y82j2bfMVuYUqgz0+U9q4YJ06KIXS0FdxpO5I9iO8A6HvLEyLgDdf2lt6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="features.js"></script>
+  <script src="advanced-animations.js"></script>
+</body>
+</html>

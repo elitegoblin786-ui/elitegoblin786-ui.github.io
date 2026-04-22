@@ -1,6 +1,7 @@
 (function () {
-  const LOGIN_PAGE = "backoffice.html";
-  const DASHBOARD_PAGE = "backoffice-dashboard.html";
+  const LOGIN_PAGE = "/backoffice";
+  const DASHBOARD_PAGE = "/backoffice/dashboard";
+  const LOCAL_BACKOFFICE_ORIGIN = "http://127.0.0.1:8000";
   const STATIC_HOSTS = ["github.io", "githubusercontent.com"];
 
   function isStaticHostedPreview() {
@@ -8,6 +9,65 @@
     return STATIC_HOSTS.some(function (domain) {
       return hostname === domain || hostname.endsWith("." + domain);
     });
+  }
+
+  function shouldRedirectToLocalBackoffice() {
+    if (window.location.protocol === "file:") {
+      return true;
+    }
+
+    const hostname = window.location.hostname;
+    const isLocalHost = hostname === "127.0.0.1" || hostname === "localhost";
+    return isLocalHost && window.location.port !== "8000";
+  }
+
+  function runtimeUrl(path) {
+    if (shouldRedirectToLocalBackoffice()) {
+      return new URL(path, LOCAL_BACKOFFICE_ORIGIN).toString();
+    }
+
+    return path;
+  }
+
+  function resolveAssetUrl(value) {
+    const trimmedValue = (value || "").trim();
+
+    if (!trimmedValue) {
+      return "";
+    }
+
+    if (
+      /^https?:\/\//i.test(trimmedValue) ||
+      trimmedValue.startsWith("data:") ||
+      trimmedValue.startsWith("blob:")
+    ) {
+      return trimmedValue;
+    }
+
+    if (trimmedValue.startsWith("/")) {
+      return runtimeUrl(trimmedValue);
+    }
+
+    return runtimeUrl("/" + trimmedValue.replace(/^\.?\//, ""));
+  }
+
+  function getServerUsageMessage() {
+    return "Open the backoffice through http://127.0.0.1:8000/backoffice after starting python server.py.";
+  }
+
+  function formatBackofficeError(error, fallbackMessage) {
+    const message = error && error.message ? String(error.message) : "";
+    const normalized = message.toLowerCase();
+
+    if (window.location.protocol === "file:") {
+      return getServerUsageMessage();
+    }
+
+    if (normalized.includes("failed to fetch") || normalized.includes("networkerror")) {
+      return "Unable to reach the backoffice server. " + getServerUsageMessage();
+    }
+
+    return message || fallbackMessage;
   }
 
   async function parseJsonResponse(response) {
@@ -24,7 +84,7 @@
   }
 
   async function fetchSession() {
-    const response = await fetch("/api/backoffice/session", {
+    const response = await fetch(runtimeUrl("/api/backoffice/session"), {
       credentials: "same-origin",
       cache: "no-store"
     });
@@ -101,7 +161,7 @@
       preview.classList.remove("has-image");
       text.textContent = "Unable to load preview for " + value;
     };
-    img.src = value;
+    img.src = resolveAssetUrl(value);
   }
 
   function bindImagePreviews() {
@@ -117,7 +177,7 @@
     const formData = new FormData();
     formData.append("file", file);
 
-    const response = await fetch("/api/upload-image", {
+    const response = await fetch(runtimeUrl("/api/upload-image"), {
       method: "POST",
       credentials: "same-origin",
       body: formData
@@ -158,8 +218,68 @@
     });
   }
 
+  function bindDashboardSectionNav() {
+    const nav = document.querySelector(".admin-section-nav");
+    if (!nav) {
+      return;
+    }
+
+    const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
+    const sections = links
+      .map(function (link) {
+        return document.querySelector(link.getAttribute("href"));
+      })
+      .filter(Boolean);
+
+    if (!links.length || !sections.length) {
+      return;
+    }
+
+    function updateActiveLink() {
+      let activeId = sections[0].id;
+      const offset = window.innerWidth >= 1080 ? 170 : 220;
+
+      sections.forEach(function (section) {
+        if (section.getBoundingClientRect().top <= offset) {
+          activeId = section.id;
+        }
+      });
+
+        links.forEach(function (link) {
+        link.classList.toggle("is-active", link.getAttribute("href") === "#" + activeId);
+      });
+    }
+
+    function requestNavUpdate() {
+      updateActiveLink();
+    }
+
+    links.forEach(function (link) {
+      link.addEventListener("click", function () {
+        window.setTimeout(updateActiveLink, 220);
+      });
+    });
+
+    updateActiveLink();
+
+    window.addEventListener("scroll", requestNavUpdate, { passive: true });
+    window.addEventListener("resize", function () {
+      updateActiveLink();
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", async function () {
     const pageMode = document.body.dataset.backoffice;
+
+    if (pageMode === "login" && shouldRedirectToLocalBackoffice()) {
+      window.location.replace(runtimeUrl(LOGIN_PAGE));
+      return;
+    }
+
+    if (pageMode === "dashboard" && shouldRedirectToLocalBackoffice()) {
+      window.location.replace(runtimeUrl(DASHBOARD_PAGE));
+      return;
+    }
 
     if (pageMode === "login") {
       const alreadyAuthenticated = await fetchSession().catch(function () {
@@ -167,7 +287,7 @@
       });
 
       if (alreadyAuthenticated) {
-        window.location.href = DASHBOARD_PAGE;
+        window.location.href = runtimeUrl(DASHBOARD_PAGE);
         return;
       }
 
@@ -199,7 +319,7 @@
         const password = document.getElementById("backofficePassword").value;
 
         try {
-          const response = await fetch("/api/backoffice/login", {
+          const response = await fetch(runtimeUrl("/api/backoffice/login"), {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -211,9 +331,12 @@
           if (!response.ok || !result.success) {
             throw new Error(result.message || "Incorrect username or password.");
           }
-          window.location.href = DASHBOARD_PAGE;
+          window.location.href = runtimeUrl(DASHBOARD_PAGE);
         } catch (authError) {
-          error.textContent = authError.message || "Incorrect username or password. Please try again.";
+          error.textContent = formatBackofficeError(
+            authError,
+            "Incorrect username or password. Please try again."
+          );
           error.classList.add("is-visible");
         }
       });
@@ -227,7 +350,7 @@
       });
 
       if (!authenticated) {
-        window.location.href = LOGIN_PAGE;
+        window.location.href = runtimeUrl(LOGIN_PAGE);
         return;
       }
 
@@ -235,6 +358,7 @@
       populateForm(currentContent);
       bindImagePreviews();
       bindUploadInputs();
+      bindDashboardSectionNav();
 
       const saveButton = document.getElementById("saveBackofficeChanges");
       const resetButton = document.getElementById("resetBackofficeChanges");
@@ -264,19 +388,19 @@
 
       if (previewButton) {
         previewButton.addEventListener("click", function () {
-          window.open("index.html", "_blank", "noopener");
+          window.open(runtimeUrl("/"), "_blank", "noopener");
         });
       }
 
       if (logoutButton) {
         logoutButton.addEventListener("click", async function () {
-          await fetch("/api/backoffice/logout", {
+          await fetch(runtimeUrl("/api/backoffice/logout"), {
             method: "POST",
             credentials: "same-origin"
           }).catch(function () {
             return null;
           });
-          window.location.href = LOGIN_PAGE;
+          window.location.href = runtimeUrl(LOGIN_PAGE);
         });
       }
     }

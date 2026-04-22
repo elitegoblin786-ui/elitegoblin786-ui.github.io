@@ -1,5 +1,6 @@
 const mobileNavToggle = document.querySelector(".mobile-nav-toggle");
 const siteNav = document.querySelector(".site-nav");
+const LOCAL_BACKOFFICE_URL = "http://127.0.0.1:8000/backoffice";
 
 if (mobileNavToggle && siteNav) {
   const closeMobileNav = function () {
@@ -121,5 +122,16 @@ document.addEventListener("tbh:cms-applied", function () {
     if (element.closest(".is-visible")) {
       animateCount(element);
     }
+  });
+});
+
+document.querySelectorAll('a[href="/backoffice"], a[href="backoffice.html"], a[href="backoffice"]').forEach(function (link) {
+  link.addEventListener("click", function (event) {
+    if (window.location.protocol !== "file:") {
+      return;
+    }
+
+    event.preventDefault();
+    window.location.href = LOCAL_BACKOFFICE_URL;
   });
 });

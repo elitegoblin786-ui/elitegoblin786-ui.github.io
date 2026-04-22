@@ -4,17 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TheBrandHouse | Back Office Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body data-backoffice="dashboard" class="backoffice-body">
-  <main class="backoffice-dashboard-shell">
+  <div class="backoffice-atmosphere" aria-hidden="true">
+    <div class="backoffice-aura backoffice-aura-one"></div>
+    <div class="backoffice-aura backoffice-aura-two"></div>
+    <div class="backoffice-aura backoffice-aura-three"></div>
+    <div class="backoffice-gridlines"></div>
+    <div class="backoffice-beam backoffice-beam-one"></div>
+    <div class="backoffice-beam backoffice-beam-two"></div>
+    <span class="backoffice-particle particle-1"></span>
+    <span class="backoffice-particle particle-2"></span>
+    <span class="backoffice-particle particle-3"></span>
+    <span class="backoffice-particle particle-4"></span>
+    <span class="backoffice-particle particle-5"></span>
+    <span class="backoffice-particle particle-6"></span>
+    <span class="backoffice-particle particle-7"></span>
+    <span class="backoffice-particle particle-8"></span>
+  </div>
+  <main class="backoffice-dashboard-shell" id="backoffice-top">
     <section class="backoffice-topbar">
       <div class="backoffice-brand-lockup">
-        <img src="thebrandhouse_ltd_logo_transparent.png" alt="TheBrandHouse logo" class="backoffice-logo">
+        <img src="/thebrandhouse_ltd_logo_transparent.png" alt="TheBrandHouse logo" class="backoffice-logo">
         <div>
           <span class="backoffice-kicker">TheBrandHouse</span>
           <h1>Website Content Manager</h1>
           <p>Manage core content across the homepage, About, Businesses, Careers, Contact, News and Stores pages.</p>
+          <div class="backoffice-pill-row" aria-hidden="true">
+            <span class="backoffice-pill">Live CMS</span>
+            <span class="backoffice-pill backoffice-pill-cool">Uploads Enabled</span>
+            <span class="backoffice-pill backoffice-pill-soft">Brand Pages</span>
+          </div>
         </div>
       </div>
       <div class="backoffice-actions">
@@ -23,16 +44,19 @@
       </div>
     </section>
 
-    <nav class="admin-section-nav" aria-label="Backoffice sections">
-      <a href="#admin-home">Homepage</a>
-      <a href="#admin-milestones">Milestones</a>
-      <a href="#admin-about">About</a>
-      <a href="#admin-businesses">Businesses</a>
-      <a href="#admin-careers">Careers</a>
-      <a href="#admin-contact">Contact</a>
-      <a href="#admin-news">News</a>
-      <a href="#admin-stores">Stores</a>
-    </nav>
+    <div class="admin-section-nav-shell">
+      <nav class="admin-section-nav" aria-label="Backoffice sections">
+        <a href="#admin-home" data-scroll-target="admin-home">Homepage</a>
+        <a href="#admin-milestones" data-scroll-target="admin-milestones">Milestones</a>
+        <a href="#admin-about" data-scroll-target="admin-about">About</a>
+        <a href="#admin-businesses" data-scroll-target="admin-businesses">Businesses</a>
+        <a href="#admin-careers" data-scroll-target="admin-careers">Careers</a>
+        <a href="#admin-contact" data-scroll-target="admin-contact">Contact</a>
+        <a href="#admin-news" data-scroll-target="admin-news">News</a>
+        <a href="#admin-stores" data-scroll-target="admin-stores">Stores</a>
+        <a href="#backoffice-top" class="admin-nav-top" data-scroll-target="backoffice-top">Top</a>
+      </nav>
+    </div>
 
     <section class="backoffice-grid">
       <article class="admin-panel" id="admin-home">
@@ -479,7 +503,40 @@
       </div>
     </section>
   </main>
-  <script src="cms.js"></script>
-  <script src="backoffice.js"></script>
+  <script src="/cms.js"></script>
+  <script src="/backoffice.js"></script>
+  <script>
+    (function () {
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const offsetForViewport = function () {
+        return window.innerWidth >= 1080 ? 24 : 110;
+      };
+
+      document.querySelectorAll(".admin-section-nav [data-scroll-target]").forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          const targetId = link.getAttribute("data-scroll-target");
+          const target = document.getElementById(targetId);
+
+          if (!target) {
+            return;
+          }
+
+          event.preventDefault();
+
+          const top = target.getBoundingClientRect().top + window.scrollY - offsetForViewport();
+          window.scrollTo({
+            top: Math.max(top, 0),
+            behavior: prefersReducedMotion ? "auto" : "smooth"
+          });
+
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, "", "#" + targetId);
+          } else {
+            window.location.hash = targetId;
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

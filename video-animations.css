@@ -1,0 +1,501 @@
+/* Video Hero Section */
+.video-hero {
+  position: relative;
+  min-height: 600px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #121926, #21314f);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.video-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(18, 25, 38, 0.28), rgba(18, 25, 38, 0.6)),
+    url("operations-photo.avif") center / cover no-repeat;
+}
+
+.video-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top right, rgba(255, 107, 45, 0.22), transparent 30%),
+    linear-gradient(180deg, rgba(17, 24, 39, 0.08), rgba(17, 24, 39, 0.2));
+  pointer-events: none;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  background: transparent;
+  transition: opacity 0.35s ease, filter 0.35s ease;
+}
+
+.video-container.is-fallback .hero-video {
+  opacity: 0;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(7, 11, 19, 0.42), rgba(7, 11, 19, 0.16));
+  z-index: 1;
+}
+
+.video-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  animation: slideUpVideo 0.8s ease-out;
+}
+
+@keyframes slideUpVideo {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.video-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 107, 45, 0.2);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+}
+
+.video-kicker::before {
+  content: "▶";
+  font-size: 0.7rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.video-title {
+  font-size: clamp(3rem, 8vw, 5.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  margin: 20px 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  animation: titleGlow 0.8s ease-out;
+}
+
+@keyframes titleGlow {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.video-description {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 20px auto;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.video-hero .hero-actions {
+  margin-top: 40px;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Video Cards on Product Pages */
+.video-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(18, 25, 38, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.video-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(18, 25, 38, 0.16);
+}
+
+.video-thumbnail {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #000, #333);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-play-btn {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 107, 45, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+  z-index: 2;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(255, 107, 45, 0.3);
+}
+
+.video-play-btn::after {
+  content: "▶";
+  color: #fff;
+  font-size: 28px;
+  margin-left: 6px;
+}
+
+.video-card:hover .video-play-btn {
+  background: var(--accent);
+  box-shadow: 0 12px 48px rgba(255, 107, 45, 0.5);
+  transform: scale(1.15);
+}
+
+.video-card:hover .video-thumbnail img {
+  transform: scale(1.1);
+}
+
+.video-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.video-card-info {
+  padding: 24px;
+}
+
+.video-card-info h3 {
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+  color: var(--text);
+}
+
+.video-card-info p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.video-duration {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+/* Video Grid */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+/* Product Video Embed */
+.product-video-section {
+  position: relative;
+  margin: 40px 0;
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #000, #1a1a1a);
+  padding: 0;
+  aspect-ratio: 16/9;
+}
+
+.product-video {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  border-radius: 24px;
+}
+
+/* Advanced Hover Effects */
+.video-glow {
+  position: relative;
+  z-index: 1;
+}
+
+.video-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 107, 45, 0.2), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.video-glow:hover::before {
+  opacity: 1;
+}
+
+/* Social Media Integration */
+.social-links {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(201, 106, 114, 0.12);
+  color: var(--accent-2);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(201, 106, 114, 0.2);
+}
+
+.social-link:hover {
+  background: linear-gradient(135deg, var(--accent), #ff965f);
+  color: #fff;
+  transform: translateY(-4px) rotate(10deg);
+  box-shadow: 0 12px 32px rgba(255, 107, 45, 0.3);
+}
+
+.social-link svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-social a:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 107, 45, 0.3);
+}
+
+/* Parallax Video Effect */
+.video-parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Video Loading Animation */
+.video-loading {
+  position: relative;
+  background: #000;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-loading::after {
+  content: "";
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Video */
+@media (max-width: 768px) {
+  .video-hero {
+    min-height: 400px;
+  }
+
+  .video-title {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+  }
+
+  .video-description {
+    font-size: 1rem;
+  }
+
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .social-links {
+    gap: 12px;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .video-play-btn {
+    width: 60px;
+    height: 60px;
+  }
+
+  .video-play-btn::after {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-hero {
+    min-height: 300px;
+  }
+
+  .video-title {
+    font-size: 1.5rem;
+  }
+
+  .video-description {
+    font-size: 0.95rem;
+  }
+
+  .video-hero .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .video-hero .btn {
+    width: 100%;
+  }
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] .video-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .video-card-info h3 {
+  color: var(--text);
+}
+
+[data-theme="dark"] .social-link {
+  background: rgba(255, 107, 45, 0.1);
+  border-color: rgba(255, 107, 45, 0.2);
+}
+
+/* Video Card Grid Animations */
+.video-grid .video-card {
+  animation: cardFadeIn 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.video-grid .video-card:nth-child(1) { animation-delay: 0.1s; }
+.video-grid .video-card:nth-child(2) { animation-delay: 0.2s; }
+.video-grid .video-card:nth-child(3) { animation-delay: 0.3s; }
+.video-grid .video-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Floating Animation for Video Elements */
+.video-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}

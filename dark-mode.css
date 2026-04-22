@@ -1,0 +1,72 @@
+/* Dark mode compatibility layer.
+   The base theme variables live in style.css; this file stays in place
+   because multiple pages still include it after the main stylesheet. */
+
+[data-theme="dark"] .language-switcher select {
+  background: rgba(15, 22, 34, 0.96);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: var(--text);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.24);
+}
+
+[data-theme="dark"] .legacy-showcase-grid,
+[data-theme="dark"] .hero-mini-card,
+[data-theme="dark"] .quick-link,
+[data-theme="dark"] .timeline-card,
+[data-theme="dark"] .proof-card,
+[data-theme="dark"] .news-side-card,
+[data-theme="dark"] .stores-hero-card,
+[data-theme="dark"] .store-card,
+[data-theme="dark"] .stores-map-card,
+[data-theme="dark"] .store-cluster,
+[data-theme="dark"] .store-detail-card,
+[data-theme="dark"] .promo-card {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
+    rgba(26, 33, 56, 0.94);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--text);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.24);
+}
+
+[data-theme="dark"] .hero-mini-card strong,
+[data-theme="dark"] .quick-link strong,
+[data-theme="dark"] .timeline-card h3,
+[data-theme="dark"] .proof-card h3,
+[data-theme="dark"] .news-side-card h3,
+[data-theme="dark"] .stores-hero-card h3,
+[data-theme="dark"] .store-card h3,
+[data-theme="dark"] .promo-content h3 {
+  color: var(--text);
+}
+
+[data-theme="dark"] .legacy-copy p,
+[data-theme="dark"] .legacy-prefix,
+[data-theme="dark"] .legacy-suffix,
+[data-theme="dark"] .quick-link,
+[data-theme="dark"] .timeline-card p,
+[data-theme="dark"] .proof-card p,
+[data-theme="dark"] .news-side-card p,
+[data-theme="dark"] .stores-hero-card p,
+[data-theme="dark"] .store-card p,
+[data-theme="dark"] .store-metric,
+[data-theme="dark"] .promo-content p,
+[data-theme="dark"] .section-heading p,
+[data-theme="dark"] .footer-bottom {
+  color: rgba(245, 247, 250, 0.78);
+}
+
+[data-theme="dark"] .eyebrow,
+[data-theme="dark"] .hero-highlight-label,
+[data-theme="dark"] .legacy-stat-label,
+[data-theme="dark"] .pillar-tag,
+[data-theme="dark"] .proof-kicker,
+[data-theme="dark"] .promo-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffd3de;
+}
+
+[data-theme="dark"] .legacy-number {
+  color: #ff9eb5;
+}

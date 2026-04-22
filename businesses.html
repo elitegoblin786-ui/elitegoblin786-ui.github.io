@@ -17,6 +17,8 @@
   <meta name="twitter:image" content="https://elitegoblin786-ui.github.io/thebrandhouse_ltd_logo_transparent.png">
   <link rel="icon" type="image/png" href="thebrandhouse_ltd_logo_transparent.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dark-mode.css">
+  <link rel="stylesheet" href="video-animations.css">
 </head>
 <body data-cms-page="businesses">
   <header class="site-header">
@@ -251,5 +253,78 @@
   </footer>
   <script src="cms.js"></script>
   <script src="site.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-cG2AHzRY4F19FHv9+1n2Y9OCeV46y82j2bfMVuYUqgz0+U9q4YJ06KIXS0FdxpO5I9iO8A6HvLEyLgDdf2lt6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="features.js"></script>
+  <script>
+    if (window.gsap) {
+      window.addEventListener("load", function () {
+        const animateCards = (selector) => {
+          const cards = document.querySelectorAll(selector);
+          if (!cards.length) return;
+
+          cards.forEach((card, index) => {
+            const delay = index * 0.2;
+
+            gsap.set(card, {
+              opacity: 0,
+              y: 100,
+              rotationY: -90,
+              scale: 0.8,
+              transformOrigin: "center bottom"
+            });
+
+            gsap.to(card, {
+              duration: 1.2,
+              opacity: 1,
+              y: 0,
+              rotationY: 0,
+              scale: 1,
+              ease: "back.out(1.7)",
+              delay: delay
+            });
+
+            gsap.to(card, {
+              duration: 3 + index * 0.5,
+              y: "-10px",
+              ease: "power2.inOut",
+              repeat: -1,
+              yoyo: true,
+              delay: 2 + delay
+            });
+
+            gsap.to(card, {
+              duration: 20 + index * 2,
+              rotation: 1,
+              ease: "none",
+              repeat: -1,
+              yoyo: true,
+              delay: delay
+            });
+
+            card.addEventListener('mouseenter', () => {
+              gsap.to(card, {
+                duration: 0.3,
+                scale: 1.05,
+                boxShadow: "0 20px 60px rgba(255, 107, 45, 0.4)",
+                ease: "power2.out"
+              });
+            });
+
+            card.addEventListener('mouseleave', () => {
+              gsap.to(card, {
+                duration: 0.3,
+                scale: 1,
+                boxShadow: "0 20px 48px rgba(18, 25, 38, 0.16)",
+                ease: "power2.out"
+              });
+            });
+          });
+        };
+
+        animateCards(".banner-card");
+        animateCards(".business-card");
+      });
+    }
+  </script>
 </body>
 </html>

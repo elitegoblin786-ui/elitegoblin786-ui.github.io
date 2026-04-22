@@ -6,8 +6,26 @@
   <title>TheBrandHouse | Back Office Login</title>
   <link rel="icon" type="image/png" href="thebrandhouse_ltd_logo_transparent.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dark-mode.css">
+  <link rel="stylesheet" href="video-animations.css">
 </head>
 <body data-backoffice="login" class="backoffice-body">
+  <div class="backoffice-atmosphere" aria-hidden="true">
+    <div class="backoffice-aura backoffice-aura-one"></div>
+    <div class="backoffice-aura backoffice-aura-two"></div>
+    <div class="backoffice-aura backoffice-aura-three"></div>
+    <div class="backoffice-gridlines"></div>
+    <div class="backoffice-beam backoffice-beam-one"></div>
+    <div class="backoffice-beam backoffice-beam-two"></div>
+    <span class="backoffice-particle particle-1"></span>
+    <span class="backoffice-particle particle-2"></span>
+    <span class="backoffice-particle particle-3"></span>
+    <span class="backoffice-particle particle-4"></span>
+    <span class="backoffice-particle particle-5"></span>
+    <span class="backoffice-particle particle-6"></span>
+    <span class="backoffice-particle particle-7"></span>
+    <span class="backoffice-particle particle-8"></span>
+  </div>
   <main class="backoffice-login-shell">
     <section class="backoffice-login-card reveal is-visible">
       <div class="backoffice-brand-lockup">
@@ -16,6 +34,11 @@
           <span class="backoffice-kicker">TheBrandHouse</span>
           <h1>Back Office Access</h1>
           <p>Authorized access for approved company administrators.</p>
+          <div class="backoffice-pill-row" aria-hidden="true">
+            <span class="backoffice-pill">Secure Session</span>
+            <span class="backoffice-pill backoffice-pill-cool">Live Content Control</span>
+            <span class="backoffice-pill backoffice-pill-soft">Media Ready</span>
+          </div>
         </div>
       </div>
 
@@ -41,7 +64,78 @@
       </form>
     </section>
   </main>
-  <script src="cms.js"></script>
-  <script src="backoffice.js"></script>
+  <script src="/cms.js"></script>
+  <script src="/backoffice.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-cG2AHzRY4F19FHv9+1n2Y9OCeV46y82j2bfMVuYUqgz0+U9q4YJ06KIXS0FdxpO5I9iO8A6HvLEyLgDdf2lt6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    if (window.gsap) {
+      window.addEventListener("load", function () {
+        const animateCards = (selector) => {
+          const cards = document.querySelectorAll(selector);
+          if (!cards.length) return;
+
+          cards.forEach((card, index) => {
+            const delay = index * 0.2;
+
+            gsap.set(card, {
+              opacity: 0,
+              y: 100,
+              rotationY: -90,
+              scale: 0.8,
+              transformOrigin: "center bottom"
+            });
+
+            gsap.to(card, {
+              duration: 1.2,
+              opacity: 1,
+              y: 0,
+              rotationY: 0,
+              scale: 1,
+              ease: "back.out(1.7)",
+              delay: delay
+            });
+
+            gsap.to(card, {
+              duration: 3 + index * 0.5,
+              y: "-10px",
+              ease: "power2.inOut",
+              repeat: -1,
+              yoyo: true,
+              delay: 2 + delay
+            });
+
+            gsap.to(card, {
+              duration: 20 + index * 2,
+              rotation: 1,
+              ease: "none",
+              repeat: -1,
+              yoyo: true,
+              delay: delay
+            });
+
+            card.addEventListener('mouseenter', () => {
+              gsap.to(card, {
+                duration: 0.3,
+                scale: 1.05,
+                boxShadow: "0 20px 60px rgba(255, 107, 45, 0.4)",
+                ease: "power2.out"
+              });
+            });
+
+            card.addEventListener('mouseleave', () => {
+              gsap.to(card, {
+                duration: 0.3,
+                scale: 1,
+                boxShadow: "0 20px 48px rgba(18, 25, 38, 0.16)",
+                ease: "power2.out"
+              });
+            });
+          });
+        };
+
+        animateCards(".backoffice-login-card");
+      });
+    }
+  </script>
 </body>
 </html>

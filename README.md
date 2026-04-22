@@ -13,6 +13,14 @@ python server.py
 
 3. Open `http://127.0.0.1:8000`
 
+Or on Windows, double-click:
+
+```bash
+start-backoffice.bat
+```
+
+This starts the local server in a new terminal window and opens the backoffice automatically.
+
 ## Contact form behavior
 
 - Frontend submits to `/api/contact`
@@ -25,25 +33,21 @@ python server.py
 
 ## Admin inbox
 
-Open:
+The admin inbox no longer uses the browser's basic-auth popup.
+
+1. Sign in through:
+
+```bash
+http://127.0.0.1:8000/backoffice
+```
+
+2. Then open:
 
 ```bash
 http://127.0.0.1:8000/admin
 ```
 
-Default credentials:
-
-```bash
-Username: admin
-Password: thebrandhouse123
-```
-
-You should change these before real use by setting environment variables:
-
-```bash
-ADMIN_USERNAME=Admin1306
-ADMIN_PASSWORD=Samsung_1306
-```
+It now uses the same backoffice session after login.
 
 ## Optional email sending
 

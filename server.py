@@ -563,7 +563,7 @@ def build_new_page_template(filename: str, page_title: str, banner_title: str, b
           <a href="privacy.html">Privacy Policy</a>
           <a href="terms.html">Terms</a>
           <a href="contact.html">Contact</a>
-          <a href="backoffice.html">Back Office</a>
+          <a href="/backoffice">Back Office</a>
         </div>
       </div>
     </div>
@@ -795,16 +795,6 @@ class SiteHandler(BaseHTTPRequestHandler):
         self._send_json(401, {"success": False, "message": "Authentication required."})
         return False
 
-    def _require_admin_auth(self) -> bool:
-        auth_header = self.headers.get("Authorization")
-        if basic_auth_is_valid(auth_header):
-            return True
-
-        self.send_response(401)
-        self.send_header("WWW-Authenticate", 'Basic realm="TheBrandHouse Admin"')
-        self.end_headers()
-        return False
-
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
         request_path = unquote(parsed.path)
@@ -812,6 +802,18 @@ class SiteHandler(BaseHTTPRequestHandler):
 
         if request_path == "/api/cms-content":
             self._send_json(200, {"success": True, "content": read_cms_content()})
+            return
+
+        if request_path in {"/backoffice.html", "/backoffice.html/"}:
+            self.send_response(302)
+            self.send_header("Location", "/backoffice")
+            self.end_headers()
+            return
+
+        if request_path in {"/backoffice-dashboard.html", "/backoffice-dashboard.html/"}:
+            self.send_response(302)
+            self.send_header("Location", "/backoffice/dashboard")
+            self.end_headers()
             return
 
         if request_path.startswith("/images/"):
@@ -852,8 +854,11 @@ class SiteHandler(BaseHTTPRequestHandler):
             self._send_json(200, {"success": True, "path": target.name, "content": content})
             return
 
-        if request_path == "/admin":
-            if not self._require_admin_auth():
+        if request_path in {"/admin", "/admin/"}:
+            if not self._is_backoffice_authenticated():
+                self.send_response(302)
+                self.send_header("Location", "/backoffice")
+                self.end_headers()
                 return
             page = render_admin_page(read_submissions()).encode("utf-8")
             self.send_response(200)
@@ -864,7 +869,7 @@ class SiteHandler(BaseHTTPRequestHandler):
             return
 
         if request_path == "/api/submissions":
-            if not self._require_admin_auth():
+            if not self._require_backoffice_session():
                 return
             self._send_json(200, {"success": True, "records": read_submissions()})
             return
@@ -876,7 +881,7 @@ class SiteHandler(BaseHTTPRequestHandler):
         if request_path in {"/backoffice/dashboard", "/backoffice/dashboard/"}:
             if not self._is_backoffice_authenticated():
                 self.send_response(302)
-                self.send_header("Location", "/backoffice.html")
+                self.send_header("Location", "/backoffice")
                 self.end_headers()
                 return
             self._serve_file(ROOT / "backoffice-dashboard.html")
@@ -1086,6 +1091,9 @@ class SiteHandler(BaseHTTPRequestHandler):
 
 def run() -> None:
     server = ThreadingHTTPServer((HOST, PORT), SiteHandler)
+    print(f"TheBrandHouse local server is running on http://127.0.0.1:{PORT}")
+    print("Backoffice login: http://127.0.0.1:8000/backoffice")
+    print("Keep this terminal open while using the website locally.")
     server.serve_forever()
 
 

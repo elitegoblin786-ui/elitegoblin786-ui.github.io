@@ -17,6 +17,8 @@
   <meta name="twitter:image" content="https://elitegoblin786-ui.github.io/thebrandhouse_ltd_logo_transparent.png">
   <link rel="icon" type="image/png" href="thebrandhouse_ltd_logo_transparent.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dark-mode.css">
+  <link rel="stylesheet" href="video-animations.css">
 </head>
 <body data-cms-page="home">
   <header class="site-header">
@@ -36,7 +38,9 @@
       <nav class="site-nav" id="siteMenu" aria-label="Primary">
         <a href="about.html">About Us</a>
         <a href="businesses.html">Our Businesses</a>
-        <a href="news.html">News</a>
+        <a href="blog.html">Blog</a>
+        <a href="events.html">Events</a>
+        <a href="products.html">Products</a>
         <a href="careers.html">Careers</a>
         <a href="contact.html">Contact</a>
         <a href="stores.html">Our Stores</a>
@@ -45,6 +49,27 @@
   </header>
 
   <main>
+    <!-- Video Hero Section -->
+    <section class="video-hero reveal">
+      <div class="video-container">
+        <video class="hero-video" autoplay muted loop playsinline poster="operations-photo.avif">
+          <source src="https://videos.pexels.com/video-files/8486532/8486532-hd_720_1280_25fps.mp4" type="video/mp4">
+          <source src="https://videos.pexels.com/video-files/13829043/13829043-hd_1280_720_30fps.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="video-overlay"></div>
+      <div class="container video-content">
+        <span class="hero-kicker video-kicker" data-i18n="video-kicker">Premium Electronics</span>
+        <h2 class="video-title" data-i18n="video-title">Experience Next-Gen Technology</h2>
+        <p class="video-description" data-i18n="video-description">Discover the latest in premium appliances and consumer electronics</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="products.html" data-i18n="video-primary">Explore Products</a>
+          <a class="btn btn-secondary" href="events.html" data-i18n="video-secondary">View Events</a>
+        </div>
+      </div>
+    </section>
+
     <section class="welcome-banner reveal">
       <img class="welcome-banner-image" data-cms-image="welcomeImage" src="benefit-staff-happiness.jpg" alt="Team celebration at TheBrandHouse">
       <div class="welcome-banner-overlay">
@@ -84,23 +109,23 @@
             TheBrandHouse brings together a strong brand portfolio, a wide retail footprint, and dependable after-sales support to serve customers across Mauritius with confidence and consistency.
           </p>
           <div class="trust-row">
-            <div class="trust-pill">Established roots since 1930</div>
-            <div class="trust-pill">28+ stores islandwide</div>
-            <div class="trust-pill">Distribution, retail and service</div>
+            <div class="trust-pill" data-i18n="hero-pill-roots">Established roots since 1930</div>
+            <div class="trust-pill" data-i18n="hero-pill-stores">28+ stores islandwide</div>
+            <div class="trust-pill" data-i18n="hero-pill-service">Distribution, retail and service</div>
           </div>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="about.html">Open About Us</a>
-            <a class="btn btn-secondary" href="businesses.html">Explore Businesses</a>
-            <a class="btn btn-secondary" href="contact.html">Contact Us</a>
+            <a class="btn btn-primary" href="about.html" data-i18n="hero-about">Open About Us</a>
+            <a class="btn btn-secondary" href="businesses.html" data-i18n="hero-businesses">Explore Businesses</a>
+            <a class="btn btn-secondary" href="contact.html" data-i18n="hero-contact">Contact Us</a>
           </div>
           <div class="hero-mini-grid">
             <div class="hero-mini-card">
-              <strong>Portfolio-led growth</strong>
-              Retail concepts, global brands, and local market reach.
+              <strong data-i18n="hero-card-growth">Portfolio-led growth</strong>
+              <span data-i18n="hero-card-growth-copy">Retail concepts, global brands, and local market reach.</span>
             </div>
             <div class="hero-mini-card">
-              <strong>Customer-first support</strong>
-              Service coverage that continues beyond the sale.
+              <strong data-i18n="hero-card-support">Customer-first support</strong>
+              <span data-i18n="hero-card-support-copy">Service coverage that continues beyond the sale.</span>
             </div>
           </div>
         </div>
@@ -109,29 +134,52 @@
             <img data-cms-image="heroPanelImage" src="tbh-image-logo.png" alt="TheBrandHouse logo panel">
           </div>
           <div class="hero-highlight">
-            <span class="hero-highlight-label">Company Snapshot</span>
-            <strong>Built for long-term trust</strong>
-            A business platform that connects brands, stores, and service under one strong identity.
+            <span class="hero-highlight-label" data-i18n="hero-highlight-label">Company Snapshot</span>
+            <strong data-i18n="hero-highlight-title">Built for long-term trust</strong>
+            <span data-i18n="hero-highlight-copy">A business platform that connects brands, stores, and service under one strong identity.</span>
           </div>
           <div class="stat-grid">
             <div class="stat-card">
               <div class="stat-value count-up" data-count="1930">1930</div>
-              <div>Historic roots through JM Goupille &amp; Co.</div>
+              <div data-i18n="stat-roots">Historic roots through JM Goupille &amp; Co.</div>
             </div>
             <div class="stat-card">
               <div class="stat-value count-up" data-count="28" data-suffix="+">28+</div>
-              <div>Retail stores across urban and rural areas</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-value count-up" data-count="3">3</div>
-              <div>Core business pillars: distribution, retail, service</div>
+              <div data-i18n="stat-stores">Retail stores across urban and rural areas</div>
             </div>
             <div class="stat-card legacy-stat-card">
-              <div class="legacy-stat-label">Customer reach</div>
+              <div class="legacy-stat-label" data-i18n="stat-reach-label">Customer reach</div>
               <div class="stat-value count-up" data-count="12" data-suffix="+">12+</div>
-              <div>International and regional brands represented across the portfolio</div>
+              <div data-i18n="stat-reach-copy">International and regional brands represented across the portfolio</div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow" data-i18n="section-customer-experience">Customer Experience</span>
+          <h2 data-i18n="section-customer-experience-title">How customers engage with TheBrandHouse</h2>
+          <p data-i18n="section-customer-experience-copy">TheBrandHouse combines strong retail presence with responsive service and trusted after-sales support.</p>
+        </div>
+        <div class="pillar-grid">
+          <article class="pillar-card reveal feature-card">
+            <span class="pillar-tag">Advice</span>
+            <h3>In-store guidance and product selection</h3>
+            <p>Customers receive expert support from our Galaxy retail teams to choose the right appliances and electronics.</p>
+          </article>
+          <article class="pillar-card reveal feature-card">
+            <span class="pillar-tag">Convenience</span>
+            <h3>Easy access across stores and channels</h3>
+            <p>Whether visiting a store or searching online, customers can connect with our brand through multiple retail touchpoints.</p>
+          </article>
+          <article class="pillar-card reveal feature-card">
+            <span class="pillar-tag">After-sales</span>
+            <h3>Trusted service and technical support</h3>
+            <p>Service coverage and repair support are designed to keep customers confident after every purchase.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -192,9 +240,9 @@
     <section class="section">
       <div class="container">
         <div class="section-heading reveal">
-          <span class="eyebrow">Business Pillars</span>
-          <h2>Three connected strengths across the customer journey</h2>
-          <p>From import and distribution to retail experience and after-sales care, each pillar supports the others.</p>
+          <span class="eyebrow" data-i18n="section-business-pillars">Business Pillars</span>
+          <h2 data-i18n="section-business-pillars-title">Three connected strengths across the customer journey</h2>
+          <p data-i18n="section-business-pillars-copy">From import and distribution to retail experience and after-sales care, each pillar supports the others.</p>
         </div>
         <div class="pillar-grid">
           <article class="pillar-card reveal delay-1">
@@ -222,9 +270,9 @@
     <section class="section">
       <div class="container">
         <div class="section-heading reveal">
-          <span class="eyebrow">Trust Signals</span>
-          <h2>Strengths that support long-term trust</h2>
-          <p>From retail reach to recognised brands and after-sales support, TheBrandHouse is built around capabilities that strengthen customer confidence.</p>
+          <span class="eyebrow" data-i18n="section-trust-signals">Trust Signals</span>
+          <h2 data-i18n="section-trust-signals-title">Strengths that support long-term trust</h2>
+          <p data-i18n="section-trust-signals-copy">From retail reach to recognised brands and after-sales support, TheBrandHouse is built around capabilities that strengthen customer confidence.</p>
         </div>
         <div class="proof-grid">
           <article class="proof-card reveal delay-1">
@@ -249,9 +297,9 @@
     <section class="section">
       <div class="container">
         <div class="section-heading reveal">
-          <span class="eyebrow">Why Choose Us</span>
-          <h2>A business platform built for consistency</h2>
-          <p>Customers, brand partners and stakeholders rely on TheBrandHouse because its strengths work together across the full journey.</p>
+          <span class="eyebrow" data-i18n="section-why-choose-us">Why Choose Us</span>
+          <h2 data-i18n="section-why-choose-us-title">A business platform built for consistency</h2>
+          <p data-i18n="section-why-choose-us-copy">Customers, brand partners and stakeholders rely on TheBrandHouse because its strengths work together across the full journey.</p>
         </div>
         <div class="proof-grid proof-grid-compact">
           <article class="proof-card reveal delay-1">
@@ -303,9 +351,9 @@
     <section class="section">
       <div class="container">
         <div class="section-heading reveal">
-          <span class="eyebrow">Brands</span>
-          <h2>Recognised names across the portfolio</h2>
-          <p>The portfolio brings together leading names across home appliances, consumer electronics and specialist retail concepts.</p>
+          <span class="eyebrow" data-i18n="section-brands">Brands</span>
+          <h2 data-i18n="section-brands-title">Recognised names across the portfolio</h2>
+          <p data-i18n="section-brands-copy">The portfolio brings together leading names across home appliances, consumer electronics and specialist retail concepts.</p>
         </div>
         <div class="brand-marquee reveal delay-1">
           <div class="brand-marquee-track">
@@ -334,11 +382,83 @@
 
     <section class="section">
       <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow" data-i18n="section-special-offers">Special Offers</span>
+          <h2 data-i18n="section-special-offers-title">Current Promotions & Deals</h2>
+          <p data-i18n="section-special-offers-copy">Discover exclusive deals on top brands and seasonal promotions across our Galaxy stores.</p>
+        </div>
+        <div class="promo-grid">
+          <article class="promo-card reveal promo-1">
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop" alt="Samsung TV Promotion" class="promo-image">
+            <div class="promo-content">
+              <h3>Samsung 4K TVs</h3>
+              <p>Up to 30% off on selected Samsung 4K Smart TVs. Limited time offer!</p>
+              <span class="promo-badge">30% OFF</span>
+            </div>
+          </article>
+          <article class="promo-card reveal promo-2">
+            <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=300&fit=crop" alt="Panasonic Appliances" class="promo-image">
+            <div class="promo-content">
+              <h3>Panasonic Home Appliances</h3>
+              <p>Buy one get one 50% off on Panasonic refrigerators and washing machines.</p>
+              <span class="promo-badge">BOGO 50%</span>
+            </div>
+          </article>
+          <article class="promo-card reveal promo-3">
+            <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=400&h=300&fit=crop" alt="JBL Audio Deal" class="promo-image">
+            <div class="promo-content">
+              <h3>JBL Wireless Speakers</h3>
+              <p>Free wireless charger with purchase of any JBL Go 3 or Clip 3 speaker.</p>
+              <span class="promo-badge">FREE GIFT</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section testimonials-section">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow" data-i18n="section-customer-stories">Customer Stories</span>
+          <h2 data-i18n="section-customer-stories-title">What our customers say</h2>
+          <p data-i18n="section-customer-stories-copy">Real feedback from satisfied customers across Mauritius</p>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card reveal">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"TheBrandHouse provided excellent service from purchase to installation. The team was professional and the product quality is outstanding."</p>
+            <div class="testimonial-author">
+              <p class="author-name">- Mrs. Sharma</p>
+              <p class="author-location">Port Louis</p>
+            </div>
+          </div>
+          <div class="testimonial-card reveal delay-1">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"I've been a customer for years. The after-sales support is exceptional and they truly care about customer satisfaction."</p>
+            <div class="testimonial-author">
+              <p class="author-name">- Mr. Ramdin</p>
+              <p class="author-location">Curepipe</p>
+            </div>
+          </div>
+          <div class="testimonial-card reveal delay-2">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Best experience buying appliances. Staff guided me through every option and helped me choose the perfect fit for my home."</p>
+            <div class="testimonial-author">
+              <p class="author-name">- Ms. Devi</p>
+              <p class="author-location">Vacoas</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
         <article class="cta-panel reveal">
           <div>
-            <span class="eyebrow">Explore More</span>
-            <h2>Discover the full TheBrandHouse profile</h2>
-            <p>
+            <span class="eyebrow" data-i18n="section-explore-more">Explore More</span>
+            <h2 data-i18n="section-explore-more-title">Discover the full TheBrandHouse profile</h2>
+            <p data-i18n="section-explore-more-copy">
               Learn more about the company background, business activities, careers and customer contact points across the site.
             </p>
           </div>
@@ -365,6 +485,14 @@
           <ul class="footer-links">
             <li><a href="about.html">About Us</a></li>
             <li><a href="businesses.html">Our Businesses</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="team.html">Our Team</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="partners.html">Partners</a></li>
             <li><a href="careers.html">Careers</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
@@ -376,6 +504,13 @@
             <li><a href="mailto:info@thebrandhouse.mu">info@thebrandhouse.mu</a></li>
             <li><a href="tel:+2302071700">(+230) 207 1700</a></li>
           </ul>
+          <h4 style="margin-top: 20px;">Follow Us</h4>
+          <div class="footer-social">
+            <a href="https://facebook.com/thebrandhouse" target="_blank" rel="noopener" title="Facebook">f</a>
+            <a href="https://instagram.com/thebrandhouse" target="_blank" rel="noopener" title="Instagram">📷</a>
+            <a href="https://youtube.com/thebrandhouse" target="_blank" rel="noopener" title="YouTube">▶</a>
+            <a href="https://twitter.com/thebrandhouse" target="_blank" rel="noopener" title="Twitter">𝕏</a>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
@@ -391,5 +526,198 @@
   </footer>
   <script src="cms.js"></script>
   <script src="site.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-cG2AHzRY4F19FHv9+1n2Y9OCeV46y82j2bfMVuYUqgz0+U9q4YJ06KIXS0FdxpO5I9iO8A6HvLEyLgDdf2lt6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    if (window.gsap) {
+      window.addEventListener("load", function () {
+        const heroContent = document.querySelector(".welcome-banner .welcome-banner-content");
+        const heroImage = document.querySelector(".welcome-banner-image");
+        const heroActions = document.querySelectorAll(".hero-actions a");
+        const trustPills = document.querySelectorAll(".hero-copy .trust-pill");
+        const marqueeTrack = document.querySelector(".brand-marquee-track");
+
+        const introTimeline = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+        if (heroContent) {
+          introTimeline.from(heroContent, {
+            duration: 1.1,
+            opacity: 0,
+            y: 50
+          });
+        }
+
+        if (heroImage) {
+          introTimeline.from(heroImage, {
+            duration: 1.2,
+            opacity: 0,
+            scale: 1.08
+          }, "-=0.9");
+        }
+
+        if (heroActions.length) {
+          introTimeline.from(heroActions, {
+            duration: 0.8,
+            opacity: 0,
+            y: 20,
+            stagger: 0.12
+          }, "-=0.7");
+        }
+
+        if (trustPills.length) {
+          introTimeline.from(trustPills, {
+            duration: 0.8,
+            opacity: 0,
+            y: 20,
+            stagger: 0.1
+          }, "-=0.7");
+        }
+
+        const featureCards = document.querySelectorAll(".feature-card");
+        if (featureCards.length) {
+          introTimeline.from(featureCards, {
+            duration: 0.8,
+            opacity: 0,
+            y: 40,
+            stagger: 0.12
+          }, "-=0.6");
+        }
+
+        // Generic card animation function
+        const animateCards = (selector, containerSelector = null) => {
+          const cards = document.querySelectorAll(selector);
+          if (!cards.length) return;
+
+          const timeline = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+          cards.forEach((card, index) => {
+            const delay = index * 0.2;
+
+            // Initial state - cards are off-screen and rotated
+            gsap.set(card, {
+              opacity: 0,
+              y: 100,
+              rotationY: -90,
+              scale: 0.8,
+              transformOrigin: "center bottom"
+            });
+
+            // Animate entrance
+            timeline.to(card, {
+              duration: 1.2,
+              opacity: 1,
+              y: 0,
+              rotationY: 0,
+              scale: 1,
+              ease: "back.out(1.7)"
+            }, delay);
+
+            // Add continuous floating animation
+            gsap.to(card, {
+              duration: 3 + index * 0.5,
+              y: "-10px",
+              ease: "power2.inOut",
+              repeat: -1,
+              yoyo: true,
+              delay: 2 + delay
+            });
+
+            // Add subtle rotation animation
+            gsap.to(card, {
+              duration: 20 + index * 2,
+              rotation: 1,
+              ease: "none",
+              repeat: -1,
+              yoyo: true,
+              delay: delay
+            });
+
+            // Add glow effect on hover
+            card.addEventListener('mouseenter', () => {
+              gsap.to(card, {
+                duration: 0.3,
+                scale: 1.05,
+                boxShadow: "0 20px 60px rgba(255, 107, 45, 0.4)",
+                ease: "power2.out"
+              });
+            });
+
+            card.addEventListener('mouseleave', () => {
+              gsap.to(card, {
+                duration: 0.3,
+                scale: 1,
+                boxShadow: "0 20px 48px rgba(18, 25, 38, 0.16)",
+                ease: "power2.out"
+              });
+            });
+          });
+
+          // Add particle effect if container exists
+          if (containerSelector) {
+            const createParticles = () => {
+              const container = document.querySelector(containerSelector);
+              if (!container) return;
+              
+              const particlesContainer = document.createElement('div');
+              particlesContainer.style.position = 'absolute';
+              particlesContainer.style.top = '0';
+              particlesContainer.style.left = '0';
+              particlesContainer.style.width = '100%';
+              particlesContainer.style.height = '100%';
+              particlesContainer.style.pointerEvents = 'none';
+              particlesContainer.style.overflow = 'hidden';
+              container.appendChild(particlesContainer);
+
+              for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = '2px';
+                particle.style.height = '2px';
+                particle.style.background = 'rgba(255, 107, 45, 0.6)';
+                particle.style.borderRadius = '50%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+
+                particlesContainer.appendChild(particle);
+
+                gsap.to(particle, {
+                  duration: 2 + Math.random() * 3,
+                  x: Math.random() * 200 - 100,
+                  y: Math.random() * 200 - 100,
+                  opacity: 0,
+                  ease: "power2.out",
+                  repeat: -1,
+                  delay: Math.random() * 2
+                });
+              }
+            };
+
+            setTimeout(createParticles, 3000);
+            introTimeline.add(timeline, "-=0.3");
+          }
+        };
+
+        // Apply animations to all card types
+        animateCards(".promo-card", ".promo-grid");
+        animateCards(".hero-mini-card");
+        animateCards(".stat-card");
+        animateCards(".pillar-card");
+        animateCards(".feature-card");
+        animateCards(".content-card");
+        animateCards(".proof-card");
+        animateCards(".quick-links-card");
+
+        if (marqueeTrack) {
+          gsap.to(marqueeTrack, {
+            duration: 16,
+            xPercent: -50,
+            ease: "none",
+            repeat: -1
+          });
+        }
+      });
+    }
+  </script>
+  <script src="features.js"></script>
+  <script src="advanced-animations.js"></script>
 </body>
 </html>

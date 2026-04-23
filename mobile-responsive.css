@@ -1,0 +1,648 @@
+/* Mobile Responsive Fixes - Comprehensive */
+
+@media (max-width: 768px) {
+  .container {
+    width: min(calc(100% - 16px), var(--container));
+  }
+
+  .nav-wrap {
+    min-height: 70px;
+    padding: 10px 0;
+    gap: 10px;
+  }
+
+  .brand {
+    gap: 10px;
+  }
+
+  .brand-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-text h1 {
+    font-size: 1.1rem;
+  }
+
+  .brand-text p {
+    font-size: 0.75rem;
+  }
+
+  .hero {
+    padding: 32px 0;
+  }
+
+  .hero-copy h2 {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+  }
+
+  .hero-actions,
+  .cta-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn,
+  .cta-actions .btn {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .hero-copy,
+  .banner-card,
+  .content-card,
+  .business-card,
+  .placeholder-page {
+    padding: 18px;
+  }
+
+  .hero-mini-grid,
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    padding: 16px;
+  }
+
+  .hero-brand-panel {
+    min-height: 200px;
+  }
+
+  .hero-brand-panel img {
+    min-height: 200px;
+  }
+
+  .welcome-banner,
+  .welcome-banner-image,
+  .welcome-banner-content {
+    min-height: 340px;
+  }
+
+  .welcome-banner-content {
+    padding: 50px 16px 24px;
+  }
+
+  .welcome-banner-content h2 {
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+    line-height: 1.1;
+    margin: 12px 0 8px;
+  }
+
+  .welcome-banner-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .legacy-showcase {
+    padding: 20px 0;
+  }
+
+  .legacy-showcase-grid {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .legacy-copy h2 {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+  }
+
+  .legacy-number {
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+  }
+
+  .section-heading h2 {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+  }
+
+  .pillar-card,
+  .proof-card {
+    padding: 16px;
+  }
+
+  .pillar-card h3,
+  .proof-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .cta-panel {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .cta-panel h2 {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+  }
+
+  .promo-grid,
+  .testimonials-grid,
+  .blog-grid,
+  .product-grid,
+  .team-grid,
+  .support-grid,
+  .partners-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .promo-card,
+  .testimonial-card {
+    padding: 16px;
+  }
+
+  .promo-image {
+    height: 140px;
+  }
+
+  .promo-content {
+    padding: 14px;
+  }
+
+  .promo-content h3 {
+    font-size: 1rem;
+  }
+
+  .testimonial-text {
+    font-size: 0.9rem;
+  }
+
+  .author-name {
+    font-size: 0.9rem;
+  }
+
+  .video-hero {
+    min-height: 280px;
+  }
+
+  .video-content {
+    padding: 16px 0;
+  }
+
+  .video-title {
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+  }
+
+  .video-description {
+    font-size: 0.9rem;
+  }
+
+  .event-card {
+    grid-template-columns: 80px 1fr;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .event-date {
+    padding: 12px 14px;
+  }
+
+  .event-month {
+    font-size: 0.7rem;
+  }
+
+  .event-day {
+    font-size: 1.6rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .gallery-item {
+    aspect-ratio: 1;
+  }
+
+  .blog-card,
+  .product-card,
+  .team-card {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .blog-image,
+  .product-image,
+  .team-image {
+    height: 160px;
+  }
+
+  .blog-content,
+  .product-info,
+  .team-info {
+    padding: 14px;
+  }
+
+  .blog-card h3,
+  .product-info h4,
+  .team-card h3 {
+    font-size: 1rem;
+  }
+
+  .btn-sm {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .product-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .quick-links-card,
+  .news-side-card,
+  .stores-hero-card,
+  .store-card,
+  .store-cluster,
+  .store-detail-card {
+    padding: 16px;
+  }
+
+  .news-award-showcase {
+    padding: 14px;
+    gap: 14px;
+    grid-template-columns: 1fr;
+  }
+
+  .news-award-frame,
+  .news-photo-slot {
+    min-height: 220px;
+  }
+
+  .news-award-frame img {
+    min-height: 220px;
+  }
+
+  .news-cards-grid {
+    margin-top: 20px;
+    gap: 14px;
+  }
+
+  .proof-grid-compact .proof-card h3,
+  .news-feature-card h3,
+  .news-mini-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .proof-grid-compact .proof-card p,
+  .news-feature-card p,
+  .news-mini-card p {
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: min(calc(100% - 16px), var(--container));
+  }
+
+  .nav-wrap {
+    min-height: 70px;
+    padding: 10px 0;
+    gap: 10px;
+  }
+
+  .brand {
+    gap: 10px;
+  }
+
+  .brand-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-text h1 {
+    font-size: 1.1rem;
+  }
+
+  .brand-text p {
+    font-size: 0.75rem;
+  }
+
+  .mobile-nav-toggle {
+    width: 48px;
+    height: 48px;
+  }
+
+  .hero {
+    padding: 32px 0;
+  }
+
+  .hero-copy,
+  .banner-card,
+  .content-card,
+  .business-card,
+  .placeholder-page {
+    padding: 16px;
+  }
+
+  .hero-copy h2 {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+  }
+
+  .hero-actions,
+  .cta-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .hero-actions .btn,
+  .cta-actions .btn {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .hero-mini-grid,
+  .stat-grid,
+  .brand-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    padding: 16px;
+  }
+
+  .hero-brand-panel {
+    min-height: 200px;
+  }
+
+  .hero-brand-panel img {
+    min-height: 200px;
+  }
+
+  .hero-photo-box img {
+    height: auto;
+    max-height: 240px;
+  }
+
+  .welcome-banner,
+  .welcome-banner-image,
+  .welcome-banner-content {
+    min-height: 340px;
+  }
+
+  .welcome-banner-content {
+    padding: 50px 16px 24px;
+  }
+
+  .welcome-banner-content h2 {
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+    line-height: 1.1;
+    margin: 12px 0 8px;
+  }
+
+  .welcome-banner-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .legacy-showcase {
+    padding: 20px 0;
+  }
+
+  .legacy-showcase-grid {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .legacy-copy h2 {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+  }
+
+  .legacy-number {
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+  }
+
+  .section-heading h2 {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+  }
+
+  .pillar-card,
+  .proof-card,
+  .quick-links-card,
+  .news-side-card,
+  .stores-hero-card,
+  .store-card,
+  .store-cluster,
+  .store-detail-card,
+  .timeline-card,
+  .cta-panel,
+  .promo-card,
+  .testimonial-card {
+    padding: 16px;
+  }
+
+  .pillar-card h3,
+  .proof-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .cta-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-panel h2 {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+  }
+
+  .promo-grid,
+  .testimonials-grid,
+  .blog-grid,
+  .product-grid,
+  .team-grid,
+  .support-grid,
+  .partners-grid,
+  .warranty-plans {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .promo-image {
+    height: 140px;
+  }
+
+  .promo-content {
+    padding: 14px;
+  }
+
+  .promo-content h3 {
+    font-size: 1rem;
+  }
+
+  .testimonial-text {
+    font-size: 0.9rem;
+  }
+
+  .author-name {
+    font-size: 0.9rem;
+  }
+
+  .video-hero {
+    min-height: 280px;
+  }
+
+  .video-content {
+    padding: 16px 0;
+  }
+
+  .video-title {
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+  }
+
+  .video-description {
+    font-size: 0.9rem;
+  }
+
+  .event-card {
+    grid-template-columns: 80px 1fr;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .event-date {
+    padding: 12px 14px;
+  }
+
+  .event-month {
+    font-size: 0.7rem;
+  }
+
+  .event-day {
+    font-size: 1.6rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .gallery-item {
+    aspect-ratio: 1;
+  }
+
+  .blog-card,
+  .product-card,
+  .team-card {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .blog-image,
+  .product-image,
+  .team-image {
+    height: 160px;
+  }
+
+  .blog-content,
+  .product-info,
+  .team-info {
+    padding: 14px;
+  }
+
+  .blog-card h3,
+  .product-info h4,
+  .team-card h3 {
+    font-size: 1rem;
+  }
+
+  .btn-sm {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .product-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .news-award-showcase {
+    padding: 14px;
+    gap: 14px;
+    grid-template-columns: 1fr;
+  }
+
+  .news-award-frame,
+  .news-photo-slot {
+    min-height: 220px;
+  }
+
+  .news-award-frame img {
+    min-height: 220px;
+  }
+
+  .news-cards-grid {
+    margin-top: 20px;
+    gap: 14px;
+  }
+
+  .proof-grid-compact .proof-card h3,
+  .news-feature-card h3,
+  .news-mini-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .proof-grid-compact .proof-card p,
+  .news-feature-card p,
+  .news-mini-card p {
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .timeline-shell {
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .timeline-grid::before,
+  .timeline-grid::after {
+    left: 12px;
+  }
+
+  .timeline-card {
+    width: calc(100% - 28px);
+    justify-self: end;
+  }
+
+  .timeline-card::before {
+    top: 24px;
+    left: -24px;
+    width: 12px;
+    height: 12px;
+  }
+
+  .timeline-card::after {
+    top: 30px;
+    left: -16px;
+    width: 16px;
+  }
+
+  .backoffice-login-card,
+  .admin-panel,
+  .backoffice-topbar,
+  .admin-footer-bar {
+    border-radius: 20px;
+    padding: 18px;
+  }
+
+  .admin-section-nav {
+    top: 80px;
+    padding: 10px;
+  }
+
+  .admin-panel {
+    scroll-margin-top: 100px;
+  }
+
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-code-editor {
+    min-height: 280px;
+    padding: 12px;
+    font-size: 0.85rem;
+  }
+
+  .trust-row {
+    flex-direction: column;
+  }
+}

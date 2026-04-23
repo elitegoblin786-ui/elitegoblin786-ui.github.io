@@ -1,51 +1,6 @@
-// Language Switcher Cookie Notification & Email Subscription
+// Email Subscription Cookie Notification Only
 
 (function() {
-  // Language Switcher Cookie Notification
-  function initLanguageSwitcher() {
-    const existingNotif = document.getElementById('language-cookie-notif');
-    if (existingNotif) existingNotif.remove();
-
-    const notif = document.createElement('div');
-    notif.id = 'language-cookie-notif';
-    notif.className = 'cookie-notification language-notification';
-    notif.innerHTML = `
-      <div class="cookie-content">
-        <div class="cookie-text">
-          <h4>Select Your Language</h4>
-          <p>Choose your preferred language to enhance your browsing experience</p>
-        </div>
-        <select id="language-select-cookie" class="language-select-cookie">
-          <option value="en">English</option>
-          <option value="fr">Français</option>
-          <option value="mu">Morisien</option>
-        </select>
-        <button class="cookie-close" aria-label="Close language selector">✕</button>
-      </div>
-    `;
-
-    document.body.appendChild(notif);
-
-    const closeBtn = notif.querySelector('.cookie-close');
-    const select = notif.querySelector('#language-select-cookie');
-
-    closeBtn.addEventListener('click', () => {
-      notif.classList.add('fade-out');
-      setTimeout(() => notif.remove(), 300);
-      localStorage.setItem('language-notif-dismissed', 'true');
-    });
-
-    select.addEventListener('change', (e) => {
-      localStorage.setItem('preferred-language', e.target.value);
-      notif.classList.add('fade-out');
-      setTimeout(() => notif.remove(), 300);
-    });
-
-    setTimeout(() => {
-      notif.classList.add('show');
-    }, 100);
-  }
-
   // Email Subscription Notification
   function initEmailSubscription() {
     const existingNotif = document.getElementById('email-subscription-notif');
@@ -159,22 +114,14 @@
 
   // Initialize on page load
   window.addEventListener('load', () => {
-    // Show language switcher after 10 seconds if not dismissed
-    if (!localStorage.getItem('language-notif-dismissed')) {
-      setTimeout(() => {
-        initLanguageSwitcher();
-      }, 10000);
-    }
-
-    // Show email subscription after 15 seconds if not dismissed
+    // Show email subscription after 10 seconds if not dismissed
     if (!localStorage.getItem('email-notif-dismissed')) {
       setTimeout(() => {
         initEmailSubscription();
-      }, 15000);
+      }, 10000);
     }
   });
 
-  // Expose functions globally for manual triggers if needed
-  window.showLanguageSwitcher = initLanguageSwitcher;
+  // Expose function globally for manual trigger if needed
   window.showEmailSubscription = initEmailSubscription;
 })();

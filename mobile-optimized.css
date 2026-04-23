@@ -1,0 +1,589 @@
+/* Mobile Optimized - Better Card Layouts & Language Switcher Fix */
+
+/* Fix language switcher z-index */
+.language-switcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 15;
+}
+
+.language-switcher select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(22, 32, 51, 0.12);
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.language-switcher select:focus {
+  outline: none;
+  border-color: rgba(201, 106, 114, 0.4);
+  box-shadow: 0 0 0 3px rgba(201, 106, 114, 0.12);
+}
+
+/* Tablet optimizations - 2 columns for cards */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .pillar-grid,
+  .proof-grid,
+  .proof-grid-compact {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .promo-grid,
+  .testimonials-grid,
+  .blog-grid,
+  .product-grid,
+  .team-grid,
+  .support-grid,
+  .partners-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .section {
+    padding: 16px 0 32px;
+  }
+
+  .hero {
+    padding: 24px 0 32px;
+  }
+}
+
+/* Mobile - Optimized for less scrolling */
+@media (max-width: 768px) {
+  .container {
+    width: min(calc(100% - 16px), var(--container));
+  }
+
+  .section {
+    padding: 16px 0 28px;
+  }
+
+  .hero {
+    padding: 20px 0 24px;
+  }
+
+  /* 2-column grid on larger phones */
+  .pillar-grid,
+  .proof-grid,
+  .proof-grid-compact {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .promo-grid,
+  .testimonials-grid,
+  .blog-grid,
+  .product-grid,
+  .team-grid,
+  .support-grid,
+  .partners-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .pillar-card,
+  .proof-card,
+  .promo-card,
+  .testimonial-card,
+  .blog-card,
+  .product-card,
+  .team-card,
+  .support-card,
+  .partner-card {
+    padding: 14px;
+  }
+
+  .pillar-card h3,
+  .proof-card h3,
+  .promo-content h3,
+  .testimonial-text,
+  .blog-card h3,
+  .product-info h4,
+  .team-card h3,
+  .support-card h3,
+  .partner-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .pillar-card p,
+  .proof-card p,
+  .promo-content p,
+  .blog-card p,
+  .product-description,
+  .team-bio,
+  .support-card p,
+  .partner-card p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .promo-image {
+    height: 120px;
+  }
+
+  .blog-image,
+  .product-image,
+  .team-image {
+    height: 140px;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+  }
+
+  .section-heading p {
+    font-size: 0.9rem;
+  }
+
+  .nav-wrap {
+    min-height: 70px;
+    padding: 10px 0;
+    gap: 10px;
+  }
+
+  .brand-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-text h1 {
+    font-size: 1.1rem;
+  }
+
+  .brand-text p {
+    font-size: 0.75rem;
+  }
+
+  .hero-copy h2 {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+  }
+
+  .hero-actions,
+  .cta-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-actions .btn,
+  .cta-actions .btn {
+    width: 100%;
+    min-height: 42px;
+    font-size: 0.9rem;
+  }
+
+  .hero-mini-grid,
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .hero-mini-card {
+    padding: 12px;
+  }
+
+  .hero-mini-card strong {
+    font-size: 0.9rem;
+  }
+
+  .hero-mini-card span {
+    font-size: 0.8rem;
+  }
+
+  .welcome-banner-content {
+    padding: 50px 16px 20px;
+  }
+
+  .welcome-banner-content h2 {
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+    margin: 10px 0 6px;
+  }
+
+  .welcome-banner-content p {
+    font-size: 0.9rem;
+  }
+
+  .legacy-showcase-grid {
+    padding: 16px;
+  }
+
+  .legacy-copy h2 {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+  }
+
+  .legacy-number {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .cta-panel {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .cta-panel h2 {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+  }
+
+  .quick-links-grid {
+    gap: 10px;
+  }
+
+  .quick-link {
+    padding: 14px 16px;
+  }
+
+  .quick-link strong {
+    font-size: 0.95rem;
+  }
+
+  .quick-link {
+    font-size: 0.85rem;
+  }
+
+  .timeline-card {
+    padding: 14px;
+  }
+
+  .timeline-year {
+    font-size: 1.1rem;
+  }
+
+  .timeline-card h3 {
+    font-size: 1rem;
+  }
+
+  .timeline-card p {
+    font-size: 0.85rem;
+  }
+
+  .video-hero {
+    min-height: 260px;
+  }
+
+  .video-title {
+    font-size: clamp(1.4rem, 5vw, 2.2rem);
+  }
+
+  .video-description {
+    font-size: 0.9rem;
+  }
+
+  .event-card {
+    grid-template-columns: 75px 1fr;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .event-date {
+    padding: 10px 12px;
+  }
+
+  .event-month {
+    font-size: 0.65rem;
+  }
+
+  .event-day {
+    font-size: 1.5rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .gallery-item {
+    aspect-ratio: 1;
+  }
+
+  .news-award-showcase {
+    padding: 12px;
+    gap: 12px;
+    grid-template-columns: 1fr;
+  }
+
+  .news-award-frame,
+  .news-photo-slot {
+    min-height: 200px;
+  }
+
+  .news-award-frame img {
+    min-height: 200px;
+  }
+
+  .trust-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .trust-pill {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+  }
+
+  .hero-kicker {
+    font-size: 0.75rem;
+  }
+}
+
+/* Small phones - Single column */
+@media (max-width: 640px) {
+  .language-switcher {
+    position: static;
+    margin-bottom: 12px;
+    z-index: 15;
+  }
+
+  .language-switcher select {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .container {
+    width: min(calc(100% - 16px), var(--container));
+  }
+
+  .section {
+    padding: 12px 0 20px;
+  }
+
+  .hero {
+    padding: 16px 0 20px;
+  }
+
+  .pillar-grid,
+  .proof-grid,
+  .proof-grid-compact,
+  .promo-grid,
+  .testimonials-grid,
+  .blog-grid,
+  .product-grid,
+  .team-grid,
+  .support-grid,
+  .partners-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .pillar-card,
+  .proof-card,
+  .promo-card,
+  .testimonial-card,
+  .blog-card,
+  .product-card,
+  .team-card,
+  .support-card,
+  .partner-card,
+  .quick-links-card,
+  .news-side-card,
+  .stores-hero-card,
+  .store-card,
+  .store-cluster,
+  .store-detail-card,
+  .timeline-card,
+  .cta-panel {
+    padding: 14px;
+  }
+
+  .pillar-card h3,
+  .proof-card h3,
+  .promo-content h3,
+  .blog-card h3,
+  .product-info h4,
+  .team-card h3,
+  .support-card h3,
+  .partner-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(1.3rem, 4vw, 1.9rem);
+  }
+
+  .section-heading p {
+    font-size: 0.85rem;
+  }
+
+  .hero-copy h2 {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+  }
+
+  .hero-mini-grid,
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-mini-card {
+    padding: 12px;
+  }
+
+  .hero-mini-card strong {
+    font-size: 0.9rem;
+  }
+
+  .hero-mini-card span {
+    font-size: 0.8rem;
+  }
+
+  .welcome-banner-content {
+    padding: 50px 14px 18px;
+  }
+
+  .welcome-banner-content h2 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    margin: 10px 0 6px;
+  }
+
+  .welcome-banner-content p {
+    font-size: 0.9rem;
+  }
+
+  .legacy-showcase-grid {
+    padding: 14px;
+  }
+
+  .legacy-copy h2 {
+    font-size: clamp(1.2rem, 3vw, 1.7rem);
+  }
+
+  .legacy-number {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+  }
+
+  .cta-panel {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .cta-panel h2 {
+    font-size: clamp(1.3rem, 4vw, 1.9rem);
+  }
+
+  .quick-links-grid {
+    gap: 10px;
+  }
+
+  .quick-link {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+  }
+
+  .quick-link strong {
+    font-size: 0.9rem;
+  }
+
+  .timeline-card {
+    padding: 12px;
+  }
+
+  .timeline-year {
+    font-size: 1rem;
+  }
+
+  .timeline-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .timeline-card p {
+    font-size: 0.8rem;
+  }
+
+  .video-hero {
+    min-height: 240px;
+  }
+
+  .video-title {
+    font-size: clamp(1.3rem, 5vw, 2rem);
+  }
+
+  .video-description {
+    font-size: 0.85rem;
+  }
+
+  .event-card {
+    grid-template-columns: 70px 1fr;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .event-date {
+    padding: 10px 12px;
+  }
+
+  .event-month {
+    font-size: 0.6rem;
+  }
+
+  .event-day {
+    font-size: 1.4rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .gallery-item {
+    aspect-ratio: 1;
+  }
+
+  .news-award-showcase {
+    padding: 12px;
+    gap: 10px;
+    grid-template-columns: 1fr;
+  }
+
+  .news-award-frame,
+  .news-photo-slot {
+    min-height: 180px;
+  }
+
+  .news-award-frame img {
+    min-height: 180px;
+  }
+
+  .trust-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .trust-pill {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+
+  .eyebrow {
+    font-size: 0.65rem;
+  }
+
+  .hero-kicker {
+    font-size: 0.7rem;
+  }
+
+  .promo-image {
+    height: 110px;
+  }
+
+  .blog-image,
+  .product-image,
+  .team-image {
+    height: 130px;
+  }
+
+  .btn-sm {
+    width: 100%;
+    min-height: 42px;
+    font-size: 0.85rem;
+  }
+
+  .product-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

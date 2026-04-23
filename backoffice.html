@@ -75,60 +75,25 @@
           if (!cards.length) return;
 
           cards.forEach((card, index) => {
-            const delay = index * 0.2;
+            const delay = index * 0.15;
 
-            gsap.set(card, {
-              opacity: 0,
-              y: 100,
-              rotationY: -90,
-              scale: 0.8,
-              transformOrigin: "center bottom"
-            });
+            gsap.set(card, { opacity: 0, y: 48, scale: 0.96 });
 
             gsap.to(card, {
-              duration: 1.2,
+              duration: 0.9,
               opacity: 1,
               y: 0,
-              rotationY: 0,
               scale: 1,
-              ease: "back.out(1.7)",
-              delay: delay
-            });
-
-            gsap.to(card, {
-              duration: 3 + index * 0.5,
-              y: "-10px",
-              ease: "power2.inOut",
-              repeat: -1,
-              yoyo: true,
-              delay: 2 + delay
-            });
-
-            gsap.to(card, {
-              duration: 20 + index * 2,
-              rotation: 1,
-              ease: "none",
-              repeat: -1,
-              yoyo: true,
+              ease: "power3.out",
               delay: delay
             });
 
             card.addEventListener('mouseenter', () => {
-              gsap.to(card, {
-                duration: 0.3,
-                scale: 1.05,
-                boxShadow: "0 20px 60px rgba(255, 107, 45, 0.4)",
-                ease: "power2.out"
-              });
+              gsap.to(card, { duration: 0.25, scale: 1.02, ease: "power2.out" });
             });
 
             card.addEventListener('mouseleave', () => {
-              gsap.to(card, {
-                duration: 0.3,
-                scale: 1,
-                boxShadow: "0 20px 48px rgba(18, 25, 38, 0.16)",
-                ease: "power2.out"
-              });
+              gsap.to(card, { duration: 0.25, scale: 1, ease: "power2.out" });
             });
           });
         };

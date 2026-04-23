@@ -661,7 +661,7 @@ class LocalizedLanguageSwitcher {
     toggle.innerHTML = `
       <select id="language-select" aria-label="Select language">
         <option value="en">English</option>
-        <option value="fr">Francais</option>
+        <option value="fr">Fran&ccedil;ais</option>
       </select>
     `;
 

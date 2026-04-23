@@ -19,8 +19,293 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="dark-mode.css">
   <link rel="stylesheet" href="video-animations.css">
+  <style>
+    /* Advanced Futuristic Intro Animation Styles */
+    .intro-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, rgba(78, 205, 196, 0.14), transparent 35%), radial-gradient(circle at center right, rgba(255, 107, 45, 0.10), transparent 25%), #020913;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 1s ease-out;
+      overflow: hidden;
+      padding: 1rem;
+    }
+
+    .intro-particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .intro-particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: rgba(111, 255, 215, 0.8);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(111, 255, 215, 0.6);
+    }
+
+    .intro-hexagon {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .intro-hexagon svg {
+      width: 100%;
+      height: 100%;
+      stroke: rgba(78, 205, 196, 0.4);
+      stroke-width: 1;
+      fill: none;
+    }
+
+    .intro-panel {
+      position: relative;
+      width: min(100%, 860px);
+      padding: 3rem 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 32px;
+      background: rgba(7, 13, 34, 0.88);
+      box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .grid-layer {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(78, 205, 196, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(78, 205, 196, 0.06) 1px, transparent 1px);
+      background-size: 80px 80px;
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .scan-line {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent 40%, rgba(78, 205, 196, 0.18) 50%, transparent 60%);
+      opacity: 0;
+      animation: scanMove 4s linear infinite;
+    }
+
+    @keyframes scanMove {
+      0% { transform: translateY(-100%); opacity: 0; }
+      35% { opacity: 0.45; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(100%); opacity: 0; }
+    }
+
+    .intro-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+
+    .intro-logo-img {
+      width: 90px;
+      filter: drop-shadow(0 0 30px rgba(78, 205, 196, 0.55));
+    }
+
+    .intro-title {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: 0.3rem;
+      color: #6fffd7;
+      text-transform: uppercase;
+      text-shadow: 0 0 40px rgba(78, 205, 196, 0.35);
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-title::before {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      color: rgba(255, 107, 45, 0.7);
+      overflow: hidden;
+      animation: glitch-1 2.5s infinite;
+    }
+
+    .intro-title::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      color: rgba(81, 185, 223, 0.7);
+      overflow: hidden;
+      animation: glitch-2 2.5s infinite;
+    }
+
+    @keyframes glitch-1 {
+      0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+      10% { clip-path: inset(10% 0 85% 0); transform: translate(-2px, 2px); }
+      20% { clip-path: inset(80% 0 0 0); transform: translate(2px, -2px); }
+      30% { clip-path: inset(0 0 0 0); transform: translate(0); }
+    }
+
+    @keyframes glitch-2 {
+      0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+      15% { clip-path: inset(50% 0 30% 0); transform: translate(2px, -2px); }
+      25% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 2px); }
+      35% { clip-path: inset(0 0 0 0); transform: translate(0); }
+    }
+
+    .intro-subtitle {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.35rem;
+      color: rgba(255, 255, 255, 0.65);
+      margin-top: 0.75rem;
+    }
+
+    .intro-hud {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+      margin-bottom: 2rem;
+    }
+
+    .hud-item {
+      padding: 1rem 1.25rem;
+      border: 1px solid rgba(78, 205, 196, 0.18);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      color: #d8f3ef;
+      font-size: 0.9rem;
+      text-align: center;
+      backdrop-filter: blur(14px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hud-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(111, 255, 215, 0.3), transparent);
+      animation: hud-scan 3s infinite;
+    }
+
+    @keyframes hud-scan {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .intro-progress {
+      margin-top: 2rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      max-width: 340px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 2px;
+      margin: 0 auto 1rem;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #6fffd7, #4ecdc4, #51b9df);
+      width: 0;
+      border-radius: 2px;
+    }
+
+    .progress-text {
+      display: block;
+      text-align: center;
+      font-size: 0.92rem;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .intro-footer {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .skip-btn {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      padding: 0.9rem 1.5rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .skip-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(78, 205, 196, 0.14);
+    }
+
+    .intro-overlay.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .intro-panel {
+        padding: 2rem 1.5rem;
+      }
+      .intro-title {
+        font-size: 2rem;
+      }
+      .intro-hud {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+  </style>
 </head>
 <body data-cms-page="home">
+  <!-- Futuristic Intro Animation Overlay -->
+  <div id="intro-overlay" class="intro-overlay">
+    <div class="intro-panel">
+      <div class="grid-layer"></div>
+      <div class="scan-line"></div>
+      <div class="intro-header">
+        <img src="thebrandhouse_ltd_logo_transparent.png" alt="TheBrandHouse Logo" class="intro-logo-img">
+        <div>
+          <h1 class="intro-title">THEBRANDHOUSE</h1>
+          <p class="intro-subtitle">Powered by tomorrow's technology</p>
+        </div>
+      </div>
+      <div class="intro-hud">
+        <div class="hud-item">Realtime innovation</div>
+        <div class="hud-item">Future retail systems</div>
+        <div class="hud-item">Smart customer journeys</div>
+      </div>
+      <div class="intro-progress">
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <span class="progress-text">Initialising experience</span>
+      </div>
+      <div class="intro-footer">
+        <button id="skip-intro" class="skip-btn">Skip Intro</button>
+      </div>
+    </div>
+  </div>
+
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html">
@@ -40,7 +325,7 @@
         <a href="businesses.html">Our Businesses</a>
         <a href="blog.html">Blog</a>
         <a href="events.html">Events</a>
-        <a href="products.html">Products</a>
+        <a href="https://galaxy.mu">Products</a>
         <a href="careers.html">Careers</a>
         <a href="contact.html">Contact</a>
         <a href="stores.html">Our Stores</a>
@@ -53,8 +338,8 @@
     <section class="video-hero reveal">
       <div class="video-container">
         <video class="hero-video" autoplay muted loop playsinline poster="operations-photo.avif">
-          <source src="https://videos.pexels.com/video-files/8486532/8486532-hd_720_1280_25fps.mp4" type="video/mp4">
-          <source src="https://videos.pexels.com/video-files/13829043/13829043-hd_1280_720_30fps.mp4" type="video/mp4">
+          <source src="https://videos.pexels.com/video-files/3252290/3252290-uhd_2560_1440_25fps.mp4" type="video/mp4">
+          <source src="https://videos.pexels.com/video-files/3129955/3129955-uhd_2560_1440_25fps.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
@@ -64,13 +349,13 @@
         <h2 class="video-title" data-i18n="video-title">Experience Next-Gen Technology</h2>
         <p class="video-description" data-i18n="video-description">Discover the latest in premium appliances and consumer electronics</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="products.html" data-i18n="video-primary">Explore Products</a>
+          <a class="btn btn-primary" href="https://galaxy.mu" data-i18n="video-primary">Explore Products</a>
           <a class="btn btn-secondary" href="events.html" data-i18n="video-secondary">View Events</a>
         </div>
       </div>
     </section>
 
-    <section class="welcome-banner reveal">
+    <section class="welcome-banner reveal-scale">
       <img class="welcome-banner-image" data-cms-image="welcomeImage" src="benefit-staff-happiness.jpg" alt="Team celebration at TheBrandHouse">
       <div class="welcome-banner-overlay">
         <div class="container welcome-banner-content">
@@ -85,10 +370,10 @@
       </div>
     </section>
 
-    <section class="legacy-showcase reveal">
+    <section class="legacy-showcase reveal-up">
       <div class="container legacy-showcase-grid">
         <div class="legacy-copy">
-          <span class="eyebrow">Business Legacy</span>
+          <span class="eyebrow" data-i18n="section-business-legacy">Business Legacy</span>
           <h2 data-cms-text="legacyTitle">Built on more than a century of business heritage</h2>
           <p data-cms-text="legacyDescription">TheBrandHouse benefits from long-standing roots in Mauritian business through its shareholder background, combining decades of experience with a modern retail and service outlook.</p>
         </div>
@@ -102,7 +387,7 @@
 
     <section class="hero">
       <div class="container hero-grid">
-        <div class="hero-copy reveal">
+        <div class="hero-copy reveal-left">
           <span class="eyebrow">TheBrandHouse</span>
           <h2 data-cms-text="heroHeading">Trusted distribution. Modern retail. Reliable service.</h2>
           <p data-cms-text="heroDescription">
@@ -129,7 +414,7 @@
             </div>
           </div>
         </div>
-        <div class="hero-visual reveal delay-1">
+        <div class="hero-visual reveal-right delay-1">
           <div class="hero-photo-box hero-brand-panel">
             <img data-cms-image="heroPanelImage" src="tbh-image-logo.png" alt="TheBrandHouse logo panel">
           </div>
@@ -159,24 +444,21 @@
 
     <section class="section">
       <div class="container">
-        <div class="section-heading reveal">
+        <div class="section-heading reveal-up">
           <span class="eyebrow" data-i18n="section-customer-experience">Customer Experience</span>
           <h2 data-i18n="section-customer-experience-title">How customers engage with TheBrandHouse</h2>
           <p data-i18n="section-customer-experience-copy">TheBrandHouse combines strong retail presence with responsive service and trusted after-sales support.</p>
         </div>
         <div class="pillar-grid">
-          <article class="pillar-card reveal feature-card">
-            <span class="pillar-tag">Advice</span>
+          <article class="pillar-card reveal-up feature-card stagger-1">
             <h3>In-store guidance and product selection</h3>
             <p>Customers receive expert support from our Galaxy retail teams to choose the right appliances and electronics.</p>
           </article>
-          <article class="pillar-card reveal feature-card">
-            <span class="pillar-tag">Convenience</span>
+          <article class="pillar-card reveal-up feature-card stagger-2">
             <h3>Easy access across stores and channels</h3>
             <p>Whether visiting a store or searching online, customers can connect with our brand through multiple retail touchpoints.</p>
           </article>
-          <article class="pillar-card reveal feature-card">
-            <span class="pillar-tag">After-sales</span>
+          <article class="pillar-card reveal-up feature-card stagger-3">
             <h3>Trusted service and technical support</h3>
             <p>Service coverage and repair support are designed to keep customers confident after every purchase.</p>
           </article>
@@ -186,7 +468,7 @@
 
     <section class="section">
       <div class="container">
-        <div class="section-heading reveal">
+        <div class="section-heading reveal-up">
           <span class="eyebrow">Overview</span>
           <h2>A clear introduction to TheBrandHouse</h2>
           <p class="section-intro">
@@ -194,7 +476,7 @@
           </p>
         </div>
         <div class="home-overview-grid">
-          <article class="content-card reveal delay-1 about-copy-card">
+          <article class="content-card reveal-left delay-1 about-copy-card">
             <div class="content-copy">
               <span class="eyebrow">Business Overview</span>
               <h2>One company, several strong customer touchpoints</h2>
@@ -209,7 +491,7 @@
             </div>
           </article>
 
-          <div class="quick-links-card reveal delay-2">
+          <div class="quick-links-card reveal-right delay-2">
             <div class="section-heading">
               <span class="eyebrow">Quick Access</span>
               <h2>Explore the business faster</h2>
@@ -239,26 +521,23 @@
 
     <section class="section">
       <div class="container">
-        <div class="section-heading reveal">
+        <div class="section-heading reveal-up">
           <span class="eyebrow" data-i18n="section-business-pillars">Business Pillars</span>
           <h2 data-i18n="section-business-pillars-title">Three connected strengths across the customer journey</h2>
           <p data-i18n="section-business-pillars-copy">From import and distribution to retail experience and after-sales care, each pillar supports the others.</p>
         </div>
         <div class="pillar-grid">
-          <article class="pillar-card reveal delay-1">
-            <span class="pillar-tag">Distribution</span>
+          <article class="pillar-card reveal-left stagger-1">
             <h3>Brand reach through JMG</h3>
             <p>Import, market presence and channel support for recognised international brands across Mauritius.</p>
             <a href="businesses.html">See distribution activities</a>
           </article>
-          <article class="pillar-card reveal delay-2">
-            <span class="pillar-tag">Retail</span>
+          <article class="pillar-card reveal-up stagger-2">
             <h3>Customer connection through stores</h3>
             <p>Galaxy and branded concepts create direct access, visibility and service-oriented customer experiences.</p>
             <a href="stores.html">View store presence</a>
           </article>
-          <article class="pillar-card reveal delay-3">
-            <span class="pillar-tag">After-Sales</span>
+          <article class="pillar-card reveal-right stagger-3">
             <h3>Support that builds trust</h3>
             <p>Technical service, repairs and support help the company stay credible long after the sale is completed.</p>
             <a href="contact.html">Reach the team</a>
@@ -269,24 +548,21 @@
 
     <section class="section">
       <div class="container">
-        <div class="section-heading reveal">
+        <div class="section-heading reveal-up">
           <span class="eyebrow" data-i18n="section-trust-signals">Trust Signals</span>
           <h2 data-i18n="section-trust-signals-title">Strengths that support long-term trust</h2>
           <p data-i18n="section-trust-signals-copy">From retail reach to recognised brands and after-sales support, TheBrandHouse is built around capabilities that strengthen customer confidence.</p>
         </div>
         <div class="proof-grid">
-          <article class="proof-card reveal delay-1">
-            <span class="proof-kicker">Retail Confidence</span>
+          <article class="proof-card reveal-left stagger-1">
             <h3>Islandwide presence and recognised retail concepts</h3>
             <p>Galaxy stores and branded retail spaces help the business stay visible, accessible and customer-facing across multiple locations.</p>
           </article>
-          <article class="proof-card reveal delay-2">
-            <span class="proof-kicker">Brand Strength</span>
+          <article class="proof-card reveal-up stagger-2">
             <h3>Global names supported by local execution</h3>
             <p>The portfolio includes major consumer electronics and appliance brands, supported by market knowledge and distribution capability.</p>
           </article>
-          <article class="proof-card reveal delay-3">
-            <span class="proof-kicker">Service Reliability</span>
+          <article class="proof-card reveal-right stagger-3">
             <h3>After-sales support that reinforces trust</h3>
             <p>Technical support and service centre capability help turn transactions into long-term customer confidence.</p>
           </article>
@@ -296,23 +572,23 @@
 
     <section class="section">
       <div class="container">
-        <div class="section-heading reveal">
+        <div class="section-heading reveal-up">
           <span class="eyebrow" data-i18n="section-why-choose-us">Why Choose Us</span>
           <h2 data-i18n="section-why-choose-us-title">A business platform built for consistency</h2>
           <p data-i18n="section-why-choose-us-copy">Customers, brand partners and stakeholders rely on TheBrandHouse because its strengths work together across the full journey.</p>
         </div>
         <div class="proof-grid proof-grid-compact">
-          <article class="proof-card reveal delay-1">
+          <article class="proof-card reveal-left stagger-1">
             <span class="proof-kicker">Reach</span>
             <h3>Nationwide access across multiple retail touchpoints</h3>
             <p>Store presence in urban and rural locations helps the business stay visible and accessible to customers across Mauritius.</p>
           </article>
-          <article class="proof-card reveal delay-2">
+          <article class="proof-card reveal-up stagger-2">
             <span class="proof-kicker">Support</span>
             <h3>After-sales capability that reinforces confidence</h3>
             <p>Technical support and service centre capability add practical value beyond the initial sale and help sustain brand trust.</p>
           </article>
-          <article class="proof-card reveal delay-3">
+          <article class="proof-card reveal-right stagger-3">
             <span class="proof-kicker">Execution</span>
             <h3>Distribution, retail and service under one identity</h3>
             <p>The connected model allows the business to support brands, stores and customers through one coordinated operating platform.</p>
@@ -324,7 +600,7 @@
     <section class="section">
       <div class="container timeline-shell reveal" data-cms-bg="timelineBackgroundImage">
         <div class="section-heading">
-          <span class="eyebrow">Milestones</span>
+          <span class="eyebrow" data-i18n="section-milestones">Milestones</span>
           <h2 data-cms-text="timelineTitle">A business story built over time</h2>
           <p data-cms-text="timelineDescription">TheBrandHouse stands on decades of experience, retail development and long-term investment in customer service.</p>
         </div>
@@ -350,12 +626,12 @@
 
     <section class="section">
       <div class="container">
-        <div class="section-heading reveal">
+        <div class="section-heading reveal-up">
           <span class="eyebrow" data-i18n="section-brands">Brands</span>
           <h2 data-i18n="section-brands-title">Recognised names across the portfolio</h2>
           <p data-i18n="section-brands-copy">The portfolio brings together leading names across home appliances, consumer electronics and specialist retail concepts.</p>
         </div>
-        <div class="brand-marquee reveal delay-1">
+        <div class="brand-marquee reveal-up delay-1">
           <div class="brand-marquee-track">
             <span class="brand-pill">Galaxy</span>
             <span class="brand-pill">Galaxy.mu</span>
@@ -382,13 +658,13 @@
 
     <section class="section">
       <div class="container">
-        <div class="section-heading reveal">
+        <div class="section-heading reveal-up">
           <span class="eyebrow" data-i18n="section-special-offers">Special Offers</span>
           <h2 data-i18n="section-special-offers-title">Current Promotions & Deals</h2>
           <p data-i18n="section-special-offers-copy">Discover exclusive deals on top brands and seasonal promotions across our Galaxy stores.</p>
         </div>
         <div class="promo-grid">
-          <article class="promo-card reveal promo-1">
+          <article class="promo-card reveal-left promo-1">
             <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop" alt="Samsung TV Promotion" class="promo-image">
             <div class="promo-content">
               <h3>Samsung 4K TVs</h3>
@@ -396,7 +672,7 @@
               <span class="promo-badge">30% OFF</span>
             </div>
           </article>
-          <article class="promo-card reveal promo-2">
+          <article class="promo-card reveal-up promo-2">
             <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=300&fit=crop" alt="Panasonic Appliances" class="promo-image">
             <div class="promo-content">
               <h3>Panasonic Home Appliances</h3>
@@ -404,7 +680,7 @@
               <span class="promo-badge">BOGO 50%</span>
             </div>
           </article>
-          <article class="promo-card reveal promo-3">
+          <article class="promo-card reveal-right promo-3">
             <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=400&h=300&fit=crop" alt="JBL Audio Deal" class="promo-image">
             <div class="promo-content">
               <h3>JBL Wireless Speakers</h3>
@@ -418,43 +694,41 @@
 
     <section class="section testimonials-section">
       <div class="container">
-        <div class="section-heading reveal">
+        <div class="section-heading reveal-up">
           <span class="eyebrow" data-i18n="section-customer-stories">Customer Stories</span>
           <h2 data-i18n="section-customer-stories-title">What our customers say</h2>
           <p data-i18n="section-customer-stories-copy">Real feedback from satisfied customers across Mauritius</p>
         </div>
         <div class="testimonials-grid">
-          <div class="testimonial-card reveal">
-            <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-card reveal-left">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <p class="testimonial-text">"TheBrandHouse provided excellent service from purchase to installation. The team was professional and the product quality is outstanding."</p>
             <div class="testimonial-author">
               <p class="author-name">- Mrs. Sharma</p>
               <p class="author-location">Port Louis</p>
             </div>
           </div>
-          <div class="testimonial-card reveal delay-1">
-            <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-card reveal-up delay-1">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <p class="testimonial-text">"I've been a customer for years. The after-sales support is exceptional and they truly care about customer satisfaction."</p>
             <div class="testimonial-author">
               <p class="author-name">- Mr. Ramdin</p>
               <p class="author-location">Curepipe</p>
             </div>
           </div>
-          <div class="testimonial-card reveal delay-2">
-            <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-card reveal-right delay-2">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <p class="testimonial-text">"Best experience buying appliances. Staff guided me through every option and helped me choose the perfect fit for my home."</p>
             <div class="testimonial-author">
               <p class="author-name">- Ms. Devi</p>
               <p class="author-location">Vacoas</p>
             </div>
           </div>
-        </div>
-      </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <article class="cta-panel reveal">
+        <article class="cta-panel reveal-up">
           <div>
             <span class="eyebrow" data-i18n="section-explore-more">Explore More</span>
             <h2 data-i18n="section-explore-more-title">Discover the full TheBrandHouse profile</h2>
@@ -487,7 +761,7 @@
             <li><a href="businesses.html">Our Businesses</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li><a href="events.html">Events</a></li>
-            <li><a href="products.html">Products</a></li>
+            <li><a href="https://galaxy.mu">Products</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="team.html">Our Team</a></li>
             <li><a href="faq.html">FAQ</a></li>
@@ -527,197 +801,70 @@
   <script src="cms.js"></script>
   <script src="site.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-cG2AHzRY4F19FHv9+1n2Y9OCeV46y82j2bfMVuYUqgz0+U9q4YJ06KIXS0FdxpO5I9iO8A6HvLEyLgDdf2lt6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="welcome-banner-animation.js"></script>
   <script>
-    if (window.gsap) {
-      window.addEventListener("load", function () {
-        const heroContent = document.querySelector(".welcome-banner .welcome-banner-content");
-        const heroImage = document.querySelector(".welcome-banner-image");
-        const heroActions = document.querySelectorAll(".hero-actions a");
-        const trustPills = document.querySelectorAll(".hero-copy .trust-pill");
-        const marqueeTrack = document.querySelector(".brand-marquee-track");
+    window.addEventListener("load", function () {
+      const overlay = document.getElementById("intro-overlay");
+      const progressFill = document.querySelector(".progress-fill");
+      const skipButton = document.getElementById("skip-intro");
+      let revealed = false;
 
-        const introTimeline = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-        if (heroContent) {
-          introTimeline.from(heroContent, {
-            duration: 1.1,
-            opacity: 0,
-            y: 50
-          });
+      const reveal = () => {
+        if (revealed) return;
+        revealed = true;
+        if (overlay) {
+          overlay.classList.add("fade-out");
+          overlay.addEventListener("transitionend", () => {
+            if (overlay) overlay.style.display = "none";
+          }, { once: true });
         }
+      };
 
-        if (heroImage) {
-          introTimeline.from(heroImage, {
-            duration: 1.2,
-            opacity: 0,
-            scale: 1.08
-          }, "-=0.9");
-        }
+      const safeReveal = () => {
+        if (!revealed) reveal();
+      };
 
-        if (heroActions.length) {
-          introTimeline.from(heroActions, {
-            duration: 0.8,
-            opacity: 0,
-            y: 20,
-            stagger: 0.12
-          }, "-=0.7");
-        }
+      const fallbackTimer = setTimeout(safeReveal, 6000);
 
-        if (trustPills.length) {
-          introTimeline.from(trustPills, {
-            duration: 0.8,
-            opacity: 0,
-            y: 20,
-            stagger: 0.1
-          }, "-=0.7");
-        }
+      if (skipButton) {
+        skipButton.addEventListener("click", () => {
+          clearTimeout(fallbackTimer);
+          reveal();
+        });
+      }
 
-        const featureCards = document.querySelectorAll(".feature-card");
-        if (featureCards.length) {
-          introTimeline.from(featureCards, {
-            duration: 0.8,
-            opacity: 0,
-            y: 40,
-            stagger: 0.12
-          }, "-=0.6");
-        }
+      if (!window.gsap) {
+        if (progressFill) progressFill.style.width = "100%";
+        setTimeout(reveal, 1200);
+        return;
+      }
 
-        // Generic card animation function
-        const animateCards = (selector, containerSelector = null) => {
-          const cards = document.querySelectorAll(selector);
-          if (!cards.length) return;
+      try {
+        gsap.set("#intro-overlay", { opacity: 1 });
+        gsap.set(".intro-panel", { y: 40, opacity: 0 });
+        gsap.set(".intro-title", { scale: 0.88, opacity: 0 });
+        gsap.set(".hud-item", { y: 20, opacity: 0 });
+        gsap.set(".scan-line", { opacity: 0 });
 
-          const timeline = gsap.timeline({ defaults: { ease: "power4.out" } });
+        const intro = gsap.timeline();
+        intro.to(".intro-panel", { duration: 0.9, opacity: 1, y: 0, ease: "power3.out" })
+          .to(".intro-title", { duration: 0.9, opacity: 1, scale: 1, ease: "back.out(1.4)" }, "-=0.4")
+          .to(".hud-item", { duration: 0.6, opacity: 1, y: 0, stagger: 0.12, ease: "power3.out" }, "-=0.5")
+          .to(".scan-line", { duration: 4, opacity: 0.65, ease: "none" }, "-=1")
+          .to(progressFill, { duration: 4, width: "100%", ease: "power1.inOut" }, "-=4");
 
-          cards.forEach((card, index) => {
-            const delay = index * 0.2;
-
-            // Initial state - cards are off-screen and rotated
-            gsap.set(card, {
-              opacity: 0,
-              y: 100,
-              rotationY: -90,
-              scale: 0.8,
-              transformOrigin: "center bottom"
-            });
-
-            // Animate entrance
-            timeline.to(card, {
-              duration: 1.2,
-              opacity: 1,
-              y: 0,
-              rotationY: 0,
-              scale: 1,
-              ease: "back.out(1.7)"
-            }, delay);
-
-            // Add continuous floating animation
-            gsap.to(card, {
-              duration: 3 + index * 0.5,
-              y: "-10px",
-              ease: "power2.inOut",
-              repeat: -1,
-              yoyo: true,
-              delay: 2 + delay
-            });
-
-            // Add subtle rotation animation
-            gsap.to(card, {
-              duration: 20 + index * 2,
-              rotation: 1,
-              ease: "none",
-              repeat: -1,
-              yoyo: true,
-              delay: delay
-            });
-
-            // Add glow effect on hover
-            card.addEventListener('mouseenter', () => {
-              gsap.to(card, {
-                duration: 0.3,
-                scale: 1.05,
-                boxShadow: "0 20px 60px rgba(255, 107, 45, 0.4)",
-                ease: "power2.out"
-              });
-            });
-
-            card.addEventListener('mouseleave', () => {
-              gsap.to(card, {
-                duration: 0.3,
-                scale: 1,
-                boxShadow: "0 20px 48px rgba(18, 25, 38, 0.16)",
-                ease: "power2.out"
-              });
-            });
-          });
-
-          // Add particle effect if container exists
-          if (containerSelector) {
-            const createParticles = () => {
-              const container = document.querySelector(containerSelector);
-              if (!container) return;
-              
-              const particlesContainer = document.createElement('div');
-              particlesContainer.style.position = 'absolute';
-              particlesContainer.style.top = '0';
-              particlesContainer.style.left = '0';
-              particlesContainer.style.width = '100%';
-              particlesContainer.style.height = '100%';
-              particlesContainer.style.pointerEvents = 'none';
-              particlesContainer.style.overflow = 'hidden';
-              container.appendChild(particlesContainer);
-
-              for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.style.position = 'absolute';
-                particle.style.width = '2px';
-                particle.style.height = '2px';
-                particle.style.background = 'rgba(255, 107, 45, 0.6)';
-                particle.style.borderRadius = '50%';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-
-                particlesContainer.appendChild(particle);
-
-                gsap.to(particle, {
-                  duration: 2 + Math.random() * 3,
-                  x: Math.random() * 200 - 100,
-                  y: Math.random() * 200 - 100,
-                  opacity: 0,
-                  ease: "power2.out",
-                  repeat: -1,
-                  delay: Math.random() * 2
-                });
-              }
-            };
-
-            setTimeout(createParticles, 3000);
-            introTimeline.add(timeline, "-=0.3");
-          }
-        };
-
-        // Apply animations to all card types
-        animateCards(".promo-card", ".promo-grid");
-        animateCards(".hero-mini-card");
-        animateCards(".stat-card");
-        animateCards(".pillar-card");
-        animateCards(".feature-card");
-        animateCards(".content-card");
-        animateCards(".proof-card");
-        animateCards(".quick-links-card");
-
-        if (marqueeTrack) {
-          gsap.to(marqueeTrack, {
-            duration: 16,
-            xPercent: -50,
-            ease: "none",
-            repeat: -1
-          });
-        }
-      });
-    }
+        intro.add(() => {
+          clearTimeout(fallbackTimer);
+          reveal();
+        }, "+=1");
+      } catch (error) {
+        safeReveal();
+      }
+    });
   </script>
   <script src="features.js"></script>
   <script src="advanced-animations.js"></script>
 </body>
 </html>
+
+

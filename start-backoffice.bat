@@ -25,17 +25,17 @@ for /l %%I in (1,1,20) do (
   timeout /t 1 /nobreak >nul
 )
 
-echo The backoffice server did not respond on http://127.0.0.1:8000.
+echo The backoffice server did not respond on http://127.0.0.1:8080.
 echo Keep the server window open and check that Python started without errors.
 pause
 exit /b 1
 
 :probe_server
 set "SERVER_READY=0"
-powershell -NoProfile -ExecutionPolicy Bypass -Command "try { $null = Invoke-WebRequest -UseBasicParsing -Uri 'http://127.0.0.1:8000/backoffice' -TimeoutSec 2; exit 0 } catch { exit 1 }" >nul 2>&1
+powershell -NoProfile -ExecutionPolicy Bypass -Command "try { $null = Invoke-WebRequest -UseBasicParsing -Uri 'http://127.0.0.1:8080/backoffice' -TimeoutSec 2; exit 0 } catch { exit 1 }" >nul 2>&1
 if not errorlevel 1 set "SERVER_READY=1"
 exit /b 0
 
 :open_browser
-start "" "http://127.0.0.1:8000/backoffice"
+start "" "http://127.0.0.1:8080/backoffice"
 exit /b 0

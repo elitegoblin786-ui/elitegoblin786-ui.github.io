@@ -3005,16 +3005,57 @@ img {
   filter: blur(0);
 }
 
+/* ERgroup-style directional scroll reveals */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-72px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(72px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(56px);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-up.is-visible,
+.reveal-scale.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.stagger-1 { transition-delay: 0.08s; }
+.stagger-2 { transition-delay: 0.18s; }
+.stagger-3 { transition-delay: 0.28s; }
+.stagger-4 { transition-delay: 0.38s; }
+
 .delay-1 {
   animation-delay: 0.12s;
+  transition-delay: 0.12s;
 }
 
 .delay-2 {
   animation-delay: 0.24s;
+  transition-delay: 0.24s;
 }
 
 .delay-3 {
   animation-delay: 0.36s;
+  transition-delay: 0.36s;
 }
 
 @keyframes benefit-pan {
@@ -3252,6 +3293,10 @@ img {
     grid-template-columns: 1fr;
   }
 
+  .promo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .brand-strip {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -3281,11 +3326,22 @@ img {
     grid-template-columns: 1fr;
   }
 
+  .backoffice-brand-lockup {
+    align-items: flex-start;
+  }
+
   .backoffice-topbar,
   .admin-footer-bar,
   .admin-section-nav {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+  }
+
+  .backoffice-actions .btn,
+  .admin-section-nav a,
+  .admin-nav-top {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -3309,6 +3365,15 @@ img {
   .backoffice-pill {
     padding: 7px 12px;
     font-size: 0.74rem;
+  }
+
+  .backoffice-brand-lockup {
+    flex-direction: column;
+  }
+
+  .backoffice-logo {
+    width: 72px;
+    height: 72px;
   }
 
   .hero {
@@ -3359,6 +3424,10 @@ img {
   .timeline-card,
   .cta-panel {
     padding: 22px;
+  }
+
+  .promo-grid {
+    grid-template-columns: 1fr;
   }
 
   .stat-grid,
@@ -3508,8 +3577,16 @@ img {
     grid-template-columns: 1fr;
   }
 
+  .backoffice-actions .btn,
+  .admin-section-nav a,
+  .admin-nav-top {
+    width: 100%;
+  }
+
   .admin-code-editor {
-    min-height: 360px;
+    min-height: 320px;
+    padding: 14px;
+    font-size: 0.88rem;
   }
 }
 
@@ -3562,6 +3639,17 @@ img {
     display: inline-flex;
     flex-direction: column;
     flex: 0 0 auto;
+  }
+
+  .language-switcher {
+    position: static;
+    width: min(calc(100% - 32px), var(--container));
+    margin: 0 auto 14px;
+  }
+
+  .language-switcher select {
+    width: 100%;
+    min-height: 44px;
   }
 
   .site-nav {
@@ -3697,7 +3785,7 @@ img {
     box-shadow: 0 6px 16px rgba(255, 107, 45, 0.4);
   }
 }
-// Testimonials styles
+/* Testimonials styles */
 .testimonials-section {
   padding: 56px 0;
 }

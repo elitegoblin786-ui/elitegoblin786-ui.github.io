@@ -1,6 +1,6 @@
 const mobileNavToggle = document.querySelector(".mobile-nav-toggle");
 const siteNav = document.querySelector(".site-nav");
-const LOCAL_BACKOFFICE_URL = "http://127.0.0.1:8000/backoffice";
+const LOCAL_BACKOFFICE_URL = "http://127.0.0.1:8080/backoffice";
 
 if (mobileNavToggle && siteNav) {
   const closeMobileNav = function () {
@@ -41,6 +41,7 @@ if (mobileNavToggle && siteNav) {
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const revealElements = document.querySelectorAll(".reveal");
+const directionalRevealElements = document.querySelectorAll(".reveal-left, .reveal-right, .reveal-up, .reveal-scale");
 
 const animateCount = function (element) {
   if (element.dataset.counted === "true") {
@@ -114,6 +115,22 @@ if (revealElements.length) {
         revealObserver.observe(element);
       }
     });
+  }
+}
+
+if (directionalRevealElements.length) {
+  if (prefersReducedMotion) {
+    directionalRevealElements.forEach(function (el) { el.classList.add("is-visible"); });
+  } else {
+    const dirObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+    directionalRevealElements.forEach(function (el) { dirObserver.observe(el); });
   }
 }
 

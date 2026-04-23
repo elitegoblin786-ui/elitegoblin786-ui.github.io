@@ -24,7 +24,7 @@ IMAGES_DIR.mkdir(exist_ok=True)
 STORAGE_FILE = STORAGE_DIR / "contact_messages.jsonl"
 CMS_FILE = STORAGE_DIR / "cms_content.json"
 HOST = os.getenv("HOST", "0.0.0.0")
-PORT = int(os.getenv("PORT", "8000"))
+PORT = int(os.getenv("PORT", "8080"))
 RATE_LIMIT_WINDOW_SECONDS = 300
 RATE_LIMIT_MAX_REQUESTS = 5
 MIN_FORM_FILL_SECONDS = 3
@@ -1092,7 +1092,7 @@ class SiteHandler(BaseHTTPRequestHandler):
 def run() -> None:
     server = ThreadingHTTPServer((HOST, PORT), SiteHandler)
     print(f"TheBrandHouse local server is running on http://127.0.0.1:{PORT}")
-    print("Backoffice login: http://127.0.0.1:8000/backoffice")
+    print(f"Backoffice login: http://127.0.0.1:{PORT}/backoffice")
     print("Keep this terminal open while using the website locally.")
     server.serve_forever()
 

@@ -1,7 +1,8 @@
 (function () {
   const LOGIN_PAGE = "/backoffice";
   const DASHBOARD_PAGE = "/backoffice/dashboard";
-  const LOCAL_BACKOFFICE_ORIGIN = "http://127.0.0.1:8000";
+  const LOCAL_DEV_PORT = "8080";
+  const LOCAL_BACKOFFICE_ORIGIN = "http://127.0.0.1:" + LOCAL_DEV_PORT;
   const STATIC_HOSTS = ["github.io", "githubusercontent.com"];
 
   function isStaticHostedPreview() {
@@ -18,7 +19,7 @@
 
     const hostname = window.location.hostname;
     const isLocalHost = hostname === "127.0.0.1" || hostname === "localhost";
-    return isLocalHost && window.location.port !== "8000";
+    return isLocalHost && window.location.port !== LOCAL_DEV_PORT;
   }
 
   function runtimeUrl(path) {
@@ -52,7 +53,7 @@
   }
 
   function getServerUsageMessage() {
-    return "Open the backoffice through http://127.0.0.1:8000/backoffice after starting python server.py.";
+    return "Open the backoffice through http://127.0.0.1:" + LOCAL_DEV_PORT + "/backoffice after starting python server.py.";
   }
 
   function formatBackofficeError(error, fallbackMessage) {

@@ -275,17 +275,11 @@
     const content = notif.querySelector('.cookie-content');
     content.innerHTML = `
       <div class="thank-you-message">
-        <div class="success-icon">🎉</div>
-        <h4>Welcome to TheBrandHouse Family!</h4>
-        <p>Thank you for subscribing: <strong>${escapeHtml(email)}</strong></p>
-        <p class="notification-text">Your preferences have been saved and you'll receive:</p>
-        <ul class="notification-list">
-          <li>🎯 Personalized deals based on your interests</li>
-          <li>📅 Early access to events and product launches</li>
-          <li>🛍️ Exclusive Galaxy.mu member benefits</li>
-          <li>💝 Special birthday and anniversary offers</li>
-        </ul>
-        <p class="closing-text">Check your email for a welcome message!</p>
+        <div class="success-icon">✓</div>
+        <h4>Thank You for Subscribing!</h4>
+        <p>We've received your email: <strong>${escapeHtml(email)}</strong></p>
+        <p class="notification-text">We will share further information and exclusive updates with you soon.</p>
+        <p class="closing-text">Keep an eye on your inbox!</p>
       </div>
     `;
 
@@ -293,7 +287,7 @@
       notif.classList.add('fade-out');
       setTimeout(() => notif.remove(), 300);
       localStorage.setItem('email-notif-dismissed', 'true');
-    }, 5000);
+    }, 3000);
   }
 
   function escapeHtml(text) {

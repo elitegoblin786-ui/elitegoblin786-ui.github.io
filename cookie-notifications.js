@@ -195,8 +195,8 @@
     const languageSelect = notif.querySelector('#language-preference');
     const subscribeBtn = notif.querySelector('.email-subscribe-btn');
 
-    // Load saved preferences
-    if (preferences.email) emailInput.value = preferences.email;
+    // Load saved preferences (but keep email input empty)
+    emailInput.value = '';
     if (preferences.language) languageSelect.value = preferences.language;
 
     closeBtn.addEventListener('click', () => {

@@ -3,15 +3,24 @@ const siteNav = document.querySelector(".site-nav");
 const LOCAL_BACKOFFICE_URL = "http://127.0.0.1:8080/backoffice";
 
 if (mobileNavToggle && siteNav) {
+  console.log('Mobile nav elements found'); // Debug log
+  
   const closeMobileNav = function () {
     mobileNavToggle.classList.remove("is-active");
     mobileNavToggle.setAttribute("aria-expanded", "false");
     mobileNavToggle.setAttribute("aria-label", "Open navigation");
     siteNav.classList.remove("is-open");
+    console.log('Nav closed'); // Debug log
   };
 
-  mobileNavToggle.addEventListener("click", function () {
+  mobileNavToggle.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Toggle clicked'); // Debug log
+    
     const willOpen = !siteNav.classList.contains("is-open");
+    console.log('Will open:', willOpen); // Debug log
+    
     mobileNavToggle.classList.toggle("is-active", willOpen);
     mobileNavToggle.setAttribute("aria-expanded", String(willOpen));
     mobileNavToggle.setAttribute("aria-label", willOpen ? "Close navigation" : "Open navigation");
@@ -37,6 +46,8 @@ if (mobileNavToggle && siteNav) {
       closeMobileNav();
     }
   });
+} else {
+  console.log('Mobile nav elements NOT found'); // Debug log
 }
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

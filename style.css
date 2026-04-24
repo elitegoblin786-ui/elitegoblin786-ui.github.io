@@ -999,6 +999,10 @@ img {
   padding: 0;
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  z-index: 101;
+  position: relative;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .mobile-nav-toggle:hover {
@@ -3665,10 +3669,13 @@ img {
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
+    pointer-events: none;
+    z-index: 100;
   }
 
   .site-nav.is-open {
     display: flex;
+    pointer-events: auto;
   }
 
   .site-nav a {

@@ -22,6 +22,9 @@ STORAGE_DIR.mkdir(exist_ok=True)
 IMAGES_DIR = STORAGE_DIR / "images"
 IMAGES_DIR.mkdir(exist_ok=True)
 STORAGE_FILE = STORAGE_DIR / "contact_messages.jsonl"
+APPLICATION_STORAGE_FILE = STORAGE_DIR / "job_applications.jsonl"
+APPLICATION_UPLOADS_DIR = STORAGE_DIR / "applications"
+APPLICATION_UPLOADS_DIR.mkdir(exist_ok=True)
 CMS_FILE = STORAGE_DIR / "cms_content.json"
 HOST = os.getenv("HOST", "0.0.0.0")
 PORT = int(os.getenv("PORT", "8080"))
@@ -29,6 +32,7 @@ RATE_LIMIT_WINDOW_SECONDS = 300
 RATE_LIMIT_MAX_REQUESTS = 5
 MIN_FORM_FILL_SECONDS = 3
 MAX_STORED_SUBMISSIONS = 250
+MAX_RESUME_UPLOAD_BYTES = 5 * 1024 * 1024
 SESSION_COOKIE_NAME = "tbh_backoffice_session"
 SESSION_DURATION_SECONDS = 60 * 60 * 8
 EDITABLE_EXTENSIONS = {".html", ".css", ".js"}
@@ -38,6 +42,8 @@ PROTECTED_EDITABLE_FILES = {
     "about.html",
     "businesses.html",
     "careers.html",
+    "application.html",
+    "careers-data.js",
     "contact.html",
     "news.html",
     "stores.html",
@@ -125,6 +131,84 @@ def validate_payload(payload: dict[str, object]) -> tuple[bool, str]:
     return True, ""
 
 
+def validate_application_payload(payload: dict[str, object]) -> tuple[bool, str]:
+    required_fields = [
+        "first_name",
+        "last_name",
+        "phone",
+        "email",
+        "location",
+        "candidate_experience_level",
+        "education_level",
+        "job_title",
+        "department",
+        "cover_letter",
+        "form_started_at",
+    ]
+    missing = [field for field in required_fields if not sanitize_text(payload.get(field))]
+    if missing:
+        return False, "Please complete all required application fields."
+
+    email = sanitize_text(payload.get("email"))
+    if not is_valid_email(email):
+        return False, "Please enter a valid email address."
+
+    honeypot = sanitize_text(payload.get("company_website"))
+    if honeypot:
+        return False, "Spam protection triggered."
+
+    if sanitize_text(payload.get("consent")).lower() != "yes":
+        return False, "Please confirm the recruitment consent before submitting."
+
+    try:
+        form_started_at = float(sanitize_text(payload.get("form_started_at")))
+    except ValueError:
+        return False, "Invalid form timing."
+
+    if time.time() - form_started_at < MIN_FORM_FILL_SECONDS:
+        return False, "Please take a moment to complete the form before submitting."
+
+    return True, ""
+
+
+def decode_resume_upload(payload: dict[str, object]) -> tuple[bool, str, str, bytes, str]:
+    original_filename = Path(sanitize_text(payload.get("resume_filename"))).name
+    encoded_resume = sanitize_text(payload.get("resume_base64"))
+    mime_type = sanitize_text(payload.get("resume_mime_type")) or "application/octet-stream"
+
+    if not original_filename or not encoded_resume:
+        return False, "Please upload your resume.", "", b"", ""
+
+    extension = Path(original_filename).suffix.lower()
+    if extension not in {".pdf", ".doc", ".docx"}:
+        return False, "Resume must be a PDF, DOC or DOCX file.", "", b"", ""
+
+    try:
+        resume_bytes = base64.b64decode(encoded_resume, validate=True)
+    except Exception:
+        return False, "Unable to read the uploaded resume.", "", b"", ""
+
+    if not resume_bytes:
+        return False, "Please upload a valid resume file.", "", b"", ""
+
+    if len(resume_bytes) > MAX_RESUME_UPLOAD_BYTES:
+        return False, "Please upload a resume smaller than 5MB.", "", b"", ""
+
+    return True, "", original_filename, resume_bytes, mime_type
+
+
+def save_resume_file(filename: str, file_bytes: bytes) -> str | None:
+    safe_filename = "".join(c for c in Path(filename).name if c.isalnum() or c in "._-").strip()
+    if not safe_filename:
+        return None
+
+    target_filename = f"{int(time.time())}-{secrets.token_hex(6)}-{safe_filename}"
+    target_path = APPLICATION_UPLOADS_DIR / target_filename
+    with target_path.open("wb") as file_handle:
+        file_handle.write(file_bytes)
+    return str(target_path.relative_to(ROOT))
+
+
 def send_email_if_configured(payload: dict[str, str]) -> bool:
     smtp_host = os.getenv("SMTP_HOST")
     smtp_port = int(os.getenv("SMTP_PORT", "587"))
@@ -186,8 +270,101 @@ def send_email_if_configured(payload: dict[str, str]) -> bool:
     return True
 
 
+def send_application_email_if_configured(
+    payload: dict[str, str],
+    resume_bytes: bytes,
+    resume_filename: str,
+    resume_mime_type: str,
+) -> bool:
+    smtp_host = os.getenv("SMTP_HOST")
+    smtp_port = int(os.getenv("SMTP_PORT", "587"))
+    smtp_user = os.getenv("SMTP_USER")
+    smtp_password = os.getenv("SMTP_PASS")
+    smtp_from = os.getenv("SMTP_FROM", "info@thebrandhouse.mu")
+    recipient = os.getenv("CAREERS_RECIPIENT", "hr@thebrandhouse.mu")
+
+    if not smtp_host:
+        return False
+
+    owner_message = EmailMessage()
+    owner_message["Subject"] = f"Website application: {payload['job_title']}"
+    owner_message["From"] = smtp_from
+    owner_message["To"] = recipient
+    owner_message["Reply-To"] = payload["email"]
+    owner_message.set_content(
+        "\n".join(
+            [
+                "A new job application has been received from the website.",
+                "",
+                f"Role: {payload['job_title']}",
+                f"Department: {payload['department']}",
+                "",
+                f"Name: {payload['first_name']} {payload['last_name']}",
+                f"Phone number: {payload['phone']}",
+                f"Email: {payload['email']}",
+                f"Location: {payload['location']}",
+                f"Experience level: {payload['candidate_experience_level']}",
+                f"Education: {payload['education_level']}",
+                f"Available from: {payload.get('date_available', '') or 'Not specified'}",
+                f"LinkedIn: {payload.get('linkedin_url', '') or 'Not specified'}",
+                f"Website: {payload.get('website_url', '') or 'Not specified'}",
+                f"Desired salary: {payload.get('desired_salary', '') or 'Not specified'}",
+                f"Referred by: {payload.get('referred_by', '') or 'Not specified'}",
+                "",
+                "Cover letter:",
+                payload["cover_letter"],
+                "",
+                "References:",
+                payload.get("references", "") or "Not specified",
+            ]
+        )
+    )
+
+    maintype, _, subtype = (resume_mime_type or "application/octet-stream").partition("/")
+    if not subtype:
+        maintype, subtype = "application", "octet-stream"
+    owner_message.add_attachment(
+        resume_bytes,
+        maintype=maintype,
+        subtype=subtype,
+        filename=resume_filename,
+    )
+
+    candidate_message = EmailMessage()
+    candidate_message["Subject"] = "We have received your application"
+    candidate_message["From"] = smtp_from
+    candidate_message["To"] = payload["email"]
+    candidate_message.set_content(
+        "\n".join(
+            [
+                f"Hello {payload['first_name']},",
+                "",
+                "Thank you for applying to TheBrandHouse.",
+                f"Your application for {payload['job_title']} has been received successfully.",
+                "Our recruitment team will review your profile according to the needs of the vacancy.",
+                "",
+                "Kind regards,",
+                "TheBrandHouse HR Department",
+            ]
+        )
+    )
+
+    with smtplib.SMTP(smtp_host, smtp_port, timeout=20) as smtp:
+        smtp.starttls()
+        if smtp_user and smtp_password:
+            smtp.login(smtp_user, smtp_password)
+        smtp.send_message(owner_message)
+        smtp.send_message(candidate_message)
+    return True
+
+
 def append_submission(record: dict[str, object]) -> None:
     with STORAGE_FILE.open("a", encoding="utf-8") as file_handle:
+        file_handle.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+
+def append_application(record: dict[str, object]) -> None:
+    with APPLICATION_STORAGE_FILE.open("a", encoding="utf-8") as file_handle:
         file_handle.write(json.dumps(record, ensure_ascii=False) + "\n")
 
 
@@ -197,6 +374,25 @@ def read_submissions() -> list[dict[str, object]]:
 
     records: list[dict[str, object]] = []
     with STORAGE_FILE.open("r", encoding="utf-8") as file_handle:
+        for line in file_handle:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                data = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(data, dict):
+                records.append(data)
+    return records[-MAX_STORED_SUBMISSIONS:][::-1]
+
+
+def read_applications() -> list[dict[str, object]]:
+    if not APPLICATION_STORAGE_FILE.exists():
+        return []
+
+    records: list[dict[str, object]] = []
+    with APPLICATION_STORAGE_FILE.open("r", encoding="utf-8") as file_handle:
         for line in file_handle:
             line = line.strip()
             if not line:
@@ -293,34 +489,34 @@ def cms_defaults() -> dict[str, str]:
         "businessesServiceDescriptionOne": "The JMG Service Centre provides after-sales service for brands distributed by JMG.",
         "businessesServiceDescriptionTwo": "The team delivers technical training either locally or overseas as provided by principals, and offers both indoor and outdoor repair facilities under and outside warranty.",
         "businessesServiceImage": "business-jmg-replacement.png",
-        "careersIntroTitle": "Interested in joining our team?",
-        "careersIntroDescriptionOne": "TheBrandHouse is not just any company. It has strong values and aims to be the best in its sector as an employer, supplier and retailer, giving customers the best possible experience.",
-        "careersIntroDescriptionTwo": "To achieve this, the company recruits and gives opportunities for staff development and, when a vacancy arises, seeks to recruit the best candidates. Appointments are made on merit.",
-        "careersWhyJoinTitle": "Why join TheBrandHouse?",
-        "careersWhyJoinDescriptionOne": "The company promotes growth, values commitment, and aims to build a workplace where high standards, strong service and long-term development go together.",
-        "careersWhyJoinDescriptionTwo": "Recruitment is based on merit, with opportunities for people who want to contribute, improve and grow within the business.",
-        "careersPeopleTitle": "What kind of people do we look for?",
-        "careersBenefitsTitle": "Employee benefits",
+        "careersIntroTitle": "Build your next chapter with TheBrandHouse",
+        "careersIntroDescriptionOne": "TheBrandHouse is a leading distributor and retailer of home appliances and consumer electronics in Mauritius, with teams across marketing, sales, operations, customer service and service centre support.",
+        "careersIntroDescriptionTwo": "Explore current roles, review the purpose and requirements, then apply through a structured application flow inspired by modern BambooHR careers pages.",
+        "careersWhyJoinTitle": "Growth, service and merit",
+        "careersWhyJoinDescriptionOne": "TheBrandHouse promotes staff development and merit-based recruitment, with opportunities across customer-facing, operational and specialist functions.",
+        "careersWhyJoinDescriptionTwo": "The workplace is built around dependable service, accountability and long-term contribution.",
+        "careersPeopleTitle": "People who raise the standard",
+        "careersBenefitsTitle": "Support that helps teams do strong work",
         "careersBenefitImageOne": "benefit-employee-rewards.png",
         "careersBenefitImageTwo": "benefit-staff-happiness.jpg",
         "careersBenefitImageThree": "benefit-discount-programs.jpg",
         "careersBenefitImageFour": "benefit-aid-employees.jpg",
         "careersBenefitImageFive": "benefit-doctors.jpg",
         "careersJobsTitle": "Open positions",
-        "careersJobsDescription": "Current roles highlighted on the existing site",
+        "careersJobsDescription": "Each opening includes the role purpose, experience level, education, responsibilities and requirements before you apply.",
         "careersAreasTitle": "Opportunities across the business",
         "careersAreasDescription": "The current vacancies reflect a broad mix of office, retail, logistics and technical roles within TheBrandHouse.",
         "careersAreaOneTitle": "Administration and support",
         "careersAreaTwoTitle": "Digital and specialist functions",
         "careersAreaThreeTitle": "Warehouse and delivery support",
         "careersAreaFourTitle": "Service and technical careers",
-        "careersProcessTitle": "Clear and merit-based recruitment",
-        "careersProcessStepOne": "Review the role that best matches your background and experience.",
-        "careersProcessStepTwo": "Prepare your resume and send your application to the careers contact address.",
-        "careersProcessStepThree": "Suitable profiles are reviewed according to the needs of the vacancy and future opportunities.",
-        "careersExpectTitle": "A workplace built around growth and standards",
-        "careersExpectDescriptionOne": "TheBrandHouse positions its recruitment around merit, development and long-term contribution, with opportunities across customer-facing, operational and technical functions.",
-        "careersExpectDescriptionTwo": "Candidates can expect a business environment focused on service quality, accountability and progress.",
+        "careersProcessTitle": "A clearer BambooHR-style flow",
+        "careersProcessStepOne": "Choose a role and review the full description and requirements.",
+        "careersProcessStepTwo": "Complete the application form with your contact details, experience, resume and cover letter.",
+        "careersProcessStepThree": "Your application is stored for HR review and can be emailed to the careers recipient when SMTP is configured.",
+        "careersExpectTitle": "Review, shortlist, respond",
+        "careersExpectDescriptionOne": "Applicants receive a clear confirmation after submission. The role, resume and profile details are kept together so HR can review by opening.",
+        "careersExpectDescriptionTwo": "If no role matches today, general applications can still be considered for future vacancies.",
         "contactTitle": "Contact us",
         "contactOfficeTitle": "Head office",
         "contactLocationTitle": "Find us in Riche Terre",
@@ -588,10 +784,13 @@ def credentials_are_valid(username: str, password: str) -> bool:
     )
 
 
-def render_admin_page(records: list[dict[str, object]]) -> str:
-    rows = []
+def render_admin_page(
+    records: list[dict[str, object]],
+    applications: list[dict[str, object]],
+) -> str:
+    contact_rows = []
     for record in records:
-        rows.append(
+        contact_rows.append(
             f"""
             <article class="submission-card">
               <div class="submission-top">
@@ -607,8 +806,34 @@ def render_admin_page(records: list[dict[str, object]]) -> str:
             """
         )
 
-    if not rows:
-        rows.append('<p class="empty-state">No submissions received yet.</p>')
+    if not contact_rows:
+        contact_rows.append('<p class="empty-state">No contact submissions received yet.</p>')
+
+    application_rows = []
+    for application in applications:
+        application_rows.append(
+            f"""
+            <article class="submission-card application-card">
+              <div class="submission-top">
+                <h2>{html.escape(str(application.get("job_title", "General Application")))}</h2>
+                <span>{html.escape(str(application.get("submitted_at", "")))}</span>
+              </div>
+              <p><strong>Name:</strong> {html.escape(str(application.get("first_name", "")))} {html.escape(str(application.get("last_name", "")))}</p>
+              <p><strong>Email:</strong> {html.escape(str(application.get("email", "")))}</p>
+              <p><strong>Phone:</strong> {html.escape(str(application.get("phone", "")))}</p>
+              <p><strong>Department:</strong> {html.escape(str(application.get("department", "")))}</p>
+              <p><strong>Experience:</strong> {html.escape(str(application.get("candidate_experience_level", "")))}</p>
+              <p><strong>Education:</strong> {html.escape(str(application.get("education_level", "")))}</p>
+              <p><strong>Resume:</strong> {html.escape(str(application.get("resume_filename", "")))}</p>
+              <p><strong>Stored at:</strong> {html.escape(str(application.get("resume_path", "")))}</p>
+              <p><strong>IP:</strong> {html.escape(str(application.get("ip", "")))}</p>
+              <div class="submission-message">{html.escape(str(application.get("cover_letter", ""))).replace(chr(10), "<br>")}</div>
+            </article>
+            """
+        )
+
+    if not application_rows:
+        application_rows.append('<p class="empty-state">No job applications received yet.</p>')
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -647,6 +872,22 @@ def render_admin_page(records: list[dict[str, object]]) -> str:
     .submission-grid {{
       display: grid;
       gap: 18px;
+      margin-bottom: 34px;
+    }}
+    .section-heading {{
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin: 28px 0 16px;
+    }}
+    .section-heading h2 {{
+      margin: 0;
+      font-size: 1.7rem;
+    }}
+    .section-heading span {{
+      color: #5f6b7c;
+      font-weight: 700;
     }}
     .submission-card {{
       background: white;
@@ -654,6 +895,9 @@ def render_admin_page(records: list[dict[str, object]]) -> str:
       padding: 24px;
       box-shadow: 0 14px 36px rgba(18, 25, 38, 0.08);
       border: 1px solid rgba(22, 32, 51, 0.08);
+    }}
+    .application-card {{
+      border-left: 5px solid #13b38b;
     }}
     .submission-top {{
       display: flex;
@@ -690,10 +934,21 @@ def render_admin_page(records: list[dict[str, object]]) -> str:
   <div class="wrap">
     <section class="hero">
       <h1>TheBrandHouse Admin Inbox</h1>
-      <p>Recent contact form submissions stored by the local Python backend.</p>
+      <p>Recent contact messages and job applications stored by the local Python backend.</p>
+    </section>
+    <section class="section-heading">
+      <h2>Job Applications</h2>
+      <span>{len(applications)} received</span>
     </section>
     <section class="submission-grid">
-      {''.join(rows)}
+      {''.join(application_rows)}
+    </section>
+    <section class="section-heading">
+      <h2>Contact Messages</h2>
+      <span>{len(records)} received</span>
+    </section>
+    <section class="submission-grid">
+      {''.join(contact_rows)}
     </section>
   </div>
 </body>
@@ -860,7 +1115,7 @@ class SiteHandler(BaseHTTPRequestHandler):
                 self.send_header("Location", "/backoffice")
                 self.end_headers()
                 return
-            page = render_admin_page(read_submissions()).encode("utf-8")
+            page = render_admin_page(read_submissions(), read_applications()).encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(page)))
@@ -872,6 +1127,12 @@ class SiteHandler(BaseHTTPRequestHandler):
             if not self._require_backoffice_session():
                 return
             self._send_json(200, {"success": True, "records": read_submissions()})
+            return
+
+        if request_path == "/api/applications":
+            if not self._require_backoffice_session():
+                return
+            self._send_json(200, {"success": True, "records": read_applications()})
             return
 
         if request_path in {"/backoffice", "/backoffice/"}:
@@ -1031,6 +1292,88 @@ class SiteHandler(BaseHTTPRequestHandler):
                 return
             target.unlink()
             self._send_json(200, {"success": True, "message": "File deleted successfully."})
+            return
+
+        if parsed.path == "/api/apply":
+            ip_address = self.client_address[0]
+            within_limit, rate_limit_message = check_rate_limit(ip_address)
+            if not within_limit:
+                self._send_json(429, {"success": False, "message": rate_limit_message})
+                return
+
+            payload = self._parse_json_body()
+            if payload is None:
+                self._send_json(400, {"success": False, "message": "Invalid request payload."})
+                return
+
+            is_valid, validation_message = validate_application_payload(payload)
+            if not is_valid:
+                if validation_message == "Spam protection triggered.":
+                    self._send_json(200, {"success": True, "message": "Application received successfully."})
+                    return
+                self._send_json(422, {"success": False, "message": validation_message})
+                return
+
+            resume_valid, resume_message, resume_filename, resume_bytes, resume_mime_type = decode_resume_upload(payload)
+            if not resume_valid:
+                self._send_json(422, {"success": False, "message": resume_message})
+                return
+
+            resume_path = save_resume_file(resume_filename, resume_bytes)
+            if not resume_path:
+                self._send_json(400, {"success": False, "message": "Unable to save the uploaded resume."})
+                return
+
+            clean_payload = {
+                "first_name": sanitize_text(payload.get("first_name")),
+                "last_name": sanitize_text(payload.get("last_name")),
+                "phone": sanitize_text(payload.get("phone")),
+                "email": sanitize_text(payload.get("email")),
+                "location": sanitize_text(payload.get("location")),
+                "candidate_experience_level": sanitize_text(payload.get("candidate_experience_level")),
+                "education_level": sanitize_text(payload.get("education_level")),
+                "date_available": sanitize_text(payload.get("date_available")),
+                "linkedin_url": sanitize_text(payload.get("linkedin_url")),
+                "website_url": sanitize_text(payload.get("website_url")),
+                "desired_salary": sanitize_text(payload.get("desired_salary")),
+                "referred_by": sanitize_text(payload.get("referred_by")),
+                "references": sanitize_text(payload.get("references")),
+                "job_slug": sanitize_text(payload.get("job_slug")),
+                "job_title": sanitize_text(payload.get("job_title")),
+                "department": sanitize_text(payload.get("department")),
+                "cover_letter": sanitize_text(payload.get("cover_letter")),
+                "form_started_at": sanitize_text(payload.get("form_started_at")),
+                "resume_filename": resume_filename,
+                "resume_mime_type": resume_mime_type,
+                "resume_path": resume_path,
+            }
+
+            record = {
+                **clean_payload,
+                "submitted_at": now_utc_iso(),
+                "ip": ip_address,
+            }
+            append_application(record)
+
+            email_sent = False
+            email_error = None
+            try:
+                email_sent = send_application_email_if_configured(
+                    clean_payload,
+                    resume_bytes,
+                    resume_filename,
+                    resume_mime_type,
+                )
+            except Exception as exc:
+                email_error = str(exc)
+
+            response_message = "Application received successfully."
+            if email_sent:
+                response_message = "Application received and email sent successfully."
+            elif email_error:
+                response_message = "Application received successfully. Email delivery is not configured yet."
+
+            self._send_json(200, {"success": True, "message": response_message})
             return
 
         if parsed.path != "/api/contact":

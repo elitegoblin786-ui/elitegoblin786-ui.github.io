@@ -79,7 +79,24 @@ SMTP_FROM=info@thebrandhouse.mu
 
 If SMTP is not configured, submissions are still saved locally.
 
+## Careers application behavior
+
+- Careers buttons open `application.html?job=...`
+- Job data lives in `careers-data.js`
+- Frontend submits applications to `/api/apply`
+- Applications are saved to `storage/job_applications.jsonl`
+- Resume uploads are saved under `storage/applications/`
+- The admin inbox at `/admin` shows both job applications and contact messages
+
+Set `CAREERS_RECIPIENT` to change the HR recipient. It defaults to:
+
+```bash
+hr@thebrandhouse.mu
+```
+
 When SMTP is configured, the backend will:
 
 - send the website inquiry to `info@thebrandhouse.mu`
 - send a confirmation email back to the customer
+- send career applications to the careers recipient with the resume attached
+- send a confirmation email back to the candidate

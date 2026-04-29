@@ -430,75 +430,65 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-cG2AHzRY4F19FHv9+1n2Y9OCeV46y82j2bfMVuYUqgz0+U9q4YJ06KIXS0FdxpO5I9iO8A6HvLEyLgDdf2lt6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
-    if (window.gsap) {
-      window.addEventListener("load", function () {
-        const animateCards = (selector) => {
-          const cards = document.querySelectorAll(selector);
-          if (!cards.length) return;
+    document.addEventListener("DOMContentLoaded", function () {
+      if (!window.gsap) {
+        return;
+      }
 
-          cards.forEach((card, index) => {
-            const delay = index * 0.2;
+      const heroCard = document.querySelector(".stores-hero-card");
+      const storeCards = document.querySelectorAll(".store-detail-card");
 
-            gsap.set(card, {
-              opacity: 0,
-              y: 100,
-              rotationY: -90,
-              scale: 0.8,
-              transformOrigin: "center bottom"
-            });
+      if (heroCard) {
+        gsap.fromTo(heroCard, {
+          opacity: 0,
+          y: 24,
+          scale: 0.98
+        }, {
+          duration: 0.45,
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          ease: "power2.out",
+          delay: 0.04
+        });
+      }
 
+      if (storeCards.length) {
+        gsap.fromTo(storeCards, {
+          opacity: 0,
+          y: 30,
+          scale: 0.97
+        }, {
+          duration: 0.45,
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          ease: "power2.out",
+          stagger: 0.03,
+          delay: 0.04
+        });
+
+        storeCards.forEach((card) => {
+          card.addEventListener("mouseenter", () => {
             gsap.to(card, {
-              duration: 1.2,
-              opacity: 1,
-              y: 0,
-              rotationY: 0,
-              scale: 1,
-              ease: "back.out(1.7)",
-              delay: delay
-            });
-
-            gsap.to(card, {
-              duration: 3 + index * 0.5,
-              y: "-10px",
-              ease: "power2.inOut",
-              repeat: -1,
-              yoyo: true,
-              delay: 2 + delay
-            });
-
-            gsap.to(card, {
-              duration: 20 + index * 2,
-              rotation: 1,
-              ease: "none",
-              repeat: -1,
-              yoyo: true,
-              delay: delay
-            });
-
-            card.addEventListener('mouseenter', () => {
-              gsap.to(card, {
-                duration: 0.3,
-                scale: 1.05,
-                boxShadow: "0 20px 60px rgba(255, 107, 45, 0.4)",
-                ease: "power2.out"
-              });
-            });
-
-            card.addEventListener('mouseleave', () => {
-              gsap.to(card, {
-                duration: 0.3,
-                scale: 1,
-                boxShadow: "0 20px 48px rgba(18, 25, 38, 0.16)",
-                ease: "power2.out"
-              });
+              duration: 0.22,
+              scale: 1.02,
+              boxShadow: "0 20px 50px rgba(255, 107, 45, 0.24)",
+              ease: "power2.out"
             });
           });
-        };
 
-        animateCards(".stores-hero-card");
-        animateCards(".store-detail-card");
-      });
-    }
+          card.addEventListener("mouseleave", () => {
+            gsap.to(card, {
+              duration: 0.22,
+              scale: 1,
+              boxShadow: "0 20px 40px rgba(18, 25, 38, 0.12)",
+              ease: "power2.out"
+            });
+          });
+        });
+      }
+    });
   </script>
 </body>
 </html>

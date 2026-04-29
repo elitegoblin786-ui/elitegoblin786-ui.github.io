@@ -2,6 +2,41 @@
    The base theme variables live in style.css; this file stays in place
    because multiple pages still include it after the main stylesheet. */
 
+:root[data-theme="dark"] {
+  --bg: #080d16;
+  --surface: #121b2d;
+  --surface-alt: #1b273b;
+  --text: #ffffff;
+  --muted: #d7e0eb;
+  --line: rgba(255, 255, 255, 0.18);
+}
+
+[data-theme="dark"] body {
+  color: var(--text);
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6,
+[data-theme="dark"] strong,
+[data-theme="dark"] label {
+  color: var(--text);
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] li,
+[data-theme="dark"] .meta,
+[data-theme="dark"] .section-intro,
+[data-theme="dark"] .bullet-list li,
+[data-theme="dark"] .career-role-list,
+[data-theme="dark"] .career-process-list,
+[data-theme="dark"] .legal-list {
+  color: var(--muted);
+}
+
 [data-theme="dark"] .language-switcher select {
   background: rgba(15, 22, 34, 0.96);
   border-color: rgba(255, 255, 255, 0.16);
@@ -20,11 +55,32 @@
 [data-theme="dark"] .stores-map-card,
 [data-theme="dark"] .store-cluster,
 [data-theme="dark"] .store-detail-card,
-[data-theme="dark"] .promo-card {
+[data-theme="dark"] .promo-card,
+[data-theme="dark"] .form-panel,
+[data-theme="dark"] .detail-panel,
+[data-theme="dark"] .news-article,
+[data-theme="dark"] .career-layout,
+[data-theme="dark"] .job-board,
+[data-theme="dark"] .contact-map,
+[data-theme="dark"] .legal-card,
+[data-theme="dark"] .career-value-card,
+[data-theme="dark"] .career-role-card,
+[data-theme="dark"] .career-process-card,
+[data-theme="dark"] .job-card,
+[data-theme="dark"] .job-toolbar,
+[data-theme="dark"] .application-job-panel,
+[data-theme="dark"] .application-form-panel,
+[data-theme="dark"] .application-meta-item,
+[data-theme="dark"] .job-card-details p,
+[data-theme="dark"] .careers-empty-state,
+[data-theme="dark"] .news-feature-card,
+[data-theme="dark"] .news-mini-card,
+[data-theme="dark"] .news-section,
+[data-theme="dark"] .stores-section {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
-    rgba(26, 33, 56, 0.94);
-  border-color: rgba(255, 255, 255, 0.12);
+    rgba(18, 27, 45, 0.96);
+  border-color: var(--line);
   color: var(--text);
   box-shadow: 0 22px 48px rgba(0, 0, 0, 0.24);
 }
@@ -52,8 +108,14 @@
 [data-theme="dark"] .store-metric,
 [data-theme="dark"] .promo-content p,
 [data-theme="dark"] .section-heading p,
-[data-theme="dark"] .footer-bottom {
-  color: rgba(245, 247, 250, 0.78);
+[data-theme="dark"] .footer-bottom,
+[data-theme="dark"] .career-value-card p,
+[data-theme="dark"] .application-job-panel p,
+[data-theme="dark"] .application-form-panel p,
+[data-theme="dark"] .application-meta-item span,
+[data-theme="dark"] .job-purpose,
+[data-theme="dark"] .job-card-details p {
+  color: var(--muted);
 }
 
 [data-theme="dark"] .eyebrow,
@@ -69,4 +131,23 @@
 
 [data-theme="dark"] .legacy-number {
   color: #ff9eb5;
+}
+
+[data-theme="dark"] .promo-content h3 {
+  background: none;
+  color: var(--text);
+  -webkit-text-fill-color: currentColor;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: var(--line);
+  color: var(--text);
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: rgba(215, 224, 235, 0.68);
 }

@@ -803,46 +803,6 @@ class HeroVideoFallback {
   }
 }
 
-// Live Chat Widget
-class LiveChat {
-  constructor() {
-    this.init();
-  }
-
-  init() {
-    const widget = document.createElement('div');
-    widget.className = 'live-chat-widget';
-    widget.innerHTML = `
-      <button class="live-chat-toggle">💬</button>
-      <div class="live-chat-window" style="display: none;">
-        <div class="live-chat-header">
-          <h4>Chat with us</h4>
-          <button class="live-chat-close">&times;</button>
-        </div>
-        <div class="live-chat-messages"></div>
-        <input type="text" class="live-chat-input" placeholder="Type a message...">
-      </div>
-    `;
-    
-    document.body.appendChild(widget);
-    this.setupListeners();
-  }
-
-  setupListeners() {
-    const toggle = document.querySelector('.live-chat-toggle');
-    const close = document.querySelector('.live-chat-close');
-    const window = document.querySelector('.live-chat-window');
-
-    toggle.addEventListener('click', () => {
-      window.style.display = window.style.display === 'none' ? 'block' : 'none';
-    });
-
-    close.addEventListener('click', () => {
-      window.style.display = 'none';
-    });
-  }
-}
-
 // Video Player Enhancement
 class VideoPlayer {
   constructor() {
@@ -1115,7 +1075,6 @@ document.addEventListener('DOMContentLoaded', () => {
   new CountUp();
   new NewsletterPopup();
   new LocalizedLanguageSwitcher();
-  new LiveChat();
   new VideoPlayer();
   new HeroVideoFallback();
   new VideoAnimations();

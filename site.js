@@ -1,6 +1,15 @@
 const mobileNavToggle = document.querySelector(".mobile-nav-toggle");
 const siteNav = document.querySelector(".site-nav");
 const LOCAL_BACKOFFICE_URL = "http://127.0.0.1:8080/backoffice";
+const DARK_MODE_STORAGE_KEY = "tbh-dark-mode";
+
+try {
+  if (window.localStorage.getItem(DARK_MODE_STORAGE_KEY) === "true") {
+    document.documentElement.setAttribute("data-theme", "dark");
+  }
+} catch (error) {
+  // Keep the site usable if browser storage is unavailable.
+}
 
 if (mobileNavToggle && siteNav) {
   console.log('Mobile nav elements found'); // Debug log
@@ -100,8 +109,8 @@ if (revealElements.length) {
         observer.unobserve(entry.target);
       });
     }, {
-      threshold: 0.18,
-      rootMargin: "0px 0px -8% 0px"
+      threshold: 0.05,
+      rootMargin: "0px 0px -5% 0px"
     });
 
     const timelineRevealObserver = new IntersectionObserver(function (entries, observer) {
@@ -115,8 +124,8 @@ if (revealElements.length) {
         observer.unobserve(entry.target);
       });
     }, {
-      threshold: 0.32,
-      rootMargin: "0px 0px -2% 0px"
+      threshold: 0.08,
+      rootMargin: "0px 0px -3% 0px"
     });
 
     revealElements.forEach(function (element) {
@@ -139,7 +148,7 @@ if (directionalRevealElements.length) {
         entry.target.classList.add("is-visible");
         observer.unobserve(entry.target);
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    }, { threshold: 0.08, rootMargin: "0px 0px -4% 0px" });
 
     directionalRevealElements.forEach(function (el) { dirObserver.observe(el); });
   }

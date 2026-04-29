@@ -1,0 +1,11 @@
+.video-container {
+  background: #000 !important;
+}
+
+.video-container::after {
+  display: none !important;
+}
+
+.video-overlay {
+  display: none !important;
+}

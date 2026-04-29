@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TheBrandHouse | Job Application</title>
+  <meta name="description" content="Apply for a job at TheBrandHouse with a structured application form.">
+  <link rel="icon" type="image/png" href="thebrandhouse_ltd_logo_transparent.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dark-mode.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="thebrandhouse_ltd_logo.jpg" alt="TheBrandHouse logo">
+        <div class="brand-text">
+          <h1>TheBrandHouse</h1>
+          <p>Apply</p>
+        </div>
+      </a>
+      <button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="siteMenu" aria-label="Open navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" id="siteMenu" aria-label="Primary">
+        <a href="about.html">About Us</a>
+        <a href="businesses.html">Our Businesses</a>
+        <a href="news.html">News</a>
+        <a class="active" href="careers.html">Careers</a>
+        <a href="contact.html">Contact</a>
+        <a href="stores.html">Our Stores</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section application-page">
+    <div class="container">
+      <a class="back-link" href="careers.html#open-positions">Back to open positions</a>
+
+      <div class="application-layout">
+        <aside class="application-job-panel reveal">
+          <span class="eyebrow" id="applicationDepartment">Careers</span>
+          <h2 id="applicationJobTitle">General Application</h2>
+          <p id="applicationPurpose">
+            Submit your profile for future opportunities with TheBrandHouse.
+          </p>
+
+          <div class="application-meta-grid" id="applicationMetaGrid"></div>
+
+          <section class="application-detail-section">
+            <h3>Role Description</h3>
+            <p id="applicationDescription">Your profile will be reviewed when a suitable vacancy opens.</p>
+          </section>
+
+          <section class="application-detail-section">
+            <h3>Key Responsibilities</h3>
+            <ul id="applicationResponsibilities" class="career-role-list">
+              <li>Share your strongest experience and preferred career area.</li>
+            </ul>
+          </section>
+
+          <section class="application-detail-section">
+            <h3>Requirements</h3>
+            <ul id="applicationRequirements" class="career-role-list">
+              <li>Attach your resume and include a short motivation note.</li>
+            </ul>
+          </section>
+
+          <a class="careers-source-link" id="applicationSourceLink" href="https://www.thebrandhouse.mu/careers/" target="_blank" rel="noopener">View original careers source</a>
+        </aside>
+
+        <section class="application-form-panel reveal delay-1">
+          <span class="eyebrow">Application Form</span>
+          <h2 id="applicationFormTitle">Apply now</h2>
+          <p>
+            Complete the form below. Your application will be stored for HR review and sent to the careers recipient when email delivery is configured.
+          </p>
+
+          <form class="contact-form application-form" id="applicationForm">
+            <input type="hidden" name="form_started_at" id="applicationStartedAt">
+            <input type="hidden" name="job_slug" id="applicationJobSlug">
+            <input type="hidden" name="job_title" id="applicationJobTitleField">
+            <input type="hidden" name="department" id="applicationDepartmentField">
+            <div class="honeypot-field" aria-hidden="true">
+              <label for="applicationCompanyWebsite">Company website</label>
+              <input type="text" name="company_website" id="applicationCompanyWebsite" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="form-row">
+              <label>
+                First name
+                <input type="text" name="first_name" placeholder="Your first name" autocomplete="given-name" required>
+              </label>
+              <label>
+                Last name
+                <input type="text" name="last_name" placeholder="Your last name" autocomplete="family-name" required>
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label>
+                E-mail
+                <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+              </label>
+              <label>
+                Phone number
+                <input type="tel" name="phone" placeholder="Your phone number" autocomplete="tel" required>
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label>
+                Location
+                <input type="text" name="location" placeholder="Town or district" autocomplete="address-level2" required>
+              </label>
+              <label>
+                Experience level
+                <select name="candidate_experience_level" required>
+                  <option value="">Select your level</option>
+                  <option>Entry level</option>
+                  <option>Junior</option>
+                  <option>Associate</option>
+                  <option>Mid-level</option>
+                  <option>Senior</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label>
+                Highest qualification
+                <input type="text" name="education_level" placeholder="Example: Degree in Marketing" required>
+              </label>
+              <label>
+                Available from
+                <input type="date" name="date_available">
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label>
+                LinkedIn URL
+                <input type="url" name="linkedin_url" placeholder="https://www.linkedin.com/in/...">
+              </label>
+              <label>
+                Portfolio or website
+                <input type="url" name="website_url" placeholder="https://...">
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label>
+                Desired salary
+                <input type="text" name="desired_salary" placeholder="Optional">
+              </label>
+              <label>
+                Referred by
+                <input type="text" name="referred_by" placeholder="Optional">
+              </label>
+            </div>
+
+            <label>
+              Resume
+              <input type="file" name="resume" id="applicationResume" accept=".pdf,.doc,.docx" required>
+            </label>
+
+            <label>
+              Cover letter / motivation
+              <textarea name="cover_letter" placeholder="Tell us why this role is a strong fit for you" required></textarea>
+            </label>
+
+            <label>
+              References
+              <textarea name="references" placeholder="Optional references or additional notes"></textarea>
+            </label>
+
+            <label class="application-consent">
+              <input type="checkbox" name="consent" value="yes" required>
+              I confirm that the information provided is accurate and may be used by TheBrandHouse for recruitment purposes.
+            </label>
+
+            <button class="btn btn-primary" type="submit" id="applicationSubmitButton">Submit application</button>
+            <p class="form-status" id="applicationStatus" aria-live="polite"></p>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div class="success-modal" id="applicationSuccessModal" aria-hidden="true">
+    <div class="success-dialog">
+      <h3>Application received</h3>
+      <p>
+        Thank you for applying. Your application has been submitted for HR review.
+      </p>
+      <a class="btn btn-primary" href="careers.html#open-positions">View more roles</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <div class="footer-card">
+        <div class="footer-block">
+          <h3 class="footer-title">TheBrandHouse</h3>
+          <p class="footer-copy">
+            Structured applications help the recruitment team review each profile with the right role context.
+          </p>
+        </div>
+        <div class="footer-block">
+          <h4>Explore</h4>
+          <ul class="footer-links">
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="businesses.html">Our Businesses</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-block">
+          <h4>Careers Contact</h4>
+          <ul class="footer-contact-list">
+            <li><a href="mailto:hr@thebrandhouse.mu">hr@thebrandhouse.mu</a></li>
+            <li>Industrial Park 1, Riche Terre</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 TheBrandHouse. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact.html">Contact</a>
+          <a href="https://surgical-areas-regulated-notebook.trycloudflare.com/backoffice.html" target="_blank" rel="noopener">Back Office</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="site.js"></script>
+  <script src="careers-data.js"></script>
+  <script>
+    (function () {
+      const jobs = window.TBH_CAREERS_JOBS || [];
+      const params = new URLSearchParams(window.location.search);
+      const selectedSlug = params.get("job") || "";
+      const selectedJob = jobs.find(function (job) {
+        return job.slug === selectedSlug;
+      });
+      const staticHosts = ["github.io", "githubusercontent.com"];
+      const maxResumeBytes = 5 * 1024 * 1024;
+
+      const elements = {
+        department: document.getElementById("applicationDepartment"),
+        title: document.getElementById("applicationJobTitle"),
+        purpose: document.getElementById("applicationPurpose"),
+        description: document.getElementById("applicationDescription"),
+        metaGrid: document.getElementById("applicationMetaGrid"),
+        responsibilities: document.getElementById("applicationResponsibilities"),
+        requirements: document.getElementById("applicationRequirements"),
+        sourceLink: document.getElementById("applicationSourceLink"),
+        formTitle: document.getElementById("applicationFormTitle"),
+        startedAt: document.getElementById("applicationStartedAt"),
+        jobSlug: document.getElementById("applicationJobSlug"),
+        jobTitleField: document.getElementById("applicationJobTitleField"),
+        departmentField: document.getElementById("applicationDepartmentField"),
+        form: document.getElementById("applicationForm"),
+        resume: document.getElementById("applicationResume"),
+        submitButton: document.getElementById("applicationSubmitButton"),
+        status: document.getElementById("applicationStatus"),
+        modal: document.getElementById("applicationSuccessModal")
+      };
+
+      function isStaticHostedPreview() {
+        const hostname = window.location.hostname;
+        return staticHosts.some(function (domain) {
+          return hostname === domain || hostname.endsWith("." + domain);
+        });
+      }
+
+      function createList(items, container) {
+        container.replaceChildren();
+        items.forEach(function (item) {
+          const li = document.createElement("li");
+          li.textContent = item;
+          container.appendChild(li);
+        });
+      }
+
+      function addMeta(label, value) {
+        const item = document.createElement("div");
+        item.className = "application-meta-item";
+        const strong = document.createElement("strong");
+        strong.textContent = label;
+        const span = document.createElement("span");
+        span.textContent = value;
+        item.append(strong, span);
+        elements.metaGrid.appendChild(item);
+      }
+
+      function applyJob(job) {
+        const title = job ? job.title : "General Application";
+        const department = job ? job.department : "Careers";
+
+        document.title = "TheBrandHouse | " + title;
+        elements.department.textContent = department;
+        elements.title.textContent = title;
+        elements.purpose.textContent = job ? job.purpose : "Submit your profile for future opportunities with TheBrandHouse.";
+        elements.description.textContent = job ? job.description : "Your profile will be reviewed when a suitable vacancy opens.";
+        elements.formTitle.textContent = job ? "Apply for " + job.title : "Submit a general application";
+        elements.jobSlug.value = job ? job.slug : "general-application";
+        elements.jobTitleField.value = title;
+        elements.departmentField.value = department;
+        elements.sourceLink.href = job ? job.sourceUrl : "https://www.thebrandhouse.mu/careers/";
+
+        elements.metaGrid.replaceChildren();
+        addMeta("Location", job ? job.location : "Mauritius");
+        addMeta("Type", job ? job.employmentType : "Open profile");
+        addMeta("Workplace", job ? job.workplace : "Flexible by role");
+        addMeta("Experience", job ? job.experience : "Relevant experience");
+        addMeta("Education", job ? job.education : "Relevant qualification");
+
+        createList(
+          job ? job.responsibilities : ["Share your strongest experience and preferred career area."],
+          elements.responsibilities
+        );
+        createList(
+          job ? job.requirements : ["Attach your resume and include a short motivation note."],
+          elements.requirements
+        );
+      }
+
+      function fileToBase64(file) {
+        return new Promise(function (resolve, reject) {
+          const reader = new FileReader();
+          reader.onload = function () {
+            const result = String(reader.result || "");
+            resolve(result.includes(",") ? result.split(",", 2)[1] : result);
+          };
+          reader.onerror = function () {
+            reject(new Error("Unable to read the resume file."));
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function openMailClient(payload) {
+        const bodyLines = [
+          "Job: " + payload.job_title,
+          "Department: " + payload.department,
+          "",
+          "Name: " + payload.first_name + " " + payload.last_name,
+          "Phone: " + payload.phone,
+          "Email: " + payload.email,
+          "Location: " + payload.location,
+          "Experience level: " + payload.candidate_experience_level,
+          "Education: " + payload.education_level,
+          "Available from: " + (payload.date_available || "Not specified"),
+          "LinkedIn: " + (payload.linkedin_url || "Not specified"),
+          "Website: " + (payload.website_url || "Not specified"),
+          "Desired salary: " + (payload.desired_salary || "Not specified"),
+          "Referred by: " + (payload.referred_by || "Not specified"),
+          "",
+          "Cover letter:",
+          payload.cover_letter,
+          "",
+          "References:",
+          payload.references || "Not specified",
+          "",
+          "Please attach the resume before sending this email."
+        ];
+
+        window.location.href = "mailto:hr@thebrandhouse.mu"
+          + "?subject=" + encodeURIComponent("Application: " + payload.job_title)
+          + "&body=" + encodeURIComponent(bodyLines.join("\n"));
+      }
+
+      async function buildPayload() {
+        const formData = new FormData(elements.form);
+        const payload = Object.fromEntries(formData.entries());
+        const resumeFile = elements.resume.files && elements.resume.files[0];
+
+        if (!resumeFile) {
+          throw new Error("Please upload your resume.");
+        }
+
+        if (resumeFile.size > maxResumeBytes) {
+          throw new Error("Please upload a resume smaller than 5MB.");
+        }
+
+        payload.resume_filename = resumeFile.name;
+        payload.resume_mime_type = resumeFile.type || "application/octet-stream";
+
+        if (!isStaticHostedPreview()) {
+          payload.resume_base64 = await fileToBase64(resumeFile);
+        }
+
+        return payload;
+      }
+
+      elements.startedAt.value = String(Date.now() / 1000);
+      applyJob(selectedJob);
+
+      elements.form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        elements.submitButton.disabled = true;
+        elements.submitButton.textContent = "Submitting...";
+        elements.status.textContent = "";
+
+        try {
+          const payload = await buildPayload();
+
+          if (isStaticHostedPreview()) {
+            openMailClient(payload);
+            elements.status.textContent = "Your email app is opening. Attach your resume before sending.";
+            elements.form.reset();
+            elements.startedAt.value = String(Date.now() / 1000);
+            applyJob(selectedJob);
+            return;
+          }
+
+          const response = await fetch("/api/apply", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+          });
+          const result = await response.json();
+
+          if (!response.ok || !result.success) {
+            throw new Error(result.message || "Unable to submit your application right now.");
+          }
+
+          elements.modal.classList.add("is-visible");
+          elements.modal.setAttribute("aria-hidden", "false");
+          elements.form.reset();
+          elements.startedAt.value = String(Date.now() / 1000);
+          applyJob(selectedJob);
+        } catch (error) {
+          elements.status.textContent = error.message || "Unable to submit your application right now.";
+        } finally {
+          elements.submitButton.disabled = false;
+          elements.submitButton.textContent = "Submit application";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

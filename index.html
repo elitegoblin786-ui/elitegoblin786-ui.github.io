@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="dark-mode.css">
   <link rel="stylesheet" href="video-animations.css">
+  <link rel="stylesheet" href="video-hero-override.css">
   <link rel="stylesheet" href="mobile-responsive.css">
   <link rel="stylesheet" href="mobile-optimized.css">
   <link rel="stylesheet" href="cookie-notifications.css">
@@ -341,9 +342,8 @@
     <!-- Video Hero Section -->
     <section class="video-hero reveal">
       <div class="video-container">
-        <video class="hero-video" autoplay muted loop playsinline poster="operations-photo.avif">
-          <source src="https://videos.pexels.com/video-files/3252290/3252290-uhd_2560_1440_25fps.mp4" type="video/mp4">
-          <source src="https://videos.pexels.com/video-files/3129955/3129955-uhd_2560_1440_25fps.mp4" type="video/mp4">
+        <video class="hero-video" autoplay muted loop playsinline>
+          <source src="C:\Users\Nahid.Peerbaccus\Desktop\WEBsTBHx\hero-video.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
@@ -358,7 +358,7 @@
         </div>
       </div>
     </section>
-
+  
     <section class="legacy-showcase reveal-up">
       <div class="container legacy-showcase-grid">
         <div class="legacy-copy">
@@ -734,6 +734,67 @@
     </section>
   </main>
 
+  <!-- AI Assistant Chat Widget -->
+  <div class="ai-assistant-widget" id="aiAssistantWidget">
+    <button class="ai-assistant-toggle" id="aiAssistantToggle" aria-label="Open AI Assistant" title="AI Assistant">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4.5" y="5.5" width="15" height="12" rx="4"/>
+        <path d="M9 19.5 12 17l3 2.5"/>
+        <path d="M8 9h.01"/>
+        <path d="M16 9h.01"/>
+        <path d="M10 12.5h4"/>
+        <path d="M5.5 3.5 6 5l1.5.5L6 6l-.5 1.5L5 6 3.5 5.5 5 5z"/>
+        <path d="M18.5 3.5 19 5l1.5.5L19 6l-.5 1.5L18 6l-1.5-.5L18 5z"/>
+      </svg>
+    </button>
+    <div class="ai-assistant-window" id="aiAssistantWindow" style="display: none;">
+      <div class="ai-assistant-header">
+        <div>
+          <h4>TheBrandHouse AI</h4>
+          <p>How can we help?</p>
+        </div>
+        <button class="ai-assistant-close" id="aiAssistantClose" aria-label="Close AI Assistant">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="ai-assistant-messages" id="aiAssistantMessages">
+        <div class="ai-message">
+          <div class="ai-message-content">
+            <p>👋 Hello! How can we help you?</p>
+            <p style="margin-top: 12px; font-size: 0.85rem; color: #5f6b7c;">Most users search for:</p>
+            <ul style="margin: 8px 0; padding-left: 18px;">
+              <li>Store locations and hours</li>
+              <li>Product information and brands</li>
+              <li>Contact and support details</li>
+              <li>Company information</li>
+              <li>After-sales service</li>
+              <li>Career opportunities</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="ai-assistant-input-area">
+        <div class="ai-quick-actions">
+          <button class="ai-quick-btn" data-action="stores">Find Stores</button>
+          <button class="ai-quick-btn" data-action="products">Products</button>
+          <button class="ai-quick-btn" data-action="contact">Contact Us</button>
+        </div>
+        <div class="ai-input-wrapper">
+          <input type="text" id="aiAssistantInput" class="ai-assistant-input" placeholder="Ask me anything..." aria-label="Message AI Assistant">
+          <button class="ai-send-btn" id="aiAssistantSend" aria-label="Send message">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer">
     <div class="container footer-wrap">
       <div class="footer-card">
@@ -770,7 +831,7 @@
           <h4 style="margin-top: 20px;">Follow Us</h4>
           <div class="footer-social">
             <a href="https://facebook.com/thebrandhouse" target="_blank" rel="noopener" title="Facebook">f</a>
-            <a href="https://instagram.com/thebrandhouse" target="_blank" rel="noopener" title="Instagram">📷</a>
+            <a href="https://instagram.com/thebrandhouse" target="_blank" rel="noopener" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg></a>
             <a href="https://youtube.com/thebrandhouse" target="_blank" rel="noopener" title="YouTube">▶</a>
             <a href="https://twitter.com/thebrandhouse" target="_blank" rel="noopener" title="Twitter">𝕏</a>
           </div>
@@ -789,6 +850,7 @@
   </footer>
   <script src="cms.js"></script>
   <script src="site.js"></script>
+  <script src="ai-assistant.js"></script>
   <script src="cookie-notifications.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-cG2AHzRY4F19FHv9+1n2Y9OCeV46y82j2bfMVuYUqgz0+U9q4YJ06KIXS0FdxpO5I9iO8A6HvLEyLgDdf2lt6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="welcome-banner-animation.js"></script>
@@ -859,5 +921,3 @@
   <script src="advanced-animations.js"></script>
 </body>
 </html>
-
-

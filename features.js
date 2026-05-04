@@ -94,6 +94,68 @@ class NewsletterSignup {
   }
 }
 
+// Service request form
+class ServiceRequestForm {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    document.addEventListener('submit', (event) => {
+      if (!event.target.classList.contains('service-form')) return;
+
+      event.preventDefault();
+      this.handleSubmit(event.target);
+    });
+  }
+
+  handleSubmit(form) {
+    const email = form.querySelector('input[type="email"]');
+    const phone = form.querySelector('input[type="tel"]');
+
+    if (!email || !phone) {
+      this.showMessage(form, 'Please add your email and contact number.', 'error');
+      return;
+    }
+
+    if (!form.checkValidity()) {
+      if (typeof form.reportValidity === 'function') {
+        form.reportValidity();
+      }
+      this.showMessage(form, 'Please complete the service request details.', 'error');
+      return;
+    }
+
+    const body = [
+      'Service request',
+      '',
+      'Email: ' + email.value,
+      'Contact number: ' + phone.value,
+      '',
+      'Please describe the appliance, brand, model and issue before sending.'
+    ].join('\n');
+
+    window.location.href = 'mailto:service@thebrandhouse.mu'
+      + '?subject=' + encodeURIComponent('Service request')
+      + '&body=' + encodeURIComponent(body);
+
+    this.showMessage(form, 'Your email app is opening so you can send the request to our service team.', 'success');
+  }
+
+  showMessage(form, message, type) {
+    let status = form.querySelector('.service-form-status');
+    if (!status) {
+      status = document.createElement('p');
+      status.className = 'service-form-status';
+      status.setAttribute('aria-live', 'polite');
+      form.appendChild(status);
+    }
+
+    status.textContent = message;
+    status.className = 'service-form-status ' + type;
+  }
+}
+
 // Search Functionality
 class SearchFeature {
   constructor() {
@@ -153,6 +215,7 @@ class MobileNav {
 
   init() {
     if (!this.toggle || !this.nav) return;
+    if (this.toggle.dataset.navController === 'site' || this.nav.dataset.navController === 'site') return;
 
     this.toggle.addEventListener('click', () => this.toggleMenu());
     document.addEventListener('click', (e) => {
@@ -163,13 +226,18 @@ class MobileNav {
   }
 
   toggleMenu() {
-    this.nav.classList.toggle('is-open');
-    this.toggle.classList.toggle('is-active');
+    const isOpen = !this.nav.classList.contains('is-open');
+    this.nav.classList.toggle('is-open', isOpen);
+    this.toggle.classList.toggle('is-active', isOpen);
+    this.toggle.setAttribute('aria-expanded', String(isOpen));
+    this.toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
   }
 
   closeMenu() {
     this.nav.classList.remove('is-open');
     this.toggle.classList.remove('is-active');
+    this.toggle.setAttribute('aria-expanded', 'false');
+    this.toggle.setAttribute('aria-label', 'Open navigation');
   }
 }
 
@@ -652,6 +720,17 @@ class LocalizedLanguageSwitcher {
   }
 
   renderSwitcher() {
+    // Bind to existing language select elements (id="languageSelect")
+    const languageSelect = document.getElementById('languageSelect');
+    if (languageSelect) {
+      languageSelect.addEventListener('change', (e) => {
+        this.switchLanguage(e.target.value);
+      });
+      languageSelect.value = this.currentLang;
+      return;
+    }
+
+    // Fallback: Create switcher if it doesn't exist
     if (document.querySelector('.language-switcher')) {
       return;
     }
@@ -659,7 +738,7 @@ class LocalizedLanguageSwitcher {
     const toggle = document.createElement('div');
     toggle.className = 'language-switcher';
     toggle.innerHTML = `
-      <select id="language-select" aria-label="Select language">
+      <select id="languageSelect" aria-label="Select language">
         <option value="en">English</option>
         <option value="fr">Fran&ccedil;ais</option>
       </select>
@@ -670,7 +749,7 @@ class LocalizedLanguageSwitcher {
       header.appendChild(toggle);
     }
 
-    const select = document.getElementById('language-select');
+    const select = document.getElementById('languageSelect');
     if (select) {
       select.addEventListener('change', (e) => {
         this.switchLanguage(e.target.value);
@@ -689,7 +768,7 @@ class LocalizedLanguageSwitcher {
     this.currentLang = this.translations[lang] ? lang : 'en';
     localStorage.setItem('tbh-lang', this.currentLang);
 
-    const select = document.getElementById('language-select');
+    const select = document.getElementById('languageSelect');
     if (select) {
       select.value = this.currentLang;
     }
@@ -1068,6 +1147,7 @@ class ParallaxVideo {
 document.addEventListener('DOMContentLoaded', () => {
   new DarkMode();
   new NewsletterSignup();
+  new ServiceRequestForm();
   new SearchFeature();
   new ScrollReveal();
   new MobileNav();

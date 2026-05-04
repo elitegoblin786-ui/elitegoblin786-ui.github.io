@@ -12,42 +12,44 @@ try {
 }
 
 if (mobileNavToggle && siteNav) {
-  console.log('Mobile nav elements found'); // Debug log
-  
+  mobileNavToggle.dataset.navController = "site";
+  siteNav.dataset.navController = "site";
+
+  const mobileNavQuery = window.matchMedia("(max-width: 820px)");
+
+  const setMobileNavState = function (isOpen) {
+    mobileNavToggle.classList.toggle("is-active", isOpen);
+    mobileNavToggle.setAttribute("aria-expanded", String(isOpen));
+    mobileNavToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+    siteNav.classList.toggle("is-open", isOpen);
+    document.body.classList.toggle("is-mobile-nav-open", isOpen);
+  };
+
   const closeMobileNav = function () {
-    mobileNavToggle.classList.remove("is-active");
-    mobileNavToggle.setAttribute("aria-expanded", "false");
-    mobileNavToggle.setAttribute("aria-label", "Open navigation");
-    siteNav.classList.remove("is-open");
-    console.log('Nav closed'); // Debug log
+    setMobileNavState(false);
   };
 
   mobileNavToggle.addEventListener("click", function (e) {
     e.preventDefault();
-    e.stopPropagation();
-    console.log('Toggle clicked'); // Debug log
-    
-    const willOpen = !siteNav.classList.contains("is-open");
-    console.log('Will open:', willOpen); // Debug log
-    
-    mobileNavToggle.classList.toggle("is-active", willOpen);
-    mobileNavToggle.setAttribute("aria-expanded", String(willOpen));
-    mobileNavToggle.setAttribute("aria-label", willOpen ? "Close navigation" : "Open navigation");
-    siteNav.classList.toggle("is-open", willOpen);
+    e.stopImmediatePropagation();
+
+    setMobileNavState(!siteNav.classList.contains("is-open"));
   });
 
-  siteNav.querySelectorAll("a").forEach(function (link) {
-    link.addEventListener("click", closeMobileNav);
+  siteNav.addEventListener("click", function (event) {
+    if (event.target.closest("a")) {
+      closeMobileNav();
+    }
   });
 
   window.addEventListener("resize", function () {
-    if (window.innerWidth > 820) {
+    if (!mobileNavQuery.matches) {
       closeMobileNav();
     }
   });
 
   document.addEventListener("click", function (event) {
-    if (window.innerWidth > 820) {
+    if (!mobileNavQuery.matches) {
       return;
     }
 
@@ -55,8 +57,12 @@ if (mobileNavToggle && siteNav) {
       closeMobileNav();
     }
   });
-} else {
-  console.log('Mobile nav elements NOT found'); // Debug log
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeMobileNav();
+    }
+  });
 }
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

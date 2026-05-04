@@ -40,26 +40,31 @@
     serviceContacts: {
       general: {
         label: 'General enquiries',
+        labelFr: 'Demandes générales',
         phone: '(+230) 207 1700',
         email: 'info@thebrandhouse.mu'
       },
       sales: {
         label: 'Sales & store enquiries',
+        labelFr: 'Ventes et demandes en magasin',
         phone: '(+230) 207 1702',
         email: 'sales@thebrandhouse.mu'
       },
       support: {
         label: 'Technical support & repairs',
+        labelFr: 'Support technique et réparations',
         phone: '(+230) 207 1705',
         email: 'service@thebrandhouse.mu'
       },
       warranty: {
         label: 'Warranty assistance',
+        labelFr: 'Assistance garantie',
         phone: '(+230) 207 1711',
         email: 'warranty@thebrandhouse.mu'
       },
       careers: {
         label: 'Careers and recruitment',
+        labelFr: 'Carrières et recrutement',
         phone: '(+230) 207 1703',
         email: 'careers@thebrandhouse.mu'
       }
@@ -81,6 +86,15 @@
     'Company background and businesses',
     'Careers and vacancies'
   ];
+
+  function getCurrentLanguage() {
+    return localStorage.getItem('tbh-lang') || 'en';
+  }
+
+  function getServiceLabel(service) {
+    const lang = getCurrentLanguage();
+    return lang === 'fr' && service.labelFr ? service.labelFr : service.label;
+  }
 
   function applyAssistantCopy() {
     if (headerTitle) headerTitle.textContent = 'Customer Support Assistant';
@@ -188,7 +202,7 @@
     ) {
       const details = Object.values(knowledgeBase.serviceContacts)
         .map((item) => `
-          <strong>${item.label}</strong><br>
+          <strong>${getServiceLabel(item)}</strong><br>
           📞 ${item.phone}<br>
           📧 <a href="mailto:${item.email}">${item.email}</a><br>
         `)
@@ -232,7 +246,7 @@
     ) {
       const details = Object.values(knowledgeBase.serviceContacts)
         .map((item) => `
-          <strong>${item.label}</strong><br>
+          <strong>${getServiceLabel(item)}</strong><br>
           📞 ${item.phone}<br>
           📧 <a href="mailto:${item.email}">${item.email}</a><br>
         `)
